@@ -1,0 +1,56 @@
+<div id="chart-tt-wrapper"><text class="chart-tt" data-font-family="Segoe UI" data-font-size="10px" data-line-height="11.5px" data-max-width="120px" data-padding="15px" data-background-color="rgba(248, 243, 243, 1)" data-text-color="rgba(99, 95, 93, 1)" style="visibility: hidden; display: inline; position: absolute; text-align: left; font-family: Segoe UI; font-size: 10px; line-height: 11.5px; max-width: 120px; max-height: 800px; padding: 15px; background-color: rgb(248, 243, 243); color: rgb(99, 95, 93); border-radius: 8px; pointer-events: none; transform: translate(-100%, -100%); left: 664px; top: 684px;">Kategorien: 4<br><br>Relative Häufigkeit: 51.26%</text></div><div id="piechart"><svg id="piechartSVG" width="1000" height="600"><rect class="backgroundPieChart" height="600" width="1000" fill="rgba(255, 255, 255, 1)"></rect><g class="containPieChart" transform="translate(180,120)"><g class="titleChart"><text class="titleText" text-anchor="middle" x="320" y="-60" fill="rgba(99, 79, 93, 1)" font-size="25" font-family="Segoe UI" data-xaxis="Kategorien" data-yaxis="Relative Häufigkeit">Absolute Häufigkeiten der Kategorien aus Zylinder</text></g><path class="slice" stroke="none" stroke-width="2px" opacity="1" fill="rgb(31, 119, 180)" transform="translate(320,180)" d="M8.817456953860943e-15,-144A144,144,0,1,1,-11.354766538676605,143.55162582448222L0,0Z"></path><path class="slice" stroke="none" stroke-width="2px" opacity="1" fill="rgb(255, 127, 14)" transform="translate(320,180)" d="M-11.354766538676605,143.55162582448222A144,144,0,0,1,-142.70546987176206,-19.26522433504497L0,0Z"></path><path class="slice" stroke="none" stroke-width="2px" opacity="1" fill="rgb(44, 160, 44)" transform="translate(320,180)" d="M-142.70546987176206,-19.26522433504497A144,144,0,0,1,-15.880823843223618,-143.12162462067184L0,0Z"></path><path class="slice" stroke="none" stroke-width="2px" opacity="1" fill="rgb(214, 39, 40)" transform="translate(320,180)" d="M-15.880823843223618,-143.12162462067184A144,144,0,0,1,-6.817390555904391,-143.83853164575987L0,0Z"></path><path class="slice" stroke="none" stroke-width="2px" opacity="1" fill="rgb(148, 103, 189)" transform="translate(320,180)" d="M-6.817390555904391,-143.83853164575987A144,144,0,0,1,-2.6452370861582827e-14,-144L0,0Z"></path><polyline transform="translate(320,180)" stroke="rgb(99, 95, 93)" stroke-width="1" style="fill: none;" points="71.94393139689184,2.840903933490199,161.87384564300666,6.392033850352947,171,6.392033850352947"></polyline><polyline transform="translate(320,180)" stroke="rgb(99, 95, 93)" stroke-width="1" style="fill: none;" points="-56.03786841207814,45.207934080541825,-126.08520392717581,101.7178516812191,-171,101.7178516812191"></polyline><polyline transform="translate(320,180)" stroke="rgb(99, 95, 93)" stroke-width="1" style="fill: none;" points="-50.30533051151809,-51.510908768210705,-113.18699365091571,-115.89954472847408,-171,-115.89954472847408"></polyline><polyline transform="translate(320,180)" stroke="rgb(99, 95, 93)" stroke-width="1" style="fill: none;" points="-5.6773832693382875,-71.77581291224111,-12.774112356011146,-161.4955790525425,-171,-161.4955790525425"></polyline><polyline transform="translate(320,180)" stroke="rgb(99, 95, 93)" stroke-width="1" style="fill: none;" points="-1.7048256146369443,-71.9798136259304,-3.8358576329331244,-161.95458065834342,-171,-161.95458065834342"></polyline><text opacity="1" class="sliceLabel" transform="translate(498.2,186.39203385035296)" text-anchor="start" text-align="middle" font-size="13" fill="rgba(99, 95, 93, 1)" font-family="Segoe UI" data-x="4" data-y="51.26">4</text><text opacity="1" class="sliceLabel" transform="translate(141.8,281.7178516812191)" text-anchor="end" text-align="middle" font-size="13" fill="rgba(99, 95, 93, 1)" font-family="Segoe UI" data-x="8" data-y="25.88">8</text><text opacity="1" class="sliceLabel" transform="translate(141.8,64.10045527152592)" text-anchor="end" text-align="middle" font-size="13" fill="rgba(99, 95, 93, 1)" font-family="Segoe UI" data-x="6" data-y="21.11">6</text><text opacity="1" class="sliceLabel" transform="translate(141.8,18.504420947457504)" text-anchor="end" text-align="middle" font-size="13" fill="rgba(99, 95, 93, 1)" font-family="Segoe UI" data-x="3" data-y="1.01">3</text><text opacity="1" class="sliceLabel" transform="translate(141.8,18.045419341656583)" text-anchor="end" text-align="middle" font-size="13" fill="rgba(99, 95, 93, 1)" font-family="Segoe UI" data-x="5" data-y="0.75">5</text></g></svg></div>undefined
+<script>
+    const tooltipWrapper = document.getElementById("chart-tt-wrapper");
+    const tooltip = tooltipWrapper.getElementsByClassName("chart-tt")[0];
+    const svg = document.getElementById("piechartSVG");
+    const titleText = svg.querySelectorAll(".titleText")[0];
+    const slices = svg.querySelectorAll(".slice");
+    const sliceLables = svg.querySelectorAll(".sliceLabel");
+
+    const tooltipFontFamily = tooltip.getAttribute("data-font-family");
+    const tooltipFontSize = tooltip.getAttribute("data-font-size");
+    const tooltipLineHeight = tooltip.getAttribute("data-line-height");
+    const tooltipMaxWidth = tooltip.getAttribute("data-max-width");
+    const tooltipPadding = tooltip.getAttribute("data-padding");
+    const tooltipBgColor = tooltip.getAttribute("data-background-color");
+    const tooltipTextColor = tooltip.getAttribute("data-text-color");
+
+    const normalStyle = `visibility: hidden; display: inline; position: absolute; text-align: left; max-width: ${tooltipMaxWidth}; max-height: 800px; padding: ${tooltipPadding}; border-radius: 8px; font-size: ${tooltipFontSize}; font-family: ${tooltipFontFamily}; line-height: ${tooltipLineHeight}; background-color: ${tooltipBgColor}; color: ${tooltipTextColor}; pointer-events: none; transform: translate(-100%, -100%);`;
+    const hoverStyle = `visibility: visible; display: inline; position: absolute; text-align: left; max-width: ${tooltipMaxWidth}; max-height: 800px; padding: ${tooltipPadding}; border-radius: 8px; font-size: ${tooltipFontSize}; font-family: ${tooltipFontFamily}; line-height: ${tooltipLineHeight}; background-color: ${tooltipBgColor}; color: ${tooltipTextColor}; pointer-events: none; transform: translate(-100%, -100%);`;
+
+    function mouseover(){
+        tooltip.setAttribute("style", hoverStyle);
+    };
+    function mousemove(event, sliceXdata, sliceYdata){
+        mousePos = { x: event.clientX, y: event.clientY };
+        tooltip.setAttribute("style", hoverStyle + `left: ${mousePos.x}px; top: ${mousePos.y}px`);
+        tooltip.innerHTML = `${titleText.getAttribute("data-xaxis")}: ${sliceXdata}<br><br>${titleText.getAttribute("data-yaxis")}: ${sliceYdata}%`;
+    };
+    function mouseout(){
+        tooltip.setAttribute("style", normalStyle);
+    };
+
+    function mouseenter(element) {
+        slices.forEach((sliceEl) => {
+            sliceEl.setAttribute("opacity", "0.7");
+        });
+        element.setAttribute("opacity", "1");
+    }
+
+    function mouseleave () {
+        slices.forEach((sliceEl) => {
+            sliceEl.setAttribute("opacity", "1");
+        });
+    };
+
+    sliceLables.forEach((sliceLabel, idx) => {
+        const sliceXdata = sliceLabel.getAttribute("data-x");
+        const sliceYdata = sliceLabel.getAttribute("data-y");
+
+        slices[idx].addEventListener("mouseover", mouseover);
+        slices[idx].addEventListener("mousemove", (event) => mousemove(event, sliceXdata, sliceYdata));
+        slices[idx].addEventListener("mouseout", mouseout);
+        slices[idx].addEventListener("mouseenter", () => mouseenter(slices[idx]));
+        slices[idx].addEventListener("mouseleave", mouseleave);
+    })
+</script>

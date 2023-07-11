@@ -1,0 +1,82 @@
+:root {
+    --accordion-paddingY: 1rem;
+    --accordion-paddingX: 1.25rem;
+    --accordion-transition-duration: 0.5s;
+    --accordion-border-radius-round: var(--border-radius); /* 0.75rem */
+    --accordion-trigger-svg-width: 1.25rem;
+}
+
+.accordion-trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--accordion-paddingY) var(--accordion-paddingX);
+    font-weight: 500;
+    text-align: left;
+    color: #6b7280;
+    border: 1px solid #e5e7eb;
+    cursor: pointer;
+}
+
+.accordion-trigger-svg {
+    position: absolute;
+    top: 50%;
+    right:  var(--accordion-paddingX);
+    height: var(--accordion-trigger-svg-width);
+    width: var(--accordion-trigger-svg-width);
+    color: #9ca3af;
+    transform: translate(0%, -50%);
+    transition: transform 350ms;
+}
+
+.accordion-trigger-svg.open {
+    transform: translate(0%, -50%) rotate(-90deg);
+}
+
+.accordion-trigger:focus {
+    box-shadow: 0 0 0 0 4px #e5e7eb;
+}
+
+/* :not(.accordion) + .accordion .accordion-trigger {
+    border-top-left-radius: var(--accordion-border-radius-round);
+    border-top-right-radius: var(--accordion-border-radius-round);
+} */
+
+.accordion:last-of-type .accordion-trigger:not(.expanded) {
+    border-bottom-left-radius: var(--accordion-border-radius-round);
+    border-bottom-right-radius: var(--accordion-border-radius-round);
+    transition: border-radius 0.3s ease-in-out var(--accordion-transition-duration);
+}
+
+.accordion:last-of-type .accordion-trigger.expanded {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.accordion-content-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    border: 1px solid #e5e7eb;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    transition: 
+        max-height var(--accordion-transition-duration) ease-out, 
+        visibility var(--accordion-transition-duration) ease-out,
+        border-bottom-width var(--accordion-transition-duration) ease-out,
+        opacity var(--accordion-transition-duration) ease-out var(--accordion-transition-duration),
+}
+
+.accordion:last-of-type .accordion-content-wrapper {
+    border-bottom-left-radius: var(--accordion-border-radius-round);
+    border-bottom-right-radius: var(--accordion-border-radius-round);
+}
+
+.accordion-content {
+    padding: var(--accordion-paddingY) var(--accordion-paddingX);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}

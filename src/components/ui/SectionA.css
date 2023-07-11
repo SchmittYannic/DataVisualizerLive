@@ -1,0 +1,54 @@
+:root {
+    --sectionA-image-width: 600px;
+    --sectionA-image-height: 400px;
+    --sectionA-image-border-color: rgb(197, 197, 197);
+    --sectionA-headtext-color: #1f1f1f;
+    --sectionA-subtext-color: #425466;
+}
+
+.sectionA-left {
+    display: flex;
+    align-items: center;
+    padding: 4rem 6rem;
+}
+
+.sectionA-right {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 4rem 6rem;
+}
+
+.sectionA-wrapper {
+    width: 50%;
+    min-width: var(--sectionA-image-width);
+    display: flex;
+    justify-content: center;
+}
+
+.sectionA-text {
+    width: var(--sectionA-image-width);
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.sectionA-text h2 {
+    font-size: 38px;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: var(--sectionA-headtext-color);
+}
+
+.sectionA-text p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--sectionA-subtext-color);
+}
+
+.sectionA-img-wrapper img {
+    border: 1px solid var(--sectionA-image-border-color);
+    border-radius: .5em;
+    display: block;
+    width: var(--sectionA-image-width);
+    height: var(--sectionA-image-height);
+}
