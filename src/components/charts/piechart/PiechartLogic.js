@@ -165,18 +165,17 @@ export const piechart = (selection, props) => {
     //titleText
     titleGEnter
         .append('text')
-            .attr('class', 'titleChart')
+            .attr('class', 'titleText')
             .attr('text-anchor', 'middle')
-        .merge(titleG.select('.titleChart'))
+        .merge(titleG.select('.titleText'))
             .attr('x', innerWidth / 2)
             .attr('y', titleDistance - svgMarginTop)
+            .attr("data-xaxis", xaxisText)
+            .attr("data-yaxis", yaxisText)
             .text(titleText)
-            // .attr("class", "titleText")
             .attr('fill', `rgba(${titleColor.r}, ${titleColor.g}, ${titleColor.b}, ${titleColor.a})`)
             .attr("font-size", titleFontSize)
-            .attr("font-family", fontFamily)
-            .attr("data-xaxis", xaxisText)
-            .attr("data-yaxis", yaxisText);
+            .attr("font-family", fontFamily);
   
     const slices = g.merge(gEnter).selectAll('path').data(data_ready);
     slices.enter().append('path')
