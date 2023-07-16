@@ -10,7 +10,6 @@ const UploadStep = () => {
         const { name } = e.target;
         setFileIsUploaded(true);
         setDemodata(name)
-        console.log(name)
     }
 
     return (
