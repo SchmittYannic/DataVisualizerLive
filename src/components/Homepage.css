@@ -98,6 +98,7 @@ canvas {
 .card-section {
     margin: 0 auto;
     max-width: 1140px;
+    padding: 1em;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 32px;
@@ -107,4 +108,90 @@ canvas {
 .card-header {
     line-height: 48px;
     font-size: 24px;
+}
+
+@media only screen and (max-width: 1140px) {
+    
+    .canvas-container {
+        height: 200px;
+    }
+
+    .hero {
+        margin-bottom: 3rem;
+    }
+
+    .hero-content {
+        position: relative;
+        padding-top: 4em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-title {
+        font-size: 4.5rem;
+    }
+
+    .hero-title[data-overlay] {
+        position: absolute;
+    }
+
+    .hero-subtitle {
+        max-width: 480px;
+    }
+
+    .card-section {
+        margin-bottom: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .card {
+        max-width: 480px;
+    }
+}
+
+@media only screen and (max-width: 680px) {
+
+    .canvas-container {
+        height: 130px;
+    }
+
+    .hero {
+        margin-bottom: 3rem;
+    }
+
+    .hero-content {
+        position: relative;
+        padding-top: 2em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-title {
+        font-size: 3.2rem;
+    }
+
+    .hero-title[data-overlay] {
+        position: absolute;
+    }
+
+    .hero-subtitle {
+        max-width: 344.2px;
+    }
+
+    .card-section {
+        margin-bottom: 4rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+    }
+
+    .card {
+        max-width: 344.2px;
+    }
 }

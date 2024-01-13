@@ -1,15 +1,18 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
+
 import { chartLottie, lightningLottie, settingLottie } from "../assets/";
 import HeroChartAnimation from "./HeroChartAnimation";
 import VideoSection from "./VideoSection";
+import { useWindowSize } from "../hooks";
 import "./Homepage.css";
 
 const Homepage = () => {
     const canvasRef = useRef(null);
     const heroTitle = useRef(null);
     const heroTitleOverlay = useRef(null);
+    const windowSize = useWindowSize();
 
     useEffect(() => {
         if(heroTitle.current && heroTitleOverlay.current) {
@@ -68,7 +71,7 @@ const Homepage = () => {
                         DataVisualizer starten
                     </Link>
 
-                    <HeroChartAnimation />
+                    {windowSize.width >= 1140 && <HeroChartAnimation />}
                 </div>
                 <div className="canvas-container">
                     <canvas ref={canvasRef} id="canv" width={32} height={32}></canvas>
