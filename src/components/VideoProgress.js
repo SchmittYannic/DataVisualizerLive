@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
 
-const VideoProgress2 = ({ videoRef, currentVideo }) => {
+const VideoProgress = ({ videoRef, currentVideo, vertical=true }) => {
+
+    const initial = vertical ? { height: "0%" } : { width: "0%" };
+    const animate = vertical ? { height: "100%" } : { width: "100%" };
+
     return (
         <div 
             className="progressbar"
@@ -10,8 +14,8 @@ const VideoProgress2 = ({ videoRef, currentVideo }) => {
                     <motion.div
                         className="progressbar-done"
 
-                        initial={{ height: "0%" }}
-                        animate={{ height: `100%` }}
+                        initial={initial}
+                        animate={animate}
                         transition={{ duration: videoRef.current.duration }}
                         layout
                     >
@@ -21,4 +25,4 @@ const VideoProgress2 = ({ videoRef, currentVideo }) => {
     )
 }
 
-export default VideoProgress2
+export default VideoProgress
