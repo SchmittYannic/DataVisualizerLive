@@ -61,6 +61,7 @@ const VideoSection = () => {
                     style={{
                         zIndex: currentVideo === uploadwebmRef.current ? 2 : -1
                     }}
+                    muted="muted"
                 >
                     <source src={uploadwebm} type="video/webm" />
                     Your browser does not support the video tag.
@@ -74,6 +75,7 @@ const VideoSection = () => {
                     style={{
                         zIndex: currentVideo === datawebmRef.current ? 2 : -1
                     }}
+                    muted="muted"
                 >
                     <source src={datawebm} type="video/webm" />
                     Your browser does not support the video tag.
@@ -87,6 +89,7 @@ const VideoSection = () => {
                     style={{
                         zIndex: currentVideo === viswebmRef.current ? 2 : -1
                     }}
+                    muted="muted"
                 >
                     <source src={viswebm} type="video/webm" />
                     Your browser does not support the video tag.
