@@ -22,7 +22,7 @@ const HeroChartAnimation = () => {
         }, 5000);
 
         return () => clearTimeout(timer);
-    }, [order])
+    }, [order, setOrder])
 
     return (
         <div className="auto-chart-carousel">
