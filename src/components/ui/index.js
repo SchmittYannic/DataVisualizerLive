@@ -8,6 +8,8 @@ import Accordion from "./Accordion";
 import MyColorPicker from "./MyColorPicker";
 import TextArea from "./TextArea";
 import InfoBox from "./InfoBox";
+import DebouncedInput from "./DebouncedInput";
+import FilterTable from "./FilterTable";
 
 export {
     SectionA,
@@ -20,4 +22,6 @@ export {
     MyColorPicker,
     TextArea,
     InfoBox,
+    DebouncedInput,
+    FilterTable,
 }
