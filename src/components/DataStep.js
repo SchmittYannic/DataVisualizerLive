@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { TableScroll, InfoBox } from "./ui";
 import { useData } from "../hooks";
+import DataTable from "./ui/DataTable";
 
 const DataStep = () => {
     const { dataAsJSON ,dataAsJSONLength, fileIsUploaded } = useData();
@@ -12,12 +13,7 @@ const DataStep = () => {
                     {/* <h2 className="step-header">Data Step</h2> */}
 
                     {
-                        dataAsJSONLength !== 0 && 
-                            <TableScroll 
-                                data={dataAsJSON} 
-                                batchSize={20}
-                                tableHeight="500px"
-                            />
+                        dataAsJSONLength !== 0 && <DataTable data={dataAsJSON} />
                     }
                 </main>
 
