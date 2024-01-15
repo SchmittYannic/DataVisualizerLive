@@ -7,11 +7,15 @@
     --border-color: rgb(209,213,219); /* rgb(197, 197, 197) */
     --hover-color: rgb(249,250,251);
     --background-color: #fff;
+    --min-page-width: 320px;
     --header-height: 130px;
+    --header-height-mobile: 100px;
     --element-gap: 10px;
     --navigation-wrapper-height: 100px;
     --paddingX: 50px;
     --paddingY: 30px;
+    --paddingX-mobile: 30px;
+    --paddingY-mobile: 30px;
     --button-paddingX: 1rem;
     --button-paddingY: .75rem;
 }
@@ -33,7 +37,7 @@ body {
     position: relative;
     margin: 0 auto;
     /* max-width: 1920px; */
-    min-width: 320px;
+    min-width: var(--min-page-width);
     min-height: 100vh;
     display: flex;
     background-color: lightgray;
@@ -94,6 +98,7 @@ br {
     padding: 0 var(--paddingX);
     width: 100%;
     height: var(--navigation-wrapper-height);
+    min-width: var(--min-page-width);
     max-width: 600px;
     background-color: var(--background-color);
     border: 1px solid var(--border-color);
