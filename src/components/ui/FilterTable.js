@@ -6,8 +6,6 @@ const FilterTable = ({column, table,}) => {
         .getPreFilteredRowModel()
         .flatRows[0]?.getValue(column.id)
 
-    const columnName = table.getColumn(column.id).columnDef.name;
-
     const columnFilterValue = column.getFilterValue()
 
     const columnFacetedUniqueValues = column.getFacetedUniqueValues()
@@ -24,7 +22,7 @@ const FilterTable = ({column, table,}) => {
         <div>
             <div className="table--filter-number-wrapper">
                 <label htmlFor={column.id + "filterMin"} className="sr-only">
-                    {`filter column ${columnName} minimum`}
+                    {`filter column ${column.id} minimum`}
                 </label>
                 <DebouncedInput
                     id={column.id + "filterMin"}
@@ -35,16 +33,16 @@ const FilterTable = ({column, table,}) => {
                     onChange={value =>
                         column.setFilterValue((old) => [value, old?.[1]])
                     }
-                    placeholder={`Min ${columnName} ${
+                    placeholder={`Min ${column.id} ${
                     column.getFacetedMinMaxValues()?.[0]
                         ? `(${column.getFacetedMinMaxValues()?.[0]})`
                         : ""
                     }`}
                     className="table--filter-number"
-                    title={`Filter by minimum ${columnName}`}
+                    title={`Filter by minimum ${column.id}`}
                 />
                 <label htmlFor={column.id + "filterMax"} className="sr-only">
-                    {`filter column ${columnName} maximum`}
+                    {`filter column ${column.id} maximum`}
                 </label>
                 <DebouncedInput
                     id={column.id + "filterMax"}
@@ -55,13 +53,13 @@ const FilterTable = ({column, table,}) => {
                     onChange={value =>
                         column.setFilterValue((old) => [old?.[0], value])
                     }
-                    placeholder={`Max ${columnName} ${
+                    placeholder={`Max ${column.id} ${
                             column.getFacetedMinMaxValues()?.[1]
                                 ? `(${column.getFacetedMinMaxValues()?.[1]})`
                                 : ""
                         }`}
                     className="table--filter-number"
-                    title={`Filter by maximum ${columnName}`}
+                    title={`Filter by maximum ${column.id}`}
                 />
             </div>
         </div>
@@ -73,17 +71,17 @@ const FilterTable = ({column, table,}) => {
                 ))}
             </datalist>
             <label htmlFor={column.id + "filter"} className="sr-only">
-                {`filter Column ${columnName}`}
+                {`filter Column ${column.id}`}
             </label>
             <DebouncedInput
                 id={column.id + "filter"}
                 type="text"
                 value={(columnFilterValue ?? "")}
                 onChange={value => column.setFilterValue(value)}
-                placeholder={`Filter ${columnName} (${column.getFacetedUniqueValues().size})`}
+                placeholder={`Filter ${column.id} (${column.getFacetedUniqueValues().size})`}
                 className={`table--filter-text ${column.id}`}
                 list={column.id + "list"}
-                title={`Filter column: ${columnName}`}
+                title={`Filter column: ${column.id}`}
             />
         </>
     )

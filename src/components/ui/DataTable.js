@@ -25,11 +25,10 @@ const DataTable = ({ data }) => {
     const columnNames = Object.keys(data[0]);
 
     const columns = useMemo(
-        () => columnNames.map((columnName, idx) => {
+        () => columnNames.map((columnName) => {
             return {
                 accessorFn: row => row[columnName],
-                id: columnName + String(idx),
-                name: columnName,
+                id: columnName,
                 cell: info => info.getValue(),
                 header: () => <span>{columnName}</span>,
                 sortingFn: sortColumn,
