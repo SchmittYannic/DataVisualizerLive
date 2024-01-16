@@ -22,7 +22,7 @@ const FilterTable = ({column, table,}) => {
         <div>
             <div className="table--filter-number-wrapper">
                 <label htmlFor={column.id + "filterMin"} className="sr-only">
-                    {`filter column ${column.id} minimum`}
+                    {`Filter Spalte ${column.id} nach Minimum`}
                 </label>
                 <DebouncedInput
                     id={column.id + "filterMin"}
@@ -39,10 +39,10 @@ const FilterTable = ({column, table,}) => {
                         : ""
                     }`}
                     className="table--filter-number"
-                    title={`Filter by minimum ${column.id}`}
+                    title={`Filter nach Minimum: ${column.id}`}
                 />
                 <label htmlFor={column.id + "filterMax"} className="sr-only">
-                    {`filter column ${column.id} maximum`}
+                    {`Filter Spalte ${column.id} nach Maximum`}
                 </label>
                 <DebouncedInput
                     id={column.id + "filterMax"}
@@ -59,7 +59,7 @@ const FilterTable = ({column, table,}) => {
                                 : ""
                         }`}
                     className="table--filter-number"
-                    title={`Filter by maximum ${column.id}`}
+                    title={`Filter nach Maximum ${column.id}`}
                 />
             </div>
         </div>
@@ -71,7 +71,7 @@ const FilterTable = ({column, table,}) => {
                 ))}
             </datalist>
             <label htmlFor={column.id + "filter"} className="sr-only">
-                {`filter Column ${column.id}`}
+                {`Filter Spalte ${column.id}`}
             </label>
             <DebouncedInput
                 id={column.id + "filter"}
@@ -81,7 +81,7 @@ const FilterTable = ({column, table,}) => {
                 placeholder={`Filter ${column.id} (${column.getFacetedUniqueValues().size})`}
                 className={`table--filter-text ${column.id}`}
                 list={column.id + "list"}
-                title={`Filter column: ${column.id}`}
+                title={`Filter Spalte: ${column.id}`}
             />
         </>
     )
