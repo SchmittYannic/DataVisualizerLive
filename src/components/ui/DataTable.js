@@ -62,7 +62,7 @@ const DataTable = ({ data }) => {
 
     return (
         <>
-            <Accordion head={"Filter Tabelle"}>
+            <Accordion head={"Tabellenfilter"}>
                 <div className="table--filter-wrapper">
                     <div className="table--filter">
                         {
@@ -80,6 +80,8 @@ const DataTable = ({ data }) => {
                     <div className="divider-2" />
                 </div>
             </Accordion>
+
+            <div className="divider-2" />
 
             {isMobile &&
                 <>
