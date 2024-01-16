@@ -11,10 +11,10 @@ import {
     flexRender,
 } from "@tanstack/react-table"
 import { MdSwapVert, MdArrowDownward, MdArrowUpward } from "react-icons/md"
-import DebouncedInput from "./DebouncedInput"
-import FilterTable from "./FilterTable"
+import { Accordion, DebouncedInput, FilterTable } from "./"
 import FuzzyFilter from "../../utils/FuzzyFilter"
 import sortColumn from "../../utils/sortColumn"
+import "./DataTable.css"
 
 const DataTable = ({ data }) => {
 
@@ -23,6 +23,8 @@ const DataTable = ({ data }) => {
     const [columnFilters, setColumnFilters] = useState([]);
 
     const columnNames = Object.keys(data[0]);
+
+    document.documentElement.style.setProperty("--columnCount", columnNames.length);
 
     const columns = useMemo(
         () => columnNames.map((columnName) => {
@@ -60,28 +62,30 @@ const DataTable = ({ data }) => {
 
     return (
         <>
-            <div className="table--filter-wrapper">
-                <div className="table--filter">
-                    {
-                        table.getHeaderGroups().map(headerGroup => headerGroup.headers.map(header => {
-                            if(header.column.getCanFilter()) {
-                                return (
-                                    <FilterTable key={`filter` + header.column.id} column={header.column} table={table} />
-                                )
-                            } else {
-                                return <></>
-                            }
-                        }))
-                    }
+            <Accordion head={"Filter Tabelle"}>
+                <div className="table--filter-wrapper">
+                    <div className="table--filter">
+                        {
+                            table.getHeaderGroups().map(headerGroup => headerGroup.headers.map(header => {
+                                if(header.column.getCanFilter()) {
+                                    return (
+                                        <FilterTable key={`filter` + header.column.id} column={header.column} table={table} />
+                                    )
+                                } else {
+                                    return <></>
+                                }
+                            }))
+                        }
+                    </div>
+                    <div className="divider-2" />
                 </div>
-                <div className="divider-2" />
-            </div>
+            </Accordion>
 
             {isMobile &&
                 <>
                     <div className="divider-4" />
 
-                    <h3>Sort By Column</h3>
+                    <h3>Sortieren nach Spalte</h3>
 
                     <div className="divider-2" />
 
@@ -96,7 +100,7 @@ const DataTable = ({ data }) => {
                                                 {...{
                                                     className: "flex",
                                                     onClick: header.column.getToggleSortingHandler(),
-                                                    title: `sort by ${header.id} column`,
+                                                    title: `Nach Spalte ${header.id} sortieren`,
                                                 }}
                                             >                                                                                                  
                                                 {flexRender(
@@ -133,7 +137,7 @@ const DataTable = ({ data }) => {
                 </>
             }
 
-            <table className="table table--builds">
+            <table className="table">
                 {!isMobile &&
                     <thead className="table__thead">
                         {table.getHeaderGroups().map(headerGroup => (
@@ -146,7 +150,7 @@ const DataTable = ({ data }) => {
                                                 {...{
                                                     className: "flex",
                                                     onClick: header.column.getToggleSortingHandler(),
-                                                    title: `sort by ${header.id} column`,
+                                                    title: `Nach Spalte ${header.id} sortieren`,
                                                 }}
                                             >                                                                                                  
                                                 {flexRender(
@@ -179,7 +183,7 @@ const DataTable = ({ data }) => {
                 <tbody>
                     {table.getRowModel().rows.map(row => {
                         return (
-                            <tr key={row.id} className="table__row build">
+                            <tr key={row.id} className="table__row">
                                 {row.getVisibleCells().map(cell => {
                                     if (isMobile) {
                                         const header = cell.column.id;
@@ -219,47 +223,47 @@ const DataTable = ({ data }) => {
             <div className="table--pagination">
                 <span className="table--pagination button-wrapper">
                     <button
-                        className="button"
+                        className="btn"
                         onClick={() => table.setPageIndex(0)}
                         disabled={!table.getCanPreviousPage()}
-                        title="first page"
+                        title="Erste Seite"
                     >
                         {"<<"}
                     </button>
                     <button
-                        className="button"
+                        className="btn"
                         onClick={() => table.previousPage()}
                         disabled={!table.getCanPreviousPage()}
-                        title="previous page"
+                        title="Vorherige Seite"
                     >
-                        {"Previous"}
+                        {"Vorherige"}
                     </button>
                     <button
-                        className="button"
+                        className="btn"
                         onClick={() => table.nextPage()}
                         disabled={!table.getCanNextPage()}
-                        title="next page"
+                        title="Nächste Seite"
                     >
-                        {"Next"}
+                        {"Nächste"}
                     </button>
                     <button
-                        className="button"
+                        className="btn"
                         onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                         disabled={!table.getCanNextPage()}
-                        title="last page"
+                        title="Letzte Seite"
                     >
                         {">>"}
                     </button>
                 </span>
                 <span>
-                    <div>Page</div>
+                    <div>Seite</div>
                     <strong>
-                        {table.getState().pagination.pageIndex + 1} of{" "}
+                        {table.getState().pagination.pageIndex + 1} von{" "}
                         {table.getPageCount()}
                     </strong>
                 </span>
                 <span>
-                    | Go to page:
+                    | Seitenzahl:
                     <DebouncedInput
                         className="input__number"
                         type="number"
@@ -268,7 +272,7 @@ const DataTable = ({ data }) => {
                             const page = value ? Number(value) - 1 : 0
                             table.setPageIndex(page)
                         }}
-                        title="go to page"
+                        title="Seitenzahl"
                     />
                 </span>
                 <select
@@ -276,15 +280,15 @@ const DataTable = ({ data }) => {
                     onChange={e => {
                         table.setPageSize(Number(e.target.value))
                     }}
-                    title="max number of entries per page"
+                    title="Maximale Anzahl an Einträgen pro Seite"
                 >
                     {[5, 10, 20, 30, 40, 50].map(pageSize => (
                         <option key={pageSize} value={pageSize}>
-                            Show {pageSize}
+                            Zeige {pageSize}
                         </option>
                     ))}
                 </select>
-                <div>{table.getPrePaginationRowModel().rows.length} Rows Total</div>
+                <div>{table.getPrePaginationRowModel().rows.length} Zeilen</div>
             </div>
 
             {/* keep for debug purposes */}
