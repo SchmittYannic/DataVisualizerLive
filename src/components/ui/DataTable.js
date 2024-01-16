@@ -40,6 +40,8 @@ const DataTable = ({ data }) => {
         }), [columnNames]
     );
 
+    const pageSize = isMobile ? 1 : 10;
+
     const table = useReactTable({
         data,
         columns,
@@ -48,6 +50,11 @@ const DataTable = ({ data }) => {
         },
         state: {
             columnFilters,
+        },
+        initialState: {
+            pagination: {
+                pageSize,
+            },
         },
         onColumnFiltersChange: setColumnFilters,
         getCoreRowModel: getCoreRowModel(),
@@ -280,13 +287,13 @@ const DataTable = ({ data }) => {
                     }}
                     title="Maximale Anzahl an Einträgen pro Seite"
                 >
-                    {[5, 10, 20, 30, 40, 50].map(pageSize => (
+                    {[1, 5, 10, 20, 30, 40, 50].map(pageSize => (
                         <option key={pageSize} value={pageSize}>
                             Zeige {pageSize}
                         </option>
                     ))}
                 </select>
-                <div>{table.getPrePaginationRowModel().rows.length} Zeilen</div>
+                <div>{table.getPrePaginationRowModel().rows.length} {isMobile ? "Einträge" : "Zeilen"}</div>
             </div>
 
             {/* keep for debug purposes */}
