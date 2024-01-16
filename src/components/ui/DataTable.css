@@ -8,6 +8,30 @@
 
 .main-data .accordion-trigger {
     background-color: var(--action-color);
+    color: var(--action-color-light);
+}
+
+.main-data .accordion-trigger:hover {
+    color: var(--hover-color);
+}
+
+.main-data .accordion-trigger:hover .accordion-trigger-svg {
+    color: var(--hover-color);
+}
+
+.main-data .accordion-trigger:not(.expanded) {
+    border-radius: var(--border-radius);
+}
+
+.main-data .accordion-trigger.expanded {
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
+}
+
+.main-data .accordion-content-wrapper {
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-color: var(--border-color);
 }
 
 .table--filter-wrapper {
@@ -35,6 +59,10 @@
     padding: var(--button-paddingY) var(--button-paddingX);
     text-align: left;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.table--filter-text:hover {
+    background-color: var(--hover-color);
 }
 
 .table--filter-text::-webkit-calendar-picker-indicator {

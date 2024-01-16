@@ -86,6 +86,18 @@ br {
     text-align: center;
 }
 
+.divider-1 {
+    height: 0.25rem;
+}
+
+.divider-2 {
+    height: 0.5rem;
+}
+
+.divider-4 {
+    height: 1rem;
+}
+
 .main-upload, .main-data {
     /* min-width: 600px; */
     margin: calc(var(--header-height) + var(--element-gap) * 2) auto calc(var(--navigation-wrapper-height) + var(--element-gap) * 2) auto;

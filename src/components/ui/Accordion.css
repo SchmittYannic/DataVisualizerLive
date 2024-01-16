@@ -14,6 +14,9 @@
     width: 100%;
     padding: var(--accordion-paddingY) var(--accordion-paddingX);
     font-weight: 500;
+    font-size: inherit;
+    font-family: inherit;
+    font-style: inherit;
     text-align: left;
     color: #6b7280;
     border: 1px solid #e5e7eb;
