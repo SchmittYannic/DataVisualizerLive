@@ -81,6 +81,10 @@ br {
     width: 100%;
 }
 
+.fixed {
+    position: fixed !important;
+}
+
 .flex {
     display: flex;
 }

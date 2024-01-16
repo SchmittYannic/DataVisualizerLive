@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { steps } from "../App";
 import "./Header.css";
-import { useData } from "../hooks";
+import { useData, useScrollTracker } from "../hooks";
 
 const Header = () => {
     //inspired by: https://www.codevertiser.com/creating-reusable-progress-steps-component-in-reactjs/
+    const userScrollingAction = useScrollTracker();
     const { fileIsUploaded } = useData();
     const [activeStep, setActiveStep] = useState(1);
     const currentUrlPathname = window.location.pathname;
@@ -19,7 +20,7 @@ const Header = () => {
     }, [currentUrlPathname]);
     
     return (
-        <div className="main-container">
+        <div className={`main-container ${userScrollingAction === "up" ? "fixed" : ""}`}>
             <div className="step-container">
                 {steps.map((step, idx) => (
                     <div key={idx} className="step-wrapper">
