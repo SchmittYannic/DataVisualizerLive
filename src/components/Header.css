@@ -104,7 +104,7 @@
     cursor: not-allowed;
 }
 
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 500px) {
     .main-container {
         height: var(--header-height-mobile);
     }

@@ -193,6 +193,61 @@ tr:nth-child(2n+1) td {
     width: 4rem;
 }
 
+@media only screen and (max-width: 849px) {
+    .table--filter-wrapper .table--filter {
+        grid-template-columns: 1fr;
+    }
+
+    .table__sort {
+        color: var(--subtext-color);
+    }
+
+    .table__sort:hover {
+        color: var(--action-color-dark);
+    }
+
+    .table {
+        display: block;
+    }
+
+    tbody tr {
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+        border-radius: var(--border-radius);
+        border: 1px solid var(--border-color);
+        margin-bottom: .5rem;
+    }
+
+    td {
+        border: none;
+    }
+
+    .table__cell {
+        display: block;
+    }
+
+    .table__cell:first-of-type {
+        border-top-right-radius: var(--border-radius);
+        border-top-left-radius: var(--border-radius);
+    }
+
+    .table__cell:last-of-type {
+        border-bottom-right-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
+    }
+
+    .table--pagination {
+        flex-direction: column;
+    }
+
+    .table--pagination .button-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
 @media only screen and (min-width: 850px) {
     tr td:first-of-type, th:first-of-type {
         border-left: 1px solid var(--border-color);

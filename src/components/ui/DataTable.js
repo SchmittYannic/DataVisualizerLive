@@ -11,6 +11,7 @@ import {
     flexRender,
 } from "@tanstack/react-table"
 import { MdSwapVert, MdArrowDownward, MdArrowUpward } from "react-icons/md"
+import useWindowSize from "../../hooks/useWindowSize"
 import { Accordion, DebouncedInput, FilterTable } from "./"
 import FuzzyFilter from "../../utils/FuzzyFilter"
 import sortColumn from "../../utils/sortColumn"
@@ -18,7 +19,8 @@ import "./DataTable.css"
 
 const DataTable = ({ data }) => {
 
-    const isMobile = false
+    const windowSize = useWindowSize();
+    const isMobile = windowSize.width && windowSize.width < 850;
 
     const [columnFilters, setColumnFilters] = useState([]);
 
@@ -62,7 +64,7 @@ const DataTable = ({ data }) => {
 
     return (
         <>
-            <Accordion head={"Tabellenfilter"}>
+            <Accordion head={isMobile ? "Filter" : "Tabellenfilter"}>
                 <div className="table--filter-wrapper">
                     <div className="table--filter">
                         {
@@ -85,13 +87,7 @@ const DataTable = ({ data }) => {
 
             {isMobile &&
                 <>
-                    <div className="divider-4" />
-
-                    <h3>Sortieren nach Spalte</h3>
-
-                    <div className="divider-2" />
-
-                    <div className="table--sort-wrapper">
+                    <Accordion head={"Sortieren nach"}>
                         {table.getHeaderGroups().map(headerGroup => (
                             headerGroup.headers.map(header => {
                                 if (header.column.getCanSort()) {
@@ -132,7 +128,7 @@ const DataTable = ({ data }) => {
                                 }
                             })
                         ))}
-                    </div>
+                    </Accordion>
 
                     <div className="divider-4" />
                     <div className="divider-4" />
