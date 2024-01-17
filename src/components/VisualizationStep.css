@@ -1,5 +1,6 @@
 .main-visualization .expandable-side-menu {
     width: max(300px, 50vw);
+    background-color: var(--background-color);
 }
 
 .main-visualization .expandable-side-menu-trigger {
@@ -17,6 +18,16 @@
 .main-visualization .expandable-side-menu .accordion-trigger {
     padding: var(--accordion-paddingY-mobile) var(--accordion-paddingX-mobile);
     border: 1px solid #e5e7eb;
+}
+
+.main-visualization .expandable-side-menu .accordion-content-wrapper {
+    border: 1px solid #e5e7eb;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.main-visualization .expandable-side-menu .accordion-content {
+    padding: var(--accordion-paddingY-mobile) var(--accordion-paddingX-mobile);
 }
 
 .main-visualization .chart-settings .accordion-trigger {
