@@ -10,6 +10,7 @@ import TextArea from "./TextArea";
 import InfoBox from "./InfoBox";
 import DebouncedInput from "./DebouncedInput";
 import FilterTable from "./FilterTable";
+import ExpandableSideMenu from "./ExpandableSideMenu";
 
 export {
     SectionA,
@@ -24,4 +25,5 @@ export {
     InfoBox,
     DebouncedInput,
     FilterTable,
+    ExpandableSideMenu,
 }
