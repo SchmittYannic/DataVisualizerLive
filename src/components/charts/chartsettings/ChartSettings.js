@@ -7,34 +7,11 @@ import { useData } from "../../../hooks";
 import { ChartOptions, placeholderString } from "../../../constants";
 import { DragIcon } from "../../ui/icons";
 
+const ChartSettings = ({ settingsRef, setSelectedChart, setDimensions }) => {
 
-const ChartSettings = ({ settingsRef, setSelectedChart, setDimensions, setIsOpen }) => {
     const { dataAsJSONLength, catColumns, catColumnsLength , numColumns, numColumnsLength, dateOptions, dateColumnsLength } = useData();
     const [settings, setSettings] = useState(settingsRef.current);
-    const controls = useDragControls();
-    const draggableRef = useRef(null);
-
     const selectedChart = settingsRef.current.charttype;
-
-    // get body and html element
-    const body = document.body;
-    const html = document.documentElement;
-    //calculate maxHeight and maxWidth to use as dragConstraints
-    const maxHeight = Math.max( body.scrollHeight, body.offsetHeight, 
-        html.clientHeight, html.scrollHeight, html.offsetHeight );
-    const maxWidth = Math.max( body.scrollWidth, body.offsetWidth,
-        html.clientWidth, html.scrollWidth, html.offsetWidth );
-    
-    //default position of chart-settings container
-    const settingsDefaultPosition = {
-        y: body.scrollHeight / 2 - 200, 
-        x: body.scrollWidth / 2 - 200
-    };
-    //initialize settingsCurrentPosition
-    const settingsCurrentPosition = {
-        y: 0,
-        x: 0,
-    };
 
     const handleSelectChart = (input) => {
         const newRef = { ...settingsRef.current };
@@ -89,11 +66,122 @@ const ChartSettings = ({ settingsRef, setSelectedChart, setDimensions, setIsOpen
                 newRef.label.yaxisText = `${newRef.dataInput.yColumn}`;
                 break;
             default:
-                throw Error("unknown charttype as input of function handleSelectChart in Componen ChartSettings");
+                throw Error("unknown charttype as input of function handleSelectChart in Component ChartSettings");
         };
 
         settingsRef.current = newRef;
         setSelectedChart(input);
+    };
+
+    return (
+        <>
+            <Accordion head="Diagrammoptionen" >
+                <div className="chart-options">
+                    {ChartOptions.map((option, key) => (
+                        <button
+                            key={key}
+                            type="button"
+                            className="btn full"
+                            onClick={()=>handleSelectChart(option.action)}
+                        >
+                            {option.name}
+                        </button>
+                    ))}
+                </div>
+            </Accordion>
+
+            {   
+                ((selectedChart === "barchart" && dataAsJSONLength > 0 && catColumnsLength > 0)
+                ||  (selectedChart === "piechart" && dataAsJSONLength > 0 && catColumnsLength > 0)
+                || (selectedChart === "boxplot" && dataAsJSONLength > 0 && numColumnsLength > 0)
+                || (selectedChart === "histogram" && dataAsJSONLength > 0 && numColumnsLength > 0)
+                || (selectedChart === "linechart" && dataAsJSONLength > 0 && numColumnsLength > 0 && dateColumnsLength > 0)
+                || (selectedChart === "areachart" && dataAsJSONLength > 0 && numColumnsLength > 0 && dateColumnsLength > 0)
+                || (selectedChart === "scatterplot" && dataAsJSONLength > 0 && numColumnsLength > 0))
+            
+                &&
+                <>
+                    <DimensionSettings
+                        settingsRef={settingsRef}
+                        setDimensions={setDimensions}
+                        settings={settings}
+                        setSettings={setSettings}
+                    />
+
+                    <DataSettings
+                        settingsRef={settingsRef}
+                        settings={settings}
+                        setSettings={setSettings}
+                    />
+
+                    <GeneralSettings
+                        settingsRef={settingsRef}
+                        settings={settings}
+                        setSettings={setSettings}
+                    />
+                    
+                    <ElementSettings
+                        settingsRef={settingsRef}
+                        settings={settings}
+                        setSettings={setSettings}
+                    />
+
+                    <TitelSettings
+                        settingsRef={settingsRef}
+                        settings={settings}
+                        setSettings={setSettings}
+                    />
+
+                    <AxisSettings
+                        settingsRef={settingsRef}
+                        settings={settings}
+                        setSettings={setSettings}
+                    />
+
+                    <TickSettings
+                        settingsRef={settingsRef}
+                        settings={settings}
+                        setSettings={setSettings}
+                    />
+
+                    <TooltipSettings
+                        settingsRef={settingsRef}
+                        settings={settings}
+                        setSettings={setSettings}
+                    />
+
+                    <DownloadSettings
+                        settingsRef={settingsRef}
+                    />
+                </>
+            }
+        </>
+    )
+}
+
+const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, setIsOpen }) => {
+    const { dataAsJSONLength } = useData();
+    const controls = useDragControls();
+    const draggableRef = useRef(null);
+
+    // get body and html element
+    const body = document.body;
+    const html = document.documentElement;
+    //calculate maxHeight and maxWidth to use as dragConstraints
+    const maxHeight = Math.max( body.scrollHeight, body.offsetHeight, 
+        html.clientHeight, html.scrollHeight, html.offsetHeight );
+    const maxWidth = Math.max( body.scrollWidth, body.offsetWidth,
+        html.clientWidth, html.scrollWidth, html.offsetWidth );
+    
+    //default position of chart-settings container
+    const settingsDefaultPosition = {
+        y: body.scrollHeight / 2 - 200, 
+        x: body.scrollWidth / 2 - 200
+    };
+    //initialize settingsCurrentPosition
+    const settingsCurrentPosition = {
+        y: 0,
+        x: 0,
     };
 
     const startDrag = (event) => {
@@ -161,89 +249,17 @@ const ChartSettings = ({ settingsRef, setSelectedChart, setDimensions, setIsOpen
                     />
                 </div>
                 
-                <Accordion head="Diagrammoptionen" >
-                    <div className="chart-options">
-                        {ChartOptions.map((option, key) => (
-                            <button
-                                key={key}
-                                type="button"
-                                className="btn full"
-                                onClick={()=>handleSelectChart(option.action)}
-                            >
-                                {option.name}
-                            </button>
-                        ))}
-                    </div>
-                </Accordion>
-
-                {   
-                    ((selectedChart === "barchart" && dataAsJSONLength > 0 && catColumnsLength > 0)
-                    ||  (selectedChart === "piechart" && dataAsJSONLength > 0 && catColumnsLength > 0)
-                    || (selectedChart === "boxplot" && dataAsJSONLength > 0 && numColumnsLength > 0)
-                    || (selectedChart === "histogram" && dataAsJSONLength > 0 && numColumnsLength > 0)
-                    || (selectedChart === "linechart" && dataAsJSONLength > 0 && numColumnsLength > 0 && dateColumnsLength > 0)
-                    || (selectedChart === "areachart" && dataAsJSONLength > 0 && numColumnsLength > 0 && dateColumnsLength > 0)
-                    || (selectedChart === "scatterplot" && dataAsJSONLength > 0 && numColumnsLength > 0))
-                
-                    &&
-                    <>
-                        <DimensionSettings
-                            settingsRef={settingsRef}
-                            setDimensions={setDimensions}
-                            settings={settings}
-                            setSettings={setSettings}
-                        />
-
-                        <DataSettings
-                            settingsRef={settingsRef}
-                            settings={settings}
-                            setSettings={setSettings}
-                        />
-
-                        <GeneralSettings
-                            settingsRef={settingsRef}
-                            settings={settings}
-                            setSettings={setSettings}
-                        />
-                        
-                        <ElementSettings
-                            settingsRef={settingsRef}
-                            settings={settings}
-                            setSettings={setSettings}
-                        />
-
-                        <TitelSettings
-                            settingsRef={settingsRef}
-                            settings={settings}
-                            setSettings={setSettings}
-                        />
-
-                        <AxisSettings
-                            settingsRef={settingsRef}
-                            settings={settings}
-                            setSettings={setSettings}
-                        />
-
-                        <TickSettings
-                            settingsRef={settingsRef}
-                            settings={settings}
-                            setSettings={setSettings}
-                        />
-
-                        <TooltipSettings
-                            settingsRef={settingsRef}
-                            settings={settings}
-                            setSettings={setSettings}
-                        />
-
-                        <DownloadSettings
-                            settingsRef={settingsRef}
-                        />
-                    </>
-                }
+                <ChartSettings
+                    settingsRef={settingsRef}
+                    setSelectedChart={setSelectedChart}
+                    setDimensions={setDimensions} 
+                />
             </motion.div>
         )
     }
 };
 
-export default ChartSettings;
+export {
+    ChartSettingsDesktop,
+    ChartSettings,
+}
