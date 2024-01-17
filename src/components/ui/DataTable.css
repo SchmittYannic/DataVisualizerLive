@@ -7,6 +7,8 @@
 }
 
 .main-data .accordion-trigger {
+    padding: var(--accordion-paddingY) var(--accordion-paddingX);
+    border: 1px solid #e5e7eb;
     background-color: var(--action-color);
     color: var(--action-color-light);
 }
@@ -31,7 +33,13 @@
 .main-data .accordion-content-wrapper {
     border-bottom-left-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
-    border-color: var(--border-color);
+    border: 1px solid var(--border-color);
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.main-data .accordion-content {
+    padding: var(--accordion-paddingY) var(--accordion-paddingX);
 }
 
 .table--filter-wrapper {
