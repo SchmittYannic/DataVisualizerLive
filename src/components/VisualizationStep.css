@@ -1,0 +1,30 @@
+.main-visualization .expandable-side-menu {
+    width: max(300px, 50vw);
+}
+
+.main-visualization .expandable-side-menu-trigger {
+    border: none;
+    right: -50px;
+    width: 50px;
+    height: 50px;
+}
+
+.main-visualization .expandable-side-menu-trigger svg {
+    width: 25px;
+    height: 25px;
+}
+
+.main-visualization .expandable-side-menu .accordion-trigger {
+    padding: var(--accordion-paddingY-mobile) var(--accordion-paddingX-mobile);
+    border: 1px solid #e5e7eb;
+}
+
+.main-visualization .chart-settings .accordion-trigger {
+    padding: var(--accordion-paddingY) var(--accordion-paddingX);
+    border: 1px solid #e5e7eb;
+    color: #6b7280;
+}
+
+.main-visualization .chart-settings .accordion-content {
+    padding: var(--accordion-paddingY) var(--accordion-paddingX);
+}
