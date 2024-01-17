@@ -21,6 +21,10 @@
     --button-paddingY: .75rem;
     --button-paddingX-mobile: .75rem;
     --button-paddingY-mobile: .5rem;
+    --accordion-paddingY: 1rem;
+    --accordion-paddingX: 1.25rem;
+    --accordion-paddingY-mobile: .5rem;
+    --accordion-paddingX-mobile: .75rem;
 }
 
 *, 
