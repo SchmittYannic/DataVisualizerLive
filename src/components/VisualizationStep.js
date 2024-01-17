@@ -2,14 +2,27 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { Barchart, Piechart, Boxplot, Histogram, Scatterplot, Linechart, Areachart, ChartSettings } from "./charts";
-import { useData } from "../hooks";
+import {
+    Barchart,
+    Piechart,
+    Boxplot,
+    Histogram,
+    Scatterplot,
+    Linechart,
+    Areachart,
+    ChartSettingsDesktop,
+    ChartSettings,
+} from "./charts";
+import { useData, useWindowSize } from "../hooks";
 import { saveSvg } from "./charts/saveSvg";
 import { renderChart } from "./charts/renderChart";
-import { InfoBox } from "./ui";
+import { InfoBox, ExpandableSideMenu } from "./ui";
+import "./VisualizationStep.css"
 
 const VisualizationStep = () => {
     const { dataAsJSON, catColumns, fileIsUploaded } = useData();
+    const windowSize = useWindowSize();
+    const isMobile = windowSize.width && windowSize.width < 850;
 
     const defaultDimensions = {
         svgWidth: 1000,
@@ -159,18 +172,28 @@ const VisualizationStep = () => {
                     { selectedChart === "linechart" && <Linechart dimensions={dimensions} settingsRef={settingsRef} />}
                     { selectedChart === "areachart" && <Areachart dimensions={dimensions} settingsRef={settingsRef} />}
 
-                    <AnimatePresence>
-                        {   
-                            isSettingsOpen &&
-                            
-                                <ChartSettings 
-                                    settingsRef={settingsRef}
-                                    setSelectedChart={setSelectedChart}
-                                    setDimensions={setDimensions}
-                                    setIsOpen={setIsSettingsOpen}
-                                />
-                        }
-                    </AnimatePresence>
+                    {isMobile ? (
+                        <ExpandableSideMenu isOpen={isSettingsOpen}  setIsOpen={setIsSettingsOpen}>
+                            <ChartSettings
+                                settingsRef={settingsRef}
+                                setSelectedChart={setSelectedChart}
+                                setDimensions={setDimensions} 
+                            />
+                        </ExpandableSideMenu>
+                    ) : (
+                        <AnimatePresence>
+                            {   
+                                isSettingsOpen &&
+                                
+                                    <ChartSettingsDesktop 
+                                        settingsRef={settingsRef}
+                                        setSelectedChart={setSelectedChart}
+                                        setDimensions={setDimensions}
+                                        setIsOpen={setIsSettingsOpen}
+                                    />
+                            }
+                        </AnimatePresence>
+                    )}
                 </main>
 
                 <div id="nav-wrapper-visualization" className="navigation-wrapper">
@@ -182,25 +205,27 @@ const VisualizationStep = () => {
                         Zurück
                     </Link>
 
-                    <AnimatePresence>
-                        {
-                            !isSettingsOpen &&
-                                <motion.div
-                                    initial={{opacity: 0}}
-                                    animate={{opacity: 1}}
-                                    transition={{delay: 1}}
-                                >
-                                    <button
-                                        className="btn"
-                                        type="button"
-                                        title="Öffnen der Diagrammkonfiguration"
-                                        onClick={() => setIsSettingsOpen((prev) => !prev)}
+                    {!isMobile && (
+                        <AnimatePresence>
+                            {
+                                !isSettingsOpen &&
+                                    <motion.div
+                                        initial={{opacity: 0}}
+                                        animate={{opacity: 1}}
+                                        transition={{delay: 1}}
                                     >
-                                        Diagrammkonfiguration
-                                    </button>
-                                </motion.div>
-                        }
-                    </AnimatePresence>
+                                        <button
+                                            className="btn"
+                                            type="button"
+                                            title="Öffnen der Diagrammkonfiguration"
+                                            onClick={() => setIsSettingsOpen((prev) => !prev)}
+                                        >
+                                            Diagrammkonfiguration
+                                        </button>
+                                    </motion.div>
+                            }
+                        </AnimatePresence>
+                    )}
 
                     <button
                         className="next-btn btn"
