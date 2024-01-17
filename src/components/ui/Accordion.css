@@ -1,8 +1,64 @@
 :root {
+    --accordion-trigger-svg-width: 1.25rem;
+    --accordion-transition-duration: 0.5s;
+}
+
+.accordion-trigger {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: inherit;
+    font-family: inherit;
+    font-style: inherit;
+    cursor: pointer;
+}
+
+.accordion-trigger-svg {
+    height: var(--accordion-trigger-svg-width);
+    width: var(--accordion-trigger-svg-width);
+    transition: transform 350ms;
+}
+
+.accordion-trigger-svg.open {
+    transform: translate(0, 0) rotate(-90deg);
+}
+
+.accordion-trigger:focus {
+    box-shadow: 0 0 0 0 4px #e5e7eb;
+}
+
+.accordion:last-of-type .accordion-trigger:not(.expanded) {
+    transition: border-radius 0.3s ease-in-out var(--accordion-transition-duration);
+}
+
+.accordion-content-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    /* border: 1px solid #e5e7eb;
+    border-top-width: 0;
+    border-bottom-width: 0; */
+    transition: 
+        max-height var(--accordion-transition-duration) ease-out, 
+        visibility var(--accordion-transition-duration) ease-out,
+        border-bottom-width var(--accordion-transition-duration) ease-out,
+        opacity var(--accordion-transition-duration) ease-out var(--accordion-transition-duration),
+}
+
+.accordion-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+
+/* :root {
     --accordion-paddingY: 1rem;
     --accordion-paddingX: 1.25rem;
     --accordion-transition-duration: 0.5s;
-    --accordion-border-radius-round: var(--border-radius); /* 0.75rem */
+    --accordion-border-radius-round: var(--border-radius);
     --accordion-trigger-svg-width: 1.25rem;
 }
 
@@ -40,14 +96,14 @@
 
 .accordion-trigger:focus {
     box-shadow: 0 0 0 0 4px #e5e7eb;
-}
+} */
 
 /* :not(.accordion) + .accordion .accordion-trigger {
     border-top-left-radius: var(--accordion-border-radius-round);
     border-top-right-radius: var(--accordion-border-radius-round);
 } */
 
-.accordion:last-of-type .accordion-trigger:not(.expanded) {
+/* .accordion:last-of-type .accordion-trigger:not(.expanded) {
     border-bottom-left-radius: var(--accordion-border-radius-round);
     border-bottom-right-radius: var(--accordion-border-radius-round);
     transition: border-radius 0.3s ease-in-out var(--accordion-transition-duration);
@@ -82,4 +138,4 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
-}
+} */
