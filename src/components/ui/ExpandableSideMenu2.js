@@ -6,7 +6,7 @@ const AccordionTrigger = (props) => {
     return (
         <button {...props}>
             {props.children}
-            <DropdownIcon classes={`accordion-trigger-svg ${false ? "open" : ""}`} />
+            <DropdownIcon classes={`accordion-trigger-svg ${props.isExpanded ? "open" : ""}`} />
         </button>
     )
 }
@@ -56,6 +56,7 @@ const Accordion = ({ head, children, isExpanded, onClick }) => {
                 onClick={onClick}
                 aria-expanded={isExpanded}
                 aria-controls={contentId}
+                isExpanded={isExpanded}
             >
                 {head}
             </AccordionTrigger>
