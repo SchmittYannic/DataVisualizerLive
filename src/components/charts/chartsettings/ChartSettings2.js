@@ -3,7 +3,7 @@ import { useState, useRef } from "react"
 import { FaArrowRight } from "react-icons/fa";
 
 import { DragIcon } from "../../ui/icons/";
-import { useData } from "../../../hooks";
+import { useData, useMultiAccordionContext } from "../../../hooks";
 import { ChartOptions, placeholderString } from "../../../constants";
 import { Accordion } from "../../ui";
 import { 
@@ -22,11 +22,10 @@ const ChartSettings = ({
     settingsRef,
     setSelectedChart,
     setDimensions,
-    multiAccordionsState,
-    toggleAccordionStateIsExpanded,
 }) => {
 
     const { dataAsJSONLength, catColumns, catColumnsLength , numColumns, numColumnsLength, dateOptions, dateColumnsLength } = useData();
+    const { multiAccordionsState, toggleAccordionStateIsExpanded } = useMultiAccordionContext();
     const [settings, setSettings] = useState(settingsRef.current);
     const selectedChart = settingsRef.current.charttype;
 
@@ -248,69 +247,8 @@ const ChartSettings = ({
 
 const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) => {
 
-    const [menuIsOpen, setMenuIsOpen] = useState(true);
-    const [multiAccordionsState, setMultiAccordionsState] = useState([
-        {
-            id: 0,
-            name: "ChartSettings",
-            isExpanded: false,
-        },
-        {
-            id: 1,
-            name: "Dimensionen",
-            isExpanded: false,
-        },
-        {
-            id: 2,
-            name: "Daten",
-            isExpanded: false,
-        },
-        {
-            id: 3,
-            name: "Allgemein",
-            isExpanded: false,
-        },
-        {
-            id: 4,
-            name: "Elemente",
-            isExpanded: false,
-        },
-        {
-            id: 5,
-            name: "Titel",
-            isExpanded: false,
-        },
-        {
-            id: 6,
-            name: "Achsenbeschriftung",
-            isExpanded: false,
-        },
-        {
-            id: 7,
-            name: "Teilstriche und Gitternetz",
-            isExpanded: false,
-        },
-        {
-            id: 8,
-            name: "Tooltip",
-            isExpanded: false,
-        },
-        {
-            id: 9,
-            name: "Download",
-            isExpanded: false,
-        },
-    ]);
-
-    const toggleAccordionStateIsExpanded = (accordionState, idx) => {
-        setMultiAccordionsState((prevState) => {
-            const newState = [...prevState];
-            const copyAccordionState = {...accordionState};
-            copyAccordionState.isExpanded = !copyAccordionState.isExpanded;
-            newState[idx] = copyAccordionState;
-            return newState
-        })
-    };
+    const { multiAccordionsState, toggleAccordionStateIsExpanded } = useMultiAccordionContext();
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
 
     const handleExpandableSideMenuTriggerClick = () => {
         if (menuIsOpen) {
@@ -348,61 +286,9 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
 
 const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, setIsOpen }) => {
     const { dataAsJSONLength } = useData();
+    const { multiAccordionsState, toggleAccordionStateIsExpanded } = useMultiAccordionContext();
     const controls = useDragControls();
     const draggableRef = useRef(null);
-
-    const [multiAccordionsState, setMultiAccordionsState] = useState([
-        {
-            id: 0,
-            name: "ChartSettings",
-            isExpanded: false,
-        },
-        {
-            id: 1,
-            name: "Dimensionen",
-            isExpanded: false,
-        },
-        {
-            id: 2,
-            name: "Daten",
-            isExpanded: false,
-        },
-        {
-            id: 3,
-            name: "Allgemein",
-            isExpanded: false,
-        },
-        {
-            id: 4,
-            name: "Elemente",
-            isExpanded: false,
-        },
-        {
-            id: 5,
-            name: "Titel",
-            isExpanded: false,
-        },
-        {
-            id: 6,
-            name: "Achsenbeschriftung",
-            isExpanded: false,
-        },
-        {
-            id: 7,
-            name: "Teilstriche und Gitternetz",
-            isExpanded: false,
-        },
-        {
-            id: 8,
-            name: "Tooltip",
-            isExpanded: false,
-        },
-        {
-            id: 9,
-            name: "Download",
-            isExpanded: false,
-        },
-    ]);
 
     // get body and html element
     const body = document.body;
@@ -442,16 +328,6 @@ const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, se
         //save the current position of settings
         settingsCurrentPosition.x = matchTranslateX ? matchTranslateX[1] : 0;
         settingsCurrentPosition.y = matchTranslateY ? matchTranslateY[1] : 0;
-    };
-
-    const toggleAccordionStateIsExpanded = (accordionState, idx) => {
-        setMultiAccordionsState((prevState) => {
-            const newState = [...prevState];
-            const copyAccordionState = {...accordionState};
-            copyAccordionState.isExpanded = !copyAccordionState.isExpanded;
-            newState[idx] = copyAccordionState;
-            return newState
-        })
     };
 
     if (dataAsJSONLength > 0) {

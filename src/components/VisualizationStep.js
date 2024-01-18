@@ -14,6 +14,7 @@ import {
     ChartSettingsDesktop,
 } from "./charts";
 import { useData, useWindowSize } from "../hooks";
+import { MultiAccordionProvider } from "../context/MultiAccordionProvider";
 import { saveSvg } from "./charts/saveSvg";
 import { renderChart } from "./charts/renderChart";
 import { InfoBox } from "./ui";
@@ -172,26 +173,28 @@ const VisualizationStep = () => {
                     { selectedChart === "linechart" && <Linechart dimensions={dimensions} settingsRef={settingsRef} />}
                     { selectedChart === "areachart" && <Areachart dimensions={dimensions} settingsRef={settingsRef} />}
 
-                    {isMobile ? (
-                        <ChartSettingsMobile
-                            settingsRef={settingsRef}
-                            setSelectedChart={setSelectedChart}
-                            setDimensions={setDimensions}
-                        />
-                    ) : (
-                        <AnimatePresence>
-                            {   
-                                isSettingsOpen &&
-                                
-                                    <ChartSettingsDesktop 
-                                        settingsRef={settingsRef}
-                                        setSelectedChart={setSelectedChart}
-                                        setDimensions={setDimensions}
-                                        setIsOpen={setIsSettingsOpen}
-                                    />
-                            }
-                        </AnimatePresence>
-                    )}
+                    <MultiAccordionProvider>
+                        {isMobile ? (
+                            <ChartSettingsMobile
+                                settingsRef={settingsRef}
+                                setSelectedChart={setSelectedChart}
+                                setDimensions={setDimensions}
+                            />
+                        ) : (
+                            <AnimatePresence>
+                                {   
+                                    isSettingsOpen &&
+                                    
+                                        <ChartSettingsDesktop 
+                                            settingsRef={settingsRef}
+                                            setSelectedChart={setSelectedChart}
+                                            setDimensions={setDimensions}
+                                            setIsOpen={setIsSettingsOpen}
+                                        />
+                                }
+                            </AnimatePresence>
+                        )}
+                    </MultiAccordionProvider>
                 </main>
 
                 <div id="nav-wrapper-visualization" className="navigation-wrapper">
