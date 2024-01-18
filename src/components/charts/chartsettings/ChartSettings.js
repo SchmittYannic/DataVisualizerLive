@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { RiDragMove2Fill } from "react-icons/ri";
 
 import { useData, useWindowSize } from "../../../hooks";
-import { ChartOptions, placeholderString } from "../../../constants";
+import { ChartOptions, placeholderString, defaultMultiAccordionState } from "../../../constants";
 import { Accordion } from "../../ui";
 import { 
     DimensionSettings,
@@ -253,58 +253,7 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
 
     const { dataAsJSONLength } = useData();
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const [multiAccordionsState, setMultiAccordionsState] = useState([
-        {
-            id: 0,
-            name: "ChartSettings",
-            isExpanded: false,
-        },
-        {
-            id: 1,
-            name: "Dimensionen",
-            isExpanded: false,
-        },
-        {
-            id: 2,
-            name: "Daten",
-            isExpanded: false,
-        },
-        {
-            id: 3,
-            name: "Allgemein",
-            isExpanded: false,
-        },
-        {
-            id: 4,
-            name: "Elemente",
-            isExpanded: false,
-        },
-        {
-            id: 5,
-            name: "Titel",
-            isExpanded: false,
-        },
-        {
-            id: 6,
-            name: "Achsenbeschriftung",
-            isExpanded: false,
-        },
-        {
-            id: 7,
-            name: "Teilstriche und Gitternetz",
-            isExpanded: false,
-        },
-        {
-            id: 8,
-            name: "Tooltip",
-            isExpanded: false,
-        },
-        {
-            id: 9,
-            name: "Download",
-            isExpanded: false,
-        },
-    ]);
+    const [multiAccordionsState, setMultiAccordionsState] = useState(defaultMultiAccordionState);
 
     const toggleAccordionStateIsExpanded = (accordionState, idx) => {
         setMultiAccordionsState((prevState) => {
@@ -362,58 +311,7 @@ const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, se
     const controls = useDragControls();
     const draggableRef = useRef(null);
 
-    const [multiAccordionsState, setMultiAccordionsState] = useState([
-        {
-            id: 0,
-            name: "ChartSettings",
-            isExpanded: false,
-        },
-        {
-            id: 1,
-            name: "Dimensionen",
-            isExpanded: false,
-        },
-        {
-            id: 2,
-            name: "Daten",
-            isExpanded: false,
-        },
-        {
-            id: 3,
-            name: "Allgemein",
-            isExpanded: false,
-        },
-        {
-            id: 4,
-            name: "Elemente",
-            isExpanded: false,
-        },
-        {
-            id: 5,
-            name: "Titel",
-            isExpanded: false,
-        },
-        {
-            id: 6,
-            name: "Achsenbeschriftung",
-            isExpanded: false,
-        },
-        {
-            id: 7,
-            name: "Teilstriche und Gitternetz",
-            isExpanded: false,
-        },
-        {
-            id: 8,
-            name: "Tooltip",
-            isExpanded: false,
-        },
-        {
-            id: 9,
-            name: "Download",
-            isExpanded: false,
-        },
-    ]);
+    const [multiAccordionsState, setMultiAccordionsState] = useState(defaultMultiAccordionState);
 
     // get body and html element
     const body = document.body;

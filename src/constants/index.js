@@ -47,8 +47,62 @@ const placeholderString = "keine Gruppierung";
 
 const colorSchemeOptions = ["accent", "category10",  "dark2", "paired", "pastel1", "pastel2", "set1", "set2", "set3", "tableau10"];
 
+const defaultMultiAccordionState = [
+    {
+        id: 0,
+        name: "Chartoptionen",
+        isExpanded: false,
+    },
+    {
+        id: 1,
+        name: "Dimensionen",
+        isExpanded: false,
+    },
+    {
+        id: 2,
+        name: "Daten",
+        isExpanded: false,
+    },
+    {
+        id: 3,
+        name: "Allgemein",
+        isExpanded: false,
+    },
+    {
+        id: 4,
+        name: "Elemente",
+        isExpanded: false,
+    },
+    {
+        id: 5,
+        name: "Titel",
+        isExpanded: false,
+    },
+    {
+        id: 6,
+        name: "Achsenbeschriftung",
+        isExpanded: false,
+    },
+    {
+        id: 7,
+        name: "Teilstriche und Gitternetz",
+        isExpanded: false,
+    },
+    {
+        id: 8,
+        name: "Tooltip",
+        isExpanded: false,
+    },
+    {
+        id: 9,
+        name: "Download",
+        isExpanded: false,
+    },
+]
+
 export {
     ChartOptions,
     placeholderString,
     colorSchemeOptions,
+    defaultMultiAccordionState,
 }
