@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import { useRenderChartProps } from "../../../hooks";
-import { Accordion, NumberInput, MyColorPicker } from "../../ui";
+import { NumberInput, MyColorPicker } from "../../ui";
 import ChartSettingsItem from "./ChartSettingsItem";
 import { renderChart } from "../renderChart";
 
@@ -34,7 +34,7 @@ const TooltipSettings = ({ settingsRef, settings, setSettings}) => {
     }, [tooltipBgColor, settingsRef, renderChartProps]);
 
     return (
-        <Accordion head="Tooltip">
+        <>
             <ChartSettingsItem>
                 <NumberInput
                     title="Schriftgröße des Tooltips in Pixel"
@@ -70,7 +70,7 @@ const TooltipSettings = ({ settingsRef, settings, setSettings}) => {
                     label={"Hintergrundfarbe:"}
                 />
             </ChartSettingsItem>
-        </Accordion>
+        </>
     )
 }
 

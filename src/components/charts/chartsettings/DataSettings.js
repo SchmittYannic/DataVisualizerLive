@@ -1,7 +1,7 @@
 import { ChartSettingsItem } from ".";
 import { placeholderString } from "../../../constants";
 import { useData } from "../../../hooks";
-import { Accordion, Dropdown } from "../../ui";
+import { Dropdown } from "../../ui";
 import { renderChart } from "../renderChart";
 
 const DataSettings = ({ settingsRef, settings, setSettings  }) => {
@@ -144,7 +144,7 @@ const DataSettings = ({ settingsRef, settings, setSettings  }) => {
     };
 
     return (
-        <Accordion head="Daten">
+        <>
             {
                 (selectedChart === "barchart" || selectedChart === "piechart") && (
                     <ChartSettingsItem>
@@ -209,7 +209,7 @@ const DataSettings = ({ settingsRef, settings, setSettings  }) => {
                     </ChartSettingsItem>
                 )
             }
-        </Accordion>
+        </>
     )
 }
 

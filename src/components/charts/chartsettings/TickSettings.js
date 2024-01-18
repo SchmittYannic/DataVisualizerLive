@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { Accordion, NumberInput, MyColorPicker } from "../../ui";
+import { NumberInput, MyColorPicker } from "../../ui";
 import ChartSettingsItem from "./ChartSettingsItem";
 import { renderChart } from "../renderChart";
 import { useRenderChartProps } from "../../../hooks";
@@ -33,7 +33,7 @@ const TickSettings = ({ settingsRef, settings, setSettings }) => {
     }, [tickLineColor, settingsRef, renderChartProps]);
 
     return (
-        <Accordion head="Teilstriche und Gitternetz">
+        <>
             <div className="charts-settings-divider">
                 Teilstriche
                 <div className="charts-settings-divider-line" aria-hidden="true" />
@@ -99,7 +99,7 @@ const TickSettings = ({ settingsRef, settings, setSettings }) => {
                     label={"Farbe:"}
                 />
             </ChartSettingsItem>
-        </Accordion>
+        </>
     )
 }
 

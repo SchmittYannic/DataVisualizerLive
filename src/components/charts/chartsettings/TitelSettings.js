@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { Accordion, NumberInput, TextArea, MyColorPicker } from "../../ui";
+import { NumberInput, TextArea, MyColorPicker } from "../../ui";
 import ChartSettingsItem from "./ChartSettingsItem";
 import { renderChart } from "../renderChart";
 import { useRenderChartProps } from "../../../hooks";
@@ -21,7 +21,7 @@ const TitelSettings = ({ settingsRef, settings, setSettings }) => {
     }, [titleColor, settingsRef, renderChartProps]);
 
     return (
-        <Accordion head="Titel">
+        <>
              <ChartSettingsItem>
                 <TextArea 
                     value={settings.label.titleText}
@@ -85,7 +85,7 @@ const TitelSettings = ({ settingsRef, settings, setSettings }) => {
                     label={"Farbe:"}
                 />
             </ChartSettingsItem>
-        </Accordion>
+        </>
     )
 }
 

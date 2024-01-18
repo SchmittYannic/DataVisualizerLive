@@ -1,5 +1,4 @@
 import { ChartSettingsItem } from ".";
-import { Accordion } from "../../ui";
 import { saveSvg } from "../saveSvg";
 import { barchartScript } from "../barchart/BarchartLogic";
 import { areachartScript } from "../areachart/AreachartLogic";
@@ -30,7 +29,7 @@ const DownloadSettings = ({ settingsRef }) => {
     };
 
     return (
-        <Accordion head="Download">
+        <>
             <ChartSettingsItem>
                 <label>Download Diagramm: </label>
                 <button
@@ -62,7 +61,7 @@ const DownloadSettings = ({ settingsRef }) => {
                     HTML Kopieren
                 </button>
             </ChartSettingsItem>
-        </Accordion>
+        </>
     )
 }
 

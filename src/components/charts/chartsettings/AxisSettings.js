@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { Accordion, NumberInput, MyColorPicker, TextArea } from "../../ui";
+import { NumberInput, MyColorPicker, TextArea } from "../../ui";
 import ChartSettingsItem from "./ChartSettingsItem";
 import { useRenderChartProps } from "../../../hooks";
 import { renderChart } from "../renderChart";
@@ -36,7 +36,7 @@ const AxisSettings = ({ settingsRef, settings, setSettings }) => {
     }, [yaxisColor, settingsRef, renderChartProps]);
 
     return (
-        <Accordion head="Achsenbeschriftung">
+        <>
             {
                 selectedChart !== "piechart" &&
                 <div className="charts-settings-divider">
@@ -190,7 +190,7 @@ const AxisSettings = ({ settingsRef, settings, setSettings }) => {
                     </ChartSettingsItem>
                 </>
             }
-        </Accordion>
+        </>
     )
 }
 

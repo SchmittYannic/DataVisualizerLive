@@ -1,9 +1,9 @@
-import { NumberInput, Accordion } from "../../ui";
+import { NumberInput } from "../../ui";
 import { ChartSettingsItem } from ".";
 
 const DimensionSettings = ({ settingsRef, setDimensions, settings, setSettings }) => {
     return (
-        <Accordion head="Dimensionen">
+        <>
             <ChartSettingsItem>
                 <NumberInput
                     title="Einstellen der Breite des gesamten Svgs"
@@ -153,7 +153,7 @@ const DimensionSettings = ({ settingsRef, setDimensions, settings, setSettings }
                     label={"Rand Unten:"}
                 />
             </ChartSettingsItem>
-        </Accordion>
+        </>
     )
 }
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import { ChartSettingsItem } from ".";
 import { useRenderChartProps } from "../../../hooks";
-import { Accordion, NumberInput, RangeInput, MyColorPicker, Dropdown } from "../../ui";
+import { NumberInput, RangeInput, MyColorPicker, Dropdown } from "../../ui";
 import { renderChart } from "../renderChart";
 import { colorSchemeOptions } from "../../../constants";
 
@@ -60,7 +60,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
     }, [areaColor, settingsRef, renderChartProps]);
 
     return (
-        <Accordion head="Elemente">
+        <>
             {
                 (selectedChart === "barchart" 
                 || selectedChart === "piechart" 
@@ -217,7 +217,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
                     </ChartSettingsItem>
                 )
             }
-        </Accordion>
+        </>
     )
 }
 

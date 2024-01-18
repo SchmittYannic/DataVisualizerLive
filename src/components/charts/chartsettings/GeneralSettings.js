@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { Accordion, Dropdown, MyColorPicker } from "../../ui";
+import { Dropdown, MyColorPicker } from "../../ui";
 import { renderChart } from "../renderChart";
 import { useFontContext, useRenderChartProps } from "../../../hooks";
 import ChartSettingsItem from "./ChartSettingsItem";
@@ -23,7 +23,7 @@ const GeneralSettings = ({ settingsRef, settings, setSettings}) => {
     }, [svgBgColor, settingsRef, renderChartProps]);
 
     return (
-        <Accordion head="Allgemein">
+        <>
             <ChartSettingsItem>
                 <Dropdown
                     OptionsList={availableFonts}
@@ -49,7 +49,7 @@ const GeneralSettings = ({ settingsRef, settings, setSettings}) => {
                     label={"Hintergrundfarbe:"}
                 />
             </ChartSettingsItem>
-        </Accordion>
+        </>
     )
 }
 
