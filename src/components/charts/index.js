@@ -5,7 +5,7 @@ import Histogram from "./histogram/Histogram";
 import Scatterplot from "./scatterplot/Scatterplot";
 import Linechart from "./linechart/Linechart";
 import Areachart from "./areachart/Areachart";
-import { ChartSettingsDesktop, ChartSettings } from "./chartsettings/ChartSettings";
+import { ChartSettingsDesktop, ChartSettingsMobile } from "./chartsettings/ChartSettings2";
 
 export {
     Barchart,
@@ -16,5 +16,5 @@ export {
     Linechart,
     Areachart,
     ChartSettingsDesktop,
-    ChartSettings,
+    ChartSettingsMobile,
 }
