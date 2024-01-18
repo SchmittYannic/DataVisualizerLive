@@ -2,9 +2,10 @@
 
 .expandable-side-menu {
     position: fixed;
-    top: 50%;
+    top: 50vh;
     transform: translate(calc(-100% + 8px),-50%);
     transition: transform 350ms;
+    z-index: 5;
 }
 
 .expandable-side-menu.expanded {
@@ -36,6 +37,10 @@
 
 
 /* VisualizationStep styling */
+.main-visualization {
+    margin: calc(var(--header-height) + var(--element-gap) * 2) auto calc(var(--navigation-wrapper-height) + var(--element-gap) * 2) auto;
+}
+
 .main-visualization svg {
     display: block;
 }
