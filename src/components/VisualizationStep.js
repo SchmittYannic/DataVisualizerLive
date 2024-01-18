@@ -10,13 +10,13 @@ import {
     Scatterplot,
     Linechart,
     Areachart,
+    ChartSettingsMobile,
     ChartSettingsDesktop,
-    ChartSettings,
 } from "./charts";
 import { useData, useWindowSize } from "../hooks";
 import { saveSvg } from "./charts/saveSvg";
 import { renderChart } from "./charts/renderChart";
-import { InfoBox, ExpandableSideMenu } from "./ui";
+import { InfoBox } from "./ui";
 import "./VisualizationStep.css"
 
 const VisualizationStep = () => {
@@ -173,13 +173,11 @@ const VisualizationStep = () => {
                     { selectedChart === "areachart" && <Areachart dimensions={dimensions} settingsRef={settingsRef} />}
 
                     {isMobile ? (
-                        <ExpandableSideMenu isOpen={isSettingsOpen}  setIsOpen={setIsSettingsOpen}>
-                            <ChartSettings
-                                settingsRef={settingsRef}
-                                setSelectedChart={setSelectedChart}
-                                setDimensions={setDimensions} 
-                            />
-                        </ExpandableSideMenu>
+                        <ChartSettingsMobile
+                            settingsRef={settingsRef}
+                            setSelectedChart={setSelectedChart}
+                            setDimensions={setDimensions}
+                        />
                     ) : (
                         <AnimatePresence>
                             {   
