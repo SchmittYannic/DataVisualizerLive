@@ -1,6 +1,7 @@
-import React, { useState, useId, useRef, useEffect, forwardRef } from "react"
+import { motion, useDragControls } from "framer-motion";
+import { useState, useId, useRef, useEffect, forwardRef } from "react"
 import { FaArrowRight } from "react-icons/fa";
-import { DropdownIcon } from "../../ui/icons/";
+import { DropdownIcon, DragIcon } from "../../ui/icons/";
 import { useData } from "../../../hooks";
 import { ChartOptions, placeholderString } from "../../../constants";
 import { 
@@ -84,102 +85,17 @@ const Accordion = ({ head, children, isExpanded, onClick }) => {
     )
 }
 
-const ChartSettings2 = ({ settingsRef, setSelectedChart, setDimensions }) => {
+const ChartSettings = ({ 
+    settingsRef,
+    setSelectedChart,
+    setDimensions,
+    multiAccordionsState,
+    toggleAccordionStateIsExpanded,
+}) => {
 
     const { dataAsJSONLength, catColumns, catColumnsLength , numColumns, numColumnsLength, dateOptions, dateColumnsLength } = useData();
     const [settings, setSettings] = useState(settingsRef.current);
     const selectedChart = settingsRef.current.charttype;
-
-    const [menuIsOpen, setMenuIsOpen] = useState(true);
-    const [multiAccordionsState, setMultiAccordionsState] = useState([
-        {
-            id: 0,
-            name: "ChartSettings",
-            isExpanded: false,
-            component:
-                <></>,
-        },
-        {
-            id: 1,
-            name: "Dimensionen",
-            isExpanded: false,
-        },
-        {
-            id: 2,
-            name: "Daten",
-            isExpanded: false,
-        },
-        {
-            id: 3,
-            name: "Allgemein",
-            isExpanded: false,
-        },
-        {
-            id: 4,
-            name: "Elemente",
-            isExpanded: false,
-        },
-        {
-            id: 5,
-            name: "Titel",
-            isExpanded: false,
-        },
-        {
-            id: 6,
-            name: "Achsenbeschriftung",
-            isExpanded: false,
-        },
-        {
-            id: 7,
-            name: "Teilstriche und Gitternetz",
-            isExpanded: false,
-        },
-        {
-            id: 8,
-            name: "Tooltip",
-            isExpanded: false,
-        },
-        {
-            id: 9,
-            name: "Download",
-            isExpanded: false,
-        },
-    ]);
-
-    const toggleAccordionStateIsExpanded = (accordionState, idx) => {
-        setMultiAccordionsState((prevState) => {
-            const newState = [...prevState];
-            const copyAccordionState = {...accordionState};
-            copyAccordionState.isExpanded = !copyAccordionState.isExpanded;
-            newState[idx] = copyAccordionState;
-            return newState
-        })
-    };
-
-    const handleAccordionTriggerClick = (idx) => {
-        const accordionState = multiAccordionsState[idx];
-        const otherStates = multiAccordionsState.filter(state => state.id !== idx);
-
-        otherStates.forEach((state) => {
-            if (state.isExpanded) {
-                toggleAccordionStateIsExpanded(state, state.id);
-            }
-        });
-        toggleAccordionStateIsExpanded(accordionState, idx);
-    }
-
-    const handleExpandableSideMenuTriggerClick = () => {
-        if (menuIsOpen) {
-            multiAccordionsState.forEach((accordionState, idx) => {
-                if(accordionState.isExpanded) {
-                    toggleAccordionStateIsExpanded(accordionState, idx);
-                }
-            });
-            setMenuIsOpen(false)
-        } else {
-            setMenuIsOpen(true);
-        }
-    };
 
     const handleSelectChart = (input) => {
         const newRef = { ...settingsRef.current };
@@ -241,16 +157,20 @@ const ChartSettings2 = ({ settingsRef, setSelectedChart, setDimensions }) => {
         setSelectedChart(input);
     };
 
-    return (
-        <div className={`expandable-side-menu ${menuIsOpen ? "expanded" : ""}`}>
-            <button
-                className="expandable-side-menu-trigger"
-                type="button"
-                onClick={handleExpandableSideMenuTriggerClick}
-            >
-                <FaArrowRight />
-            </button>
+    const handleAccordionTriggerClick = (idx) => {
+        const accordionState = multiAccordionsState[idx];
+        const otherStates = multiAccordionsState.filter(state => state.id !== idx);
 
+        otherStates.forEach((state) => {
+            if (state.isExpanded) {
+                toggleAccordionStateIsExpanded(state, state.id);
+            }
+        });
+        toggleAccordionStateIsExpanded(accordionState, idx);
+    }
+
+    return (
+        <>
             <Accordion
                 head="Diagrammoptionen"
                 isExpanded={multiAccordionsState[0].isExpanded}
@@ -389,8 +309,276 @@ const ChartSettings2 = ({ settingsRef, setSelectedChart, setDimensions }) => {
                     </Accordion>
                 </>
             }
+        </>
+    )
+}
+
+const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) => {
+
+    const [menuIsOpen, setMenuIsOpen] = useState(true);
+    const [multiAccordionsState, setMultiAccordionsState] = useState([
+        {
+            id: 0,
+            name: "ChartSettings",
+            isExpanded: false,
+        },
+        {
+            id: 1,
+            name: "Dimensionen",
+            isExpanded: false,
+        },
+        {
+            id: 2,
+            name: "Daten",
+            isExpanded: false,
+        },
+        {
+            id: 3,
+            name: "Allgemein",
+            isExpanded: false,
+        },
+        {
+            id: 4,
+            name: "Elemente",
+            isExpanded: false,
+        },
+        {
+            id: 5,
+            name: "Titel",
+            isExpanded: false,
+        },
+        {
+            id: 6,
+            name: "Achsenbeschriftung",
+            isExpanded: false,
+        },
+        {
+            id: 7,
+            name: "Teilstriche und Gitternetz",
+            isExpanded: false,
+        },
+        {
+            id: 8,
+            name: "Tooltip",
+            isExpanded: false,
+        },
+        {
+            id: 9,
+            name: "Download",
+            isExpanded: false,
+        },
+    ]);
+
+    const toggleAccordionStateIsExpanded = (accordionState, idx) => {
+        setMultiAccordionsState((prevState) => {
+            const newState = [...prevState];
+            const copyAccordionState = {...accordionState};
+            copyAccordionState.isExpanded = !copyAccordionState.isExpanded;
+            newState[idx] = copyAccordionState;
+            return newState
+        })
+    };
+
+    const handleExpandableSideMenuTriggerClick = () => {
+        if (menuIsOpen) {
+            multiAccordionsState.forEach((accordionState, idx) => {
+                if(accordionState.isExpanded) {
+                    toggleAccordionStateIsExpanded(accordionState, idx);
+                }
+            });
+            setMenuIsOpen(false)
+        } else {
+            setMenuIsOpen(true);
+        }
+    };
+
+    return (
+        <div className={`expandable-side-menu ${menuIsOpen ? "expanded" : ""}`}>
+            <button
+                className="expandable-side-menu-trigger"
+                type="button"
+                onClick={handleExpandableSideMenuTriggerClick}
+            >
+                <FaArrowRight />
+            </button>
+
+            <ChartSettings
+                settingsRef={settingsRef}
+                setSelectedChart={setSelectedChart}
+                setDimensions={setDimensions}
+                multiAccordionsState={multiAccordionsState}
+                toggleAccordionStateIsExpanded={toggleAccordionStateIsExpanded}
+            />
         </div>
     )
 }
 
-export default ChartSettings2
+const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, setIsOpen }) => {
+    const { dataAsJSONLength } = useData();
+    const controls = useDragControls();
+    const draggableRef = useRef(null);
+
+    const [multiAccordionsState, setMultiAccordionsState] = useState([
+        {
+            id: 0,
+            name: "ChartSettings",
+            isExpanded: false,
+        },
+        {
+            id: 1,
+            name: "Dimensionen",
+            isExpanded: false,
+        },
+        {
+            id: 2,
+            name: "Daten",
+            isExpanded: false,
+        },
+        {
+            id: 3,
+            name: "Allgemein",
+            isExpanded: false,
+        },
+        {
+            id: 4,
+            name: "Elemente",
+            isExpanded: false,
+        },
+        {
+            id: 5,
+            name: "Titel",
+            isExpanded: false,
+        },
+        {
+            id: 6,
+            name: "Achsenbeschriftung",
+            isExpanded: false,
+        },
+        {
+            id: 7,
+            name: "Teilstriche und Gitternetz",
+            isExpanded: false,
+        },
+        {
+            id: 8,
+            name: "Tooltip",
+            isExpanded: false,
+        },
+        {
+            id: 9,
+            name: "Download",
+            isExpanded: false,
+        },
+    ]);
+
+    // get body and html element
+    const body = document.body;
+    const html = document.documentElement;
+    //calculate maxHeight and maxWidth to use as dragConstraints
+    const maxHeight = Math.max( body.scrollHeight, body.offsetHeight, 
+        html.clientHeight, html.scrollHeight, html.offsetHeight );
+    const maxWidth = Math.max( body.scrollWidth, body.offsetWidth,
+        html.clientWidth, html.scrollWidth, html.offsetWidth );
+    
+    //default position of chart-settings container
+    const settingsDefaultPosition = {
+        y: body.scrollHeight / 2 - 200, 
+        x: body.scrollWidth / 2 - 200
+    };
+    //initialize settingsCurrentPosition
+    const settingsCurrentPosition = {
+        y: 0,
+        x: 0,
+    };
+
+    const startDrag = (event) => {
+        controls.start(event)
+    };
+
+    const handleDragableClose = () => {
+        setIsOpen((prev) => !prev);
+
+        //get current transform style of draggable element chart-settings
+        //string looks like this: translateX(1265px) translateY(138.309px) translateZ(0px)
+        const string = draggableRef.current.style.transform;
+        //use regex to get the values inside the translateX and translateY parentheses
+        const regexTranslateX = /translateX\((.*?)px\)/;
+        const regexTranslateY = /translateY\((.*?)px\)/;
+        const matchTranslateX = string.match(regexTranslateX);
+        const matchTranslateY = string.match(regexTranslateY);
+        //save the current position of settings
+        settingsCurrentPosition.x = matchTranslateX ? matchTranslateX[1] : 0;
+        settingsCurrentPosition.y = matchTranslateY ? matchTranslateY[1] : 0;
+    };
+
+    const toggleAccordionStateIsExpanded = (accordionState, idx) => {
+        setMultiAccordionsState((prevState) => {
+            const newState = [...prevState];
+            const copyAccordionState = {...accordionState};
+            copyAccordionState.isExpanded = !copyAccordionState.isExpanded;
+            newState[idx] = copyAccordionState;
+            return newState
+        })
+    };
+
+    if (dataAsJSONLength > 0) {
+        return (
+            <motion.div
+                className="chart-settings"
+                ref={draggableRef}
+                drag
+                dragControls={controls}
+                dragListener={false}
+                dragConstraints={{
+                    top: 0,
+                    left: 0,
+                    bottom: maxHeight,
+                    right: maxWidth,
+                }}
+                dragElastic={0}
+                initial={{ 
+                    opacity: 1,
+                    x: settingsDefaultPosition.x,
+                    y: settingsDefaultPosition.y,
+                }}
+                exit={{ 
+                    opacity: 0, 
+                    x: body.scrollWidth/2 - settingsCurrentPosition.x - 200,
+                    y: body.scrollHeight/2 - settingsCurrentPosition.y,
+                }}
+                transition={{ duration: 1}}
+            >
+                <div className="draggable-wrapper">
+                    <div 
+                        className="draggable" 
+                        onPointerDown={startDrag}>
+                        <div className="draggable-icon">
+                            <DragIcon />
+                        </div>
+                        Diagrammkonfiguration
+                    </div>
+
+                    <button 
+                        className="draggable-close"
+                        type="button"
+                        title="Diagrammkonfiguration schließen"
+                        onClick={handleDragableClose}
+                    />
+                </div>
+                
+                <ChartSettings
+                    settingsRef={settingsRef}
+                    setSelectedChart={setSelectedChart}
+                    setDimensions={setDimensions}
+                    multiAccordionsState={multiAccordionsState}
+                    toggleAccordionStateIsExpanded={toggleAccordionStateIsExpanded}
+                />
+            </motion.div>
+        )
+    }
+};
+
+export {
+    ChartSettingsMobile,
+    ChartSettingsDesktop,
+}
