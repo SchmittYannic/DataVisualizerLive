@@ -1,52 +1,37 @@
-import { useEffect, useId, useRef, useState } from "react";
-import DropdownIcon from "./icons/DropdownIcon";
+import { useEffect, useId, useRef, forwardRef } from "react";
+import { DropdownIcon } from "./icons/";
 import "./Accordion.css";
 
-const AccordionTrigger = ({ id, isExpanded, onClick, controls, head }) => {
+const AccordionTrigger = (props) => {
     return (
-        <button
-            id={id}
-            className={`accordion-trigger ${isExpanded ? "expanded" : ""}`}
-            type="button"
-            onClick={onClick}
-            aria-expanded={isExpanded}
-            aria-controls={controls}
-        >
-            {head}
-            <DropdownIcon classes={`accordion-trigger-svg ${isExpanded ? "open" : ""}`} />
+        <button {...props}>
+            {props.children}
+            <DropdownIcon classes={`accordion-trigger-svg ${props["aria-expanded"] ? "open" : ""}`} />
         </button>
     )
-};
+}
 
-const AccordionContent = ({ children, id, labelledby, contentRef}) => {
+const AccordionContent = forwardRef((props, ref) => {
     return (
-        <div 
-            id={id}
-            className="accordion-content-wrapper"
-            ref={contentRef}
-            aria-labelledby={labelledby}
-        >
+        <div {...props} ref={ref}>
             <div
                 className="accordion-content" 
             >
-                {children}
+                {props.children}
             </div>
         </div>
     )
-};
+})
 
-const Accordion = ({children, head}) => {
-    const [isExpanded, setIsExpanded] = useState(false);
+const Accordion = ({ head, isExpanded, onClick, children }) => {
+
     const triggerId = useId();
     const contentId = useId();
     const contentRef = useRef(null);
 
-    const handleClick = () => {
-        setIsExpanded(prevState => !prevState);
-    };
-
     useEffect(() => {
         const contentEl = contentRef.current;
+        if(!contentEl) return
         if (!isExpanded) {
             contentEl.style.maxHeight = "0px";
             contentEl.style.visibility = "hidden";
@@ -64,22 +49,26 @@ const Accordion = ({children, head}) => {
 
     return (
         <div className="accordion">
-            <AccordionTrigger 
+            <AccordionTrigger
                 id={triggerId}
-                isExpanded={isExpanded}
-                onClick={() => handleClick()}
-                controls={contentId}
-                head={head}
-            />
-            <AccordionContent 
+                className={`accordion-trigger ${isExpanded ? "expanded" : ""}`}
+                type="button"
+                onClick={onClick}
+                aria-expanded={isExpanded}
+                aria-controls={contentId}
+            >
+                {head}
+            </AccordionTrigger>
+            <AccordionContent
                 id={contentId}
-                labelledby={triggerId}
-                contentRef={contentRef}
+                className="accordion-content-wrapper"
+                ref={contentRef}
+                aria-labelledby={triggerId}
             >
                 {children}
             </AccordionContent>
         </div>
     )
-};
+}
 
 export default Accordion;

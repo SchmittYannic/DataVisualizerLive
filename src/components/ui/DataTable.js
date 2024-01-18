@@ -22,6 +22,8 @@ const DataTable = ({ data }) => {
     const windowSize = useWindowSize();
     const isMobile = windowSize.width && windowSize.width < 850;
 
+    const [filterAccordionIsOpen, setFilterAccordionIsOpen] = useState(false);
+    const [sortAccordionIsOpen, setIsSortAccordionIsOpen] = useState(false);
     const [columnFilters, setColumnFilters] = useState([]);
 
     const columnNames = Object.keys(data[0]);
@@ -71,7 +73,11 @@ const DataTable = ({ data }) => {
 
     return (
         <>
-            <Accordion head={isMobile ? "Filter" : "Tabellenfilter"}>
+            <Accordion 
+                head={isMobile ? "Filter" : "Tabellenfilter"}
+                isExpanded={filterAccordionIsOpen}
+                onClick={() => setFilterAccordionIsOpen(!filterAccordionIsOpen)}
+            >
                 <div className="table--filter-wrapper">
                     <div className="table--filter">
                         {
@@ -94,7 +100,11 @@ const DataTable = ({ data }) => {
 
             {isMobile &&
                 <>
-                    <Accordion head={"Sortieren nach"}>
+                    <Accordion
+                        head={"Sortieren nach"}
+                        isExpanded={sortAccordionIsOpen}
+                        onClick={() => setIsSortAccordionIsOpen(!sortAccordionIsOpen)}
+                    >
                         {table.getHeaderGroups().map(headerGroup => (
                             headerGroup.headers.map(header => {
                                 if (header.column.getCanSort()) {
