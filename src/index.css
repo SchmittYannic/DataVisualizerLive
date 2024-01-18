@@ -313,6 +313,23 @@ input[type=number] {
     gap: .5em;
 }
 
+.chart-options-mobile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.chart-options-mobile .btn {
+    padding: var(--button-paddingY-mobile) var(--button-paddingX-mobile);
+    color: var(--action-color-dark);
+}
+
+.chart-options-mobile .btn svg {
+    width: 25px;
+    height: 25px;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

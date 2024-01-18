@@ -3,7 +3,7 @@ import { useState, useRef } from "react"
 import { FaArrowRight } from "react-icons/fa";
 import { RiDragMove2Fill } from "react-icons/ri";
 
-import { useData, useMultiAccordionContext } from "../../../hooks";
+import { useData, useMultiAccordionContext, useWindowSize } from "../../../hooks";
 import { ChartOptions, placeholderString } from "../../../constants";
 import { Accordion } from "../../ui";
 import { 
@@ -26,6 +26,8 @@ const ChartSettings = ({
 
     const { dataAsJSONLength, catColumns, catColumnsLength , numColumns, numColumnsLength, dateOptions, dateColumnsLength } = useData();
     const { multiAccordionsState, toggleAccordionStateIsExpanded } = useMultiAccordionContext();
+    const windowSize = useWindowSize();
+    const isMobile = windowSize.width && windowSize.width < 850;
     const [settings, setSettings] = useState(settingsRef.current);
     const selectedChart = settingsRef.current.charttype;
 
@@ -108,15 +110,16 @@ const ChartSettings = ({
                 isExpanded={multiAccordionsState[0].isExpanded}
                 onClick={() => handleAccordionTriggerClick(0)}
             >
-                <div className="chart-options">
+                <div className={`${isMobile ? "chart-options-mobile" : "chart-options"}`}>
                     {ChartOptions.map((option, key) => (
                         <button
                             key={key}
                             type="button"
-                            className="btn full"
+                            className={`${isMobile ? "btn" : "btn full"}`}
                             onClick={()=>handleSelectChart(option.action)}
+                            title={`Wechsel zu ${option.name}`}
                         >
-                            {option.name}
+                            {isMobile ? option.icon : option.name}
                         </button>
                     ))}
                 </div>
@@ -265,13 +268,16 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
 
     return (
         <div className={`expandable-side-menu ${menuIsOpen ? "expanded" : ""}`}>
-            <button
-                className="expandable-side-menu-trigger"
-                type="button"
-                onClick={handleExpandableSideMenuTriggerClick}
-            >
-                <FaArrowRight />
-            </button>
+            <div className="expandable-side-menu-trigger-wrapper">
+                <button
+                    className="expandable-side-menu-trigger"
+                    type="button"
+                    onClick={handleExpandableSideMenuTriggerClick}
+                >
+                    <FaArrowRight />
+                </button>
+            </div>
+            <div className="inverted-corner" />
 
             <ChartSettings
                 settingsRef={settingsRef}

@@ -11,22 +11,26 @@
     transform: translate(0,-50%);
 }
 
-.expandable-side-menu-trigger {
+.expandable-side-menu-trigger-wrapper {
     position: absolute;
     top: 0;
-    right: -20px;
+    right: -50px;
+}
+
+.expandable-side-menu-trigger {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%;
 }
 
 .expandable-side-menu .expandable-side-menu-trigger svg {
-    transition: transform 1500ms;
+    transition: transform 1000ms;
 }
 
 .expandable-side-menu.expanded .expandable-side-menu-trigger svg {
     transform: rotate(180deg);
-    transition: transform 1500ms;
+    transition: transform 1000ms;
 }
 
 
@@ -34,8 +38,25 @@
 /* VisualizationStep styling */
 
 .main-visualization .expandable-side-menu {
-    width: max(300px, 50vw);
+    width: max(250px, 50vw);
     background-color: var(--background-color);
+}
+
+.main-visualization .expandable-side-menu-trigger-wrapper {
+    background-color: #e5e7eb;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+}
+
+.main-visualization .inverted-corner {
+    position: absolute;
+    width: .5em;
+    height: 1em;
+    top: 50px;
+    right: -.5em;
+    box-shadow: 0 -.5em 0 0 #e5e7eb;
+    background-color: transparent;
+    border-top-left-radius: .5em;
 }
 
 .main-visualization .expandable-side-menu-trigger {
@@ -43,6 +64,7 @@
     right: -50px;
     width: 50px;
     height: 50px;
+    color: var(--action-color-dark);
 }
 
 .main-visualization .expandable-side-menu-trigger svg {
@@ -53,6 +75,13 @@
 .main-visualization .expandable-side-menu .accordion-trigger {
     padding: var(--accordion-paddingY-mobile) var(--accordion-paddingX-mobile);
     border: 1px solid #e5e7eb;
+    color: var(--action-color-dark);
+}
+
+.main-visualization .expandable-side-menu,
+.main-visualization .expandable-side-menu .accordion:last-of-type .accordion-trigger:not(.expanded),
+.main-visualization .expandable-side-menu .accordion:last-of-type .accordion-content-wrapper {
+    border-bottom-right-radius: var(--border-radius);
 }
 
 .main-visualization .expandable-side-menu .accordion-content-wrapper {
@@ -63,6 +92,32 @@
 
 .main-visualization .expandable-side-menu .accordion-content {
     padding: var(--accordion-paddingY-mobile) var(--accordion-paddingX-mobile);
+    gap: .5em;
+}
+
+.main-visualization .expandable-side-menu .accordion-content label {
+    color: var(--action-color-dark);
+}
+
+.main-visualization .expandable-side-menu .accordion-content input[type=number] {
+    padding: var(--button-paddingY-mobile) var(--button-paddingX-mobile);
+    color: var(--action-color-dark);
+}
+
+.main-visualization .expandable-side-menu .accordion-content .dropdown-button,
+.main-visualization .expandable-side-menu .accordion-content .dropdown-menu {
+    color: var(--action-color-dark);
+}
+
+.main-visualization .expandable-side-menu .accordion-content .custom-textarea-wrapper {
+    padding-top: var(--button-paddingY-mobile);
+    padding-bottom: var(--button-paddingY-mobile);
+}
+
+.main-visualization .expandable-side-menu .accordion-content .custom-textarea {
+    padding-right: var(--button-paddingX-mobile);
+    padding-left: var(--button-paddingX-mobile);
+    color: var(--action-color-dark);
 }
 
 .main-visualization .chart-settings .accordion-trigger {
