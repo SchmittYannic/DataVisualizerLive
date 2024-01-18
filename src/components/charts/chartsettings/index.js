@@ -8,6 +8,8 @@ import TitelSettings from "./TitelSettings";
 import AxisSettings from "./AxisSettings";
 import TickSettings from "./TickSettings";
 import TooltipSettings from "./TooltipSettings";
+import XAxisSettings from "./XAxisSettings";
+import YAxisSettings from "./YAxisSettings";
 
 export {
     ChartSettingsItem, 
@@ -20,4 +22,6 @@ export {
     AxisSettings,
     TickSettings,
     TooltipSettings,
+    XAxisSettings,
+    YAxisSettings,
 }

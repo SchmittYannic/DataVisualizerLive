@@ -80,21 +80,26 @@ const defaultMultiAccordionState = [
     },
     {
         id: 6,
-        name: "Achsenbeschriftung",
+        name: "X-Achsenbeschriftung",
         isExpanded: false,
     },
     {
         id: 7,
-        name: "Teilstriche und Gitternetz",
+        name: "Y-Achsenbeschriftung",
         isExpanded: false,
     },
     {
         id: 8,
-        name: "Tooltip",
+        name: "Teilstriche und Gitternetz",
         isExpanded: false,
     },
     {
         id: 9,
+        name: "Tooltip",
+        isExpanded: false,
+    },
+    {
+        id: 10,
         name: "Download",
         isExpanded: false,
     },

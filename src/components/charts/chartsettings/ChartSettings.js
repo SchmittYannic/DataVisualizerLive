@@ -12,10 +12,11 @@ import {
     GeneralSettings,
     ElementSettings,
     TitelSettings,
-    AxisSettings,
     TickSettings,
     TooltipSettings,
     DownloadSettings,
+    XAxisSettings,
+    YAxisSettings,
 } from "./";
 
 const ChartSettings = ({ 
@@ -199,11 +200,23 @@ const ChartSettings = ({
                     </Accordion>
 
                     <Accordion
-                        head="Achsenbeschriftung"
+                        head="X-Achsenbeschriftung"
                         isExpanded={multiAccordionsState[6].isExpanded}
                         onClick={() => handleAccordionTriggerClick(6)}
                     >
-                        <AxisSettings
+                        <XAxisSettings
+                            settingsRef={settingsRef}
+                            settings={settings}
+                            setSettings={setSettings}
+                        />
+                    </Accordion>
+
+                    <Accordion
+                        head="Y-Achsenbeschriftung"
+                        isExpanded={multiAccordionsState[7].isExpanded}
+                        onClick={() => handleAccordionTriggerClick(7)}
+                    >
+                        <YAxisSettings
                             settingsRef={settingsRef}
                             settings={settings}
                             setSettings={setSettings}
@@ -212,8 +225,8 @@ const ChartSettings = ({
 
                     <Accordion
                         head="Teilstriche und Gitternetz"
-                        isExpanded={multiAccordionsState[7].isExpanded}
-                        onClick={() => handleAccordionTriggerClick(7)}
+                        isExpanded={multiAccordionsState[8].isExpanded}
+                        onClick={() => handleAccordionTriggerClick(8)}
                     >
                         <TickSettings
                             settingsRef={settingsRef}
@@ -224,8 +237,8 @@ const ChartSettings = ({
 
                     <Accordion
                         head="Tooltip"
-                        isExpanded={multiAccordionsState[8].isExpanded}
-                        onClick={() => handleAccordionTriggerClick(8)}
+                        isExpanded={multiAccordionsState[9].isExpanded}
+                        onClick={() => handleAccordionTriggerClick(9)}
                     >
                         <TooltipSettings
                             settingsRef={settingsRef}
@@ -236,8 +249,8 @@ const ChartSettings = ({
 
                     <Accordion
                         head="Download"
-                        isExpanded={multiAccordionsState[9].isExpanded}
-                        onClick={() => handleAccordionTriggerClick(9)}
+                        isExpanded={multiAccordionsState[10].isExpanded}
+                        onClick={() => handleAccordionTriggerClick(10)}
                     >
                         <DownloadSettings
                             settingsRef={settingsRef}
