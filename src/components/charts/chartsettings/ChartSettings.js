@@ -1,8 +1,8 @@
 import { motion, useDragControls } from "framer-motion";
 import { useState, useRef } from "react"
 import { FaArrowRight } from "react-icons/fa";
+import { RiDragMove2Fill } from "react-icons/ri";
 
-import { DragIcon } from "../../ui/icons/";
 import { useData, useMultiAccordionContext } from "../../../hooks";
 import { ChartOptions, placeholderString } from "../../../constants";
 import { Accordion } from "../../ui";
@@ -362,7 +362,7 @@ const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, se
                         className="draggable" 
                         onPointerDown={startDrag}>
                         <div className="draggable-icon">
-                            <DragIcon />
+                            <RiDragMove2Fill />
                         </div>
                         Diagrammkonfiguration
                     </div>

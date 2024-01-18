@@ -1,12 +1,15 @@
 import { useEffect, useId, useRef, forwardRef } from "react";
-import { DropdownIcon } from "./icons/";
+import { MdKeyboardArrowDown } from "react-icons/md";
+
 import "./Accordion.css";
 
 const AccordionTrigger = (props) => {
     return (
         <button {...props}>
             {props.children}
-            <DropdownIcon classes={`accordion-trigger-svg ${props["aria-expanded"] ? "open" : ""}`} />
+            <MdKeyboardArrowDown
+                className={`accordion-trigger-svg ${props["aria-expanded"] ? "open" : ""}`}
+            />
         </button>
     )
 }

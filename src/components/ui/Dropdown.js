@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useId } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { DropdownIcon } from "./icons";
+import { MdKeyboardArrowDown } from "react-icons/md";
+
 import "./Dropdown.css";
 
 const Dropdown = ({ OptionsList, selectedOption, setSelectedOption, searchable=false, label, children }) => {
@@ -119,8 +120,8 @@ const Dropdown = ({ OptionsList, selectedOption, setSelectedOption, searchable=f
                                     aria-expanded={isOpen}
                                     aria-labelledby={labelId}
                                 />
-                                <DropdownIcon 
-                                    classes={`dropdown-button-svg ${isOpen ? "open" : ""}`}
+                                <MdKeyboardArrowDown 
+                                    className={`dropdown-button-svg ${isOpen ? "open" : ""}`} 
                                 />
                             </>
                         :
@@ -142,8 +143,8 @@ const Dropdown = ({ OptionsList, selectedOption, setSelectedOption, searchable=f
                                         ? children 
                                         : selectedOptionDisplay
                                 }
-                                <DropdownIcon 
-                                    classes={`dropdown-button-svg ${isOpen ? "open" : ""}`}
+                                <MdKeyboardArrowDown 
+                                    className={`dropdown-button-svg ${isOpen ? "open" : ""}`} 
                                 />
                             </button>
                     }
