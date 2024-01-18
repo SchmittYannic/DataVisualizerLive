@@ -60,6 +60,8 @@
     position: relative;
     padding: 1.25rem;
     background-color: var(--action-color-light);
+    border-top-right-radius: var(--border-radius);
+    border-top-left-radius: var(--border-radius);
     text-align: center;
     cursor: grab;
     -webkit-touch-callout: none;
@@ -96,6 +98,7 @@
     background-color: rgb(234, 55, 55);
     color: white;
     border: none;
+    border-top-right-radius: var(--border-radius);
 }
 
 .draggable-close::after, .draggable-close::before {
@@ -244,9 +247,13 @@ input[type=range]::-moz-range-thumb {
 }
 
 .main-visualization .expandable-side-menu,
-.main-visualization .expandable-side-menu .accordion:last-of-type .accordion-trigger:not(.expanded),
-.main-visualization .expandable-side-menu .accordion:last-of-type .accordion-content-wrapper {
+.main-visualization .accordion:last-of-type .accordion-trigger:not(.expanded),
+.main-visualization .accordion:last-of-type .accordion-content-wrapper {
     border-bottom-right-radius: var(--border-radius);
+}
+
+.main-visualization .accordion:last-of-type .accordion-trigger:not(.expanded) {
+    border-bottom-left-radius: var(--border-radius);
 }
 
 .main-visualization .expandable-side-menu .accordion-content-wrapper {
