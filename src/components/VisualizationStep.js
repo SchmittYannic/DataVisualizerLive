@@ -163,8 +163,6 @@ const VisualizationStep = () => {
         return (
             <>
                 <main className="main-visualization">
-                    {/* <h2 className="step-header">Visualization Step</h2> */}
-
                     { selectedChart === "barchart" && <Barchart dimensions={dimensions} settingsRef={settingsRef} />}
                     { selectedChart === "piechart" && <Piechart dimensions={dimensions} settingsRef={settingsRef} />}
                     { selectedChart === "boxplot" && <Boxplot dimensions={dimensions} settingsRef={settingsRef} />}
