@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Homepage, Header, UploadStep, DataStep, VisualizationStep } from "./components";
+import ScrollToTop from "./components/ScrollToTop";
 
 export const steps = [
     {
@@ -25,12 +26,14 @@ export const steps = [
 const App = () => {
     return (
         <Router>
-            <Routes>
-                <Route exact path="/*" element={<Homepage />}/>
-                {steps.map((step, idx) => (
-                    <Route key={idx} path={step.path} element={<><Header /><step.component /></>}/>
-                ))}
-            </Routes>
+            <ScrollToTop>
+                <Routes>
+                    <Route exact path="/*" element={<Homepage />}/>
+                    {steps.map((step, idx) => (
+                        <Route key={idx} path={step.path} element={<><Header /><step.component /></>}/>
+                    ))}
+                </Routes>
+            </ScrollToTop>
         </Router>
     )
 }
