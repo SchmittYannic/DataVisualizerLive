@@ -10,9 +10,10 @@ import {
     Scatterplot,
     Linechart,
     Areachart,
-    ChartSettingsMobile,
+    
     ChartSettingsDesktop,
 } from "./charts";
+import ChartSettingsMobile from "./charts/chartsettings/ChartSettingsMobile";
 import { useData, useWindowSize } from "../hooks";
 import { saveSvg } from "./charts/saveSvg";
 import { renderChart } from "./charts/renderChart";
