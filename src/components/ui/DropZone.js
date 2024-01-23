@@ -2,6 +2,7 @@ import { useState } from "react";
 import { readCSV } from "danfojs";
 
 import { useData } from "../../hooks";
+import AsyncButton from "./AsyncButton";
 import "./DropZone.css";
 
 const DropZone = () => {
@@ -86,13 +87,15 @@ const DropZone = () => {
                     />
                     <p className="filename-display">{selectedFile && "Filename: " + selectedFile.name}</p>
                     <label>
-                        <input
+                        <AsyncButton
                             className="btn"
                             type="submit"
-                            value="Upload"
                             title="ausgewählte Datei hochladen"
                             onClick={handleSubmit}
-                        />
+                            isLoading={isLoading}
+                        >
+                            Upload
+                        </AsyncButton>
                     </label>
                 </label>
             </form>
