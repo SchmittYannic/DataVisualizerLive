@@ -13,7 +13,7 @@ const DropZone = () => {
         if(file.type === "text/csv") {
             setSelectedFile(file);
         } else {
-            alert("File is not of type text/csv");
+            alert("Datei nicht vom Typ text/csv");
             setSelectedFile(null);
         }
     }
@@ -49,13 +49,21 @@ const DropZone = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!selectedFile) {
-            alert("No File selected");
+            alert("Keine Datei ausgewählt");
             return
         }
 
         setIsLoading(true);
 
         const df = await readCSV(selectedFile);
+
+        if (df.index.length > 5000 || df.columns.length > 20) {
+            setIsLoading(false);
+            setSelectedFile(null);
+            alert("Datensatz zu groß! Da es sich um ein reines Frontend Projekt handelt, darf der Datensatz maximal 5.000 Zeilen und 20 Spalten enthalten. Dies soll ein Absturz des Browsers verhindern.")
+            return
+        }
+        
         setDataframe(df);
     }
 
