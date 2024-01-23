@@ -4,12 +4,12 @@ import { DropZone, InfoBox } from "./ui";
 import { useData } from "../hooks/";
 
 const UploadStep = () => {
-    const { fileIsUploaded, setFileIsUploaded, setDemodata } = useData();
+    const { fileIsUploaded, setDemodata, isLoading, setIsLoading } = useData();
 
     const handleClick = (e) => {
         const { name } = e.target;
-        setFileIsUploaded(true);
-        setDemodata(name)
+        setIsLoading(true);
+        setDemodata(name);
     }
 
     return (
@@ -46,9 +46,14 @@ const UploadStep = () => {
             <div className="navigation-wrapper">
                 <div />
                 {
-                    fileIsUploaded === false 
+                    (fileIsUploaded === false || isLoading === true)
                     ?
-                        <span className="btn next-btn disabled-btn">Weiter</span>
+                        <span 
+                            className="btn next-btn disabled-btn"
+                            title="Benötigt hochgeladenen Datensatz"
+                        >
+                            Weiter
+                        </span>
                     :
                         <Link 
                             className="btn next-btn"
