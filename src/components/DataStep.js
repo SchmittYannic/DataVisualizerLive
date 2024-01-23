@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { TableScroll, InfoBox } from "./ui";
+import { InfoBox } from "./ui";
 import { useData } from "../hooks";
 import DataTable from "./ui/DataTable";
 
