@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { readCSV } from "danfojs";
-
-import { useData } from "../../hooks";
+//import axios from "axios";
+//import { useData } from "../../hooks";
 import "./DropZone.css";
 
 const DropZone = () => {
-    const { setDataframe, setIsLoading, isLoading } = useData();
+    //const { sessionId, setFileIsUploaded } = useData();
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFileInput = (file) => {
@@ -45,17 +44,36 @@ const DropZone = () => {
         e.preventDefault();
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!selectedFile) {
-            alert("No File selected");
-            return
-        }
+    const handleSubmit = () => {
+        alert("Upload disabled in Vercel Demo")
+        // const formData = new FormData();
+        // formData.append("sessionId", sessionId);
+        // formData.append("file", selectedFile);
+        
+        // setFileIsUploaded(false);
 
-        setIsLoading(true);
+        // axios
+        //     .post('/upload', formData)
+        //     .then((res) => {
+        //         axios
+        //             .post("/filePathSet", {sessionId: sessionId})
+        //             .then((res) => {
+        //                 if (res.data.success === true) setFileIsUploaded(res.data.response);
+        //                 if (res.data.success === false) console.log(res.data.message);
+        //             })
+        //             .catch((err) => alert("Error during file upload"))
+        //     })
+        //     .catch((err) => {
+        //         alert("File Upload Error")
 
-        const df = await readCSV(selectedFile);
-        setDataframe(df);
+        //         //if error while upload -> reset the app
+        //         axios
+        //             .post('/reset', {sessionId: sessionId, message: "resetApp"})
+        //             .then((res) => {
+        //                 console.log("App got reset");
+        //             })
+        //             .catch((err) => console.log(err))
+        //     });
     }
 
     return (
@@ -66,7 +84,7 @@ const DropZone = () => {
             <p className="upload-text">Laden Sie hier Ihren Datensatz hoch.</p>
             
             <iframe name="dummyframe" id="dummyframe" title="dummyframe" style={{display: "none"}}></iframe>
-            <form target="dummyframe" method="POST" encType="multipart/form-data" >
+            <form target="dummyframe">
                 <label className="dropzone-label" title="Datei für Upload auswählen">
                     <div className="dropzone-content-container">
                         <svg className="dropzone-svg" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
@@ -98,6 +116,6 @@ const DropZone = () => {
             </form>
         </div>
     )
-}
+};
 
-export default DropZone
+export default DropZone;
