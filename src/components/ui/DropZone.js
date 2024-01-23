@@ -96,7 +96,7 @@ const DropZone = () => {
                     <p className="filename-display">{selectedFile && "Filename: " + selectedFile.name}</p>
                     <label>
                         <AsyncButton
-                            className="btn"
+                            className={`btn${isLoading ? " disabled-btn" : ""}`}
                             type="submit"
                             title="ausgewählte Datei hochladen"
                             onClick={handleSubmit}

@@ -10,6 +10,7 @@ const AsyncButton = ({
     return (
         <button
             {...props}
+            disabled={isLoading}
         >
             <p className={isLoading ? "hidden" : "visible"}>
                 {children}
