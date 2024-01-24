@@ -129,7 +129,7 @@ br {
     border-radius: var(--border-radius);
 }
 
-.main-data {
+.table-wrapper {
     padding: var(--paddingY) var(--paddingX);
     background-color: var(--background-color);
 }

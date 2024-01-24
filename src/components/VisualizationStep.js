@@ -245,19 +245,21 @@ const VisualizationStep = () => {
         )
     } else {
         return (
-            <InfoBox>
-                <p>Laden Sie bitte zuerst einen Datensatz hoch, ansonsten können Sie nicht fortfahren.</p>
-                <p>Falls Sie keinen geeigneten Datensatz zur Verfügung haben, können Sie das Tool durch die Demodatensätze auf der Uploadseite ausprobieren.</p>
-                <div style={{display: "flex", justifyContent: "flex-end", gap: "1em"}}>
-                    <Link
-                        className="btn next-btn"
-                        title="Link zur Uploadseite"
-                        to={`/DataVisualizer/UploadStep`}
-                    >
-                        zum Upload
-                    </Link>
-                </div>
-            </InfoBox>
+            <main className="main-visualization">
+                <InfoBox>
+                    <p>Laden Sie bitte zuerst einen Datensatz hoch, ansonsten können Sie nicht fortfahren.</p>
+                    <p>Falls Sie keinen geeigneten Datensatz zur Verfügung haben, können Sie das Tool durch die Demodatensätze auf der Uploadseite ausprobieren.</p>
+                    <div style={{display: "flex", justifyContent: "flex-end", gap: "1em"}}>
+                        <Link
+                            className="btn next-btn"
+                            title="Link zur Uploadseite"
+                            to={`/DataVisualizer/UploadStep`}
+                        >
+                            zum Upload
+                        </Link>
+                    </div>
+                </InfoBox>
+            </main>
         )
     }
 }
