@@ -1,7 +1,7 @@
 .main-container {
     position: absolute;
     top: 0;
-    left: 50vw;
+    left: 50%;
     width: min(100vw, 100%);
     height: var(--header-height);
     min-width: var(--min-page-width);

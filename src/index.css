@@ -137,7 +137,7 @@ br {
 .navigation-wrapper {
     position: absolute;
     bottom: 0;
-    left: 50vw;
+    left: 50%;
     margin: 0 auto;
     padding: 0 var(--paddingX);
     width: 100%;
