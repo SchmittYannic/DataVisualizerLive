@@ -44,7 +44,7 @@
         max-height var(--accordion-transition-duration) ease-out, 
         visibility var(--accordion-transition-duration) ease-out,
         border-bottom-width var(--accordion-transition-duration) ease-out,
-        opacity var(--accordion-transition-duration) ease-out var(--accordion-transition-duration),
+        opacity var(--accordion-transition-duration) ease-out var(--accordion-transition-duration);
 }
 
 .accordion-content {

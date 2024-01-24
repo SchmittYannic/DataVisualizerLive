@@ -11,6 +11,7 @@
     border: 1px solid #e5e7eb;
     background-color: var(--action-color);
     color: var(--action-color-light);
+    transition-delay: 0s;
 }
 
 .main-data .accordion-trigger:hover {
@@ -23,6 +24,7 @@
 
 .main-data .accordion-trigger:not(.expanded) {
     border-radius: var(--border-radius);
+    transition-delay: 0.5s;
 }
 
 .main-data .accordion-trigger.expanded {
