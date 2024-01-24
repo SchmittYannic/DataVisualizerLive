@@ -1,0 +1,22 @@
+.speech-bubble {
+    position: absolute;
+    width: min(300px, 90vw);
+    bottom: calc(100% + 12px);
+    right: 0;
+    padding: var(--button-paddingY) var(--button-paddingX);
+    background-color: var(--action-color);
+    border-radius: var(--border-radius);
+    pointer-events: none;
+}
+
+.speech-bubble::after {
+    position: absolute;
+    bottom: -10px;
+    right: 10px;
+    content: "";
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--action-color);
+}

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { DropZone, InfoBox } from "./ui";
+import { DropZone, InfoBox, SpeechBubble } from "./ui";
 import { useData } from "../hooks/";
 
 const UploadStep = () => {
@@ -20,7 +20,7 @@ const UploadStep = () => {
 
                 <div style={{ marginTop: "10px", marginBottom: "10px"}}>
                     <InfoBox>
-                        <p>Da es sich hierbei um eine Demo handelt und Sie ohne einen hochgeladenen Datensatz nicht fortfahren können, werden Ihnen zwei Datensätze zur Verfügung gestellt. Diese müssen nicht vorher heruntergeladen werden. Ein Klick genügt!</p>
+                        <p>Sie haben gerade keinen geeigneten Datensatz zur Verfügung? Kein Problem. Sie können DataVisualizer mit einem unserer Datensätze testen. Diese müssen nicht vorher heruntergeladen werden. Ein Klick genügt!</p>
                         <div style={{display: "flex", justifyContent: "flex-end", gap: "1em"}}>
                             <button
                                 className="btn"
@@ -61,6 +61,9 @@ const UploadStep = () => {
                             to={`/DataVisualizer/DataStep`}
                         >
                             Weiter
+                            <SpeechBubble delay={1000} timer={5500}>
+                                Großartig! Ihre Datei wurde hochgeladen. Klicken Sie "Weiter", um fortzufahren.
+                            </SpeechBubble>
                         </Link>
                 }
             </div>

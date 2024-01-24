@@ -12,6 +12,7 @@ import DebouncedInput from "./DebouncedInput";
 import FilterTable from "./FilterTable";
 import AsyncButton from "./AsyncButton";
 import ClipLoader from "./ClipLoader";
+import SpeechBubble from "./SpeechBubble";
 
 export {
     SectionA,
@@ -28,4 +29,5 @@ export {
     FilterTable,
     AsyncButton,
     ClipLoader,
+    SpeechBubble,
 }
