@@ -4,11 +4,10 @@ import { DropZone, InfoBox, SpeechBubble } from "./ui";
 import { useData } from "../hooks/";
 
 const UploadStep = () => {
-    const { fileIsUploaded, setDemodata, isLoading, setIsLoading } = useData();
+    const { fileIsUploaded, setDemodata, isLoading } = useData();
 
     const handleClick = (e) => {
         const { name } = e.target;
-        setIsLoading(true);
         setDemodata(name);
     }
 

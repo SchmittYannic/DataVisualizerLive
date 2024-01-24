@@ -69,10 +69,12 @@ export const DataProvider = ({children}) => {
 
     useEffect(() => {
         if (demodata === "useAutoData") {
+            setIsLoading(true);
             const df = new DataFrame(AutoData);
             setDataframe(df);
         }
         if(demodata === "useWetterData"){
+            setIsLoading(true);
             const df = new DataFrame(WetterData);
             setDataframe(df);
         }
