@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { InfoBox } from "./ui";
+import { InfoBox, AsyncLink } from "./ui";
 import { useData } from "../hooks";
 import DataTable from "./ui/DataTable";
 
 const DataStep = () => {
-    const { dataAsJSON ,dataAsJSONLength, fileIsUploaded } = useData();
+    const { dataAsJSON ,dataAsJSONLength, fileIsUploaded, isLoading } = useData();
 
     if (fileIsUploaded) {
         return (
@@ -25,13 +25,14 @@ const DataStep = () => {
                     >
                         Zurück
                     </Link>
-                    <Link
-                        className="btn next-btn"
-                        title="Weiter zur Visualisierung"
+                    <AsyncLink
+                        className={`btn next-btn${isLoading ? " disabled-btn" : ""}`}
+                        title={isLoading ? "Änderungen werden gespeichert..." : "Weiter zur Visualisierung"}
                         to={`/DataVisualizer/VisualizationStep`}
+                        isLoading={isLoading}
                     >
                         Weiter
-                    </Link>
+                    </AsyncLink>
                 </div>
             </>
         )
