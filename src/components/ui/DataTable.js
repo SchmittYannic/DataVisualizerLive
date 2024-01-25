@@ -52,11 +52,13 @@ const DataTable = ({ data }) => {
             const [value, setValue] = useState(isNullOrUndefined ? "" : initialValue);
 
             const onBlur = () => {
-                table.options.meta?.updateData(index, id, value)
+                if (value !== initialValue) {
+                    table.options.meta?.updateData(index, id, value);
+                }
             };
 
             useEffect(() => {
-                setValue(initialValue)
+                setValue(initialValue);
             }, [initialValue]);
 
             return (
@@ -65,6 +67,7 @@ const DataTable = ({ data }) => {
                     onChange={e => setValue(e.target.value)}
                     onBlur={onBlur}
                     title="Wert bearbeiten"
+                    tabIndex={0}
                 />
             )
         }
@@ -302,7 +305,7 @@ const DataTable = ({ data }) => {
             <div className="table--pagination">
                 <span className="table--pagination button-wrapper">
                     <button
-                        className="btn"
+                        className={`btn${!table.getCanPreviousPage() ? " disabled-btn" : ""}`}
                         onClick={() => table.setPageIndex(0)}
                         disabled={!table.getCanPreviousPage()}
                         title="Erste Seite"
@@ -310,7 +313,7 @@ const DataTable = ({ data }) => {
                         {"<<"}
                     </button>
                     <button
-                        className="btn"
+                        className={`btn${!table.getCanPreviousPage() ? " disabled-btn" : ""}`}
                         onClick={() => table.previousPage()}
                         disabled={!table.getCanPreviousPage()}
                         title="Vorherige Seite"
@@ -318,7 +321,7 @@ const DataTable = ({ data }) => {
                         {"Vorherige"}
                     </button>
                     <button
-                        className="btn"
+                        className={`btn${!table.getCanNextPage() ? " disabled-btn" : ""}`}
                         onClick={() => table.nextPage()}
                         disabled={!table.getCanNextPage()}
                         title="Nächste Seite"
@@ -326,7 +329,7 @@ const DataTable = ({ data }) => {
                         {"Nächste"}
                     </button>
                     <button
-                        className="btn"
+                        className={`btn${!table.getCanNextPage() ? " disabled-btn" : ""}`}
                         onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                         disabled={!table.getCanNextPage()}
                         title="Letzte Seite"
