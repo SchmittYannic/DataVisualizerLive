@@ -64,6 +64,7 @@ const DataTable = ({ data }) => {
                     value={value}
                     onChange={e => setValue(e.target.value)}
                     onBlur={onBlur}
+                    title="Wert bearbeiten"
                 />
             )
         }
