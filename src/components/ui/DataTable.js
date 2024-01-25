@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useMemo, useState, useCallback, useRef, useEffect } from "react"
 import { 
     useReactTable,
     getCoreRowModel,
@@ -11,7 +11,9 @@ import {
     flexRender,
 } from "@tanstack/react-table"
 import { MdSwapVert, MdArrowDownward, MdArrowUpward } from "react-icons/md"
-import useWindowSize from "../../hooks/useWindowSize"
+import { DataFrame } from "danfojs"
+
+import { useData, useWindowSize } from "../../hooks"
 import { Accordion, DebouncedInput, FilterTable } from "./"
 import FuzzyFilter from "../../utils/FuzzyFilter"
 import sortColumn from "../../utils/sortColumn"
@@ -21,6 +23,7 @@ const DataTable = ({ data }) => {
 
     const windowSize = useWindowSize();
     const isMobile = windowSize.width && windowSize.width < 850;
+    const { setDataframe, setIsLoading } = useData();
 
     const [filterAccordionIsOpen, setFilterAccordionIsOpen] = useState(false);
     const [sortAccordionIsOpen, setIsSortAccordionIsOpen] = useState(false);
@@ -35,18 +38,60 @@ const DataTable = ({ data }) => {
             return {
                 accessorFn: row => row[columnName],
                 id: columnName,
-                cell: info => info.getValue(),
                 header: () => <span>{columnName}</span>,
                 sortingFn: sortColumn,
             }
         }), [columnNames]
     );
 
+    const defaultColumn = {
+        cell: function Cell ({ getValue, row: { index }, column: { id }, table }) {
+            const initialValue = getValue();
+            const isNullOrUndefined = initialValue === null || initialValue === undefined;
+
+            const [value, setValue] = useState(isNullOrUndefined ? "" : initialValue);
+
+            const onBlur = () => {
+                table.options.meta?.updateData(index, id, value)
+            };
+
+            useEffect(() => {
+                setValue(initialValue)
+            }, [initialValue]);
+
+            return (
+                <input
+                    value={value}
+                    onChange={e => setValue(e.target.value)}
+                    onBlur={onBlur}
+                />
+            )
+        }
+    }
+
+    const useSkipper = () => {
+        const shouldSkipRef = useRef(true)
+        const shouldSkip = shouldSkipRef.current
+
+        const skip = useCallback(() => {
+            shouldSkipRef.current = false
+        }, [])
+
+        useEffect(() => {
+            shouldSkipRef.current = true
+        })
+
+        return [shouldSkip, skip]
+    };
+
+    const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper()
+
     const pageSize = isMobile ? 1 : 10;
 
     const table = useReactTable({
         data,
         columns,
+        defaultColumn,
         filterFns: {
             fuzzy: FuzzyFilter,
         },
@@ -66,6 +111,24 @@ const DataTable = ({ data }) => {
         getFacetedRowModel: getFacetedRowModel(),
         getFacetedUniqueValues: getFacetedUniqueValues(),
         getFacetedMinMaxValues: getFacetedMinMaxValues(),
+        autoResetPageIndex,
+        meta: {
+            updateData: (rowIndex, columnId, value) => {
+                skipAutoResetPageIndex();
+                const newData = data.map((row, index) => {
+                    if (index === rowIndex) {
+                        return {
+                            ...data[rowIndex],
+                            [columnId]: value,
+                        }
+                    }
+                    return row
+                })
+                const newDf = new DataFrame(newData);
+                setIsLoading(true);
+                setDataframe(newDf);
+            },
+        },
         debugTable: false,
         debugHeaders: false,
         debugColumns: false,
