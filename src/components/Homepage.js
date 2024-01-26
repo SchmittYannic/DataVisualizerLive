@@ -70,7 +70,7 @@ const Homepage = () => {
                     </p>
                     <Link 
                         className="hero-btn btn next-btn" 
-                        to={`/DataVisualizer/UploadStep`}
+                        to="/DataVisualizer/UploadStep"
                     >
                         DataVisualizer starten
                     </Link>

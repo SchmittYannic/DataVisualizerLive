@@ -16,7 +16,7 @@ const BottomSection = () => {
                 <div className="bottom-section-link">
                     <Link
                         className="btn next-btn"
-                        href="#"
+                        to="/DataVisualizer/UploadStep"
                     >
                         Get Started
                     </Link>
