@@ -33,7 +33,7 @@ const VideoSection = () => {
                 <div className={`video-section-left-item ${currentVideo === uploadwebmRef.current ? "active" : ""}`}>
                     <VideoProgress videoRef={uploadwebmRef} currentVideo={currentVideo} vertical={isProgressBarVertical} />
                     <h4>Upload</h4>
-                    <p>Der erste Schritt besteht aus dem Hochladen einer Datei. DataVisualizer unterstützt das Datenformat: csv.</p>
+                    <p>Der erste Schritt besteht aus dem Hochladen einer Datei. DataVisualizer unterstützt das Dateiformat: csv.</p>
                 </div>
 
                 <div className={`video-section-left-item ${currentVideo === datawebmRef.current ? "active" : ""}`}>
