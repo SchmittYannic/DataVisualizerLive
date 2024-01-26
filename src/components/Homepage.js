@@ -5,6 +5,7 @@ import Lottie from "lottie-react";
 import { chartLottie, lightningLottie, settingLottie } from "../assets/";
 import HeroChartAnimation from "./HeroChartAnimation";
 import VideoSection from "./VideoSection";
+import BottomSection from "./BottomSection";
 import { useWindowSize } from "../hooks";
 import "./Homepage.css";
 
@@ -63,7 +64,10 @@ const Homepage = () => {
                         DataVisualizer
                     </h1>
                     <p ref={heroTitleOverlay} className="hero-title" data-overlay aria-hidden="true"></p>
-                    <p className="hero-subtitle">Veranschaulichen Sie komplexe Daten durch interaktive Diagramme mit DataVisualizer.</p>
+                    <p className="hero-subtitle">
+                        Veranschaulichen Sie komplexe Daten durch interaktive Diagramme mit DataVisualizer.
+                        {/* Veranschaulichen Sie komplexe Daten durch interaktive Diagramme mit DataVisualizer und erhalten so wertvolle Erkenntnisse und ein umfassendes Verständnis Ihrer Daten */}
+                    </p>
                     <Link 
                         className="hero-btn btn next-btn" 
                         to={`/DataVisualizer/UploadStep`}
@@ -97,6 +101,8 @@ const Homepage = () => {
             </section>
 
             <VideoSection />
+
+            <BottomSection />
         </main>
     )
 }
