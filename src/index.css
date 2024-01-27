@@ -104,6 +104,14 @@ br {
     visibility: visible;
 }
 
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
 .divider-1 {
     height: 0.25rem;
 }

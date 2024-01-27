@@ -2,148 +2,94 @@
     margin: 0 auto;
     max-width: 1140px;
     padding: 1em;
-    display: grid;
-    grid-template-columns: 1fr 640px;
     margin-bottom: 8rem;
 }
 
-.video-section-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 0px 0px;
+.video-section .tabs {
+    width: 100%;
+    height: 2.25rem;
+    padding: 0.25rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    background-color: hsl(240 4.8% 95.9%);
+    border-radius: 0.5rem;
 }
 
-.video-section-left-item {
+.video-section .tab {
     position: relative;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    /* font-weight: 500; */
+    /* color: hsl(240 10% 3.9%); */
+    color: var(--subtext-color);
+    background-color: transparent;
+    border: none;
+    border-radius: calc(0.5rem - 2px);
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
 }
 
-.video-section-left-item h4,
-.video-section-left-item p
-{
-    padding: 0px 15px;
+.video-section .tab.active {
+    color: var(--action-color-dark);
+    background-color: hsl(0 0 100%);
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 2px -1px rgb(0 0 0 / 0.1);
 }
 
-.video-section-left-item h4 {
-    line-height: 48px;
-    font-size: 24px;
+.video-section .tab.active b {
+    z-index: 4;
 }
 
-.progressbar {
+.tab.active .progressbar {
+    z-index: 2;
     position: absolute;
-    top: 5px;
+    top: 0;
+    bottom: 0;
     left: 0;
-    width: 2px;
-    height: 100%;
-    background-color: #4254663c;
+    width: 100%;
+    /* background-color: transparent; */
+    background: linear-gradient(90deg,oklch(63.32% .24 31.68 /.2) 0%,oklch(69.02% .277 332.77 /.2) 50%,oklch(53.18% .28 296.97 /.2) 100%)
 }
 
 .progressbar-done {
-    width: 2px;
-    background-color: #425466;
-}
-
-.video-section-left-item:not(.active) h4,
-.video-section-left-item:not(.active) p {
-    color: #4254663c;
-}
-
-.video-section-right {
-    position: relative;
-    height: 480px;
-    width: 100%;
-}
-
-.video-section-right video {
     position: absolute;
-    inset: 0;
+    right: 0;
+    z-index: 3;
+    height: 100%;
+    background-color: hsl(0 0 100%);
+    /* background: linear-gradient(90deg,oklch(63.32% .24 31.68) 0%,oklch(69.02% .277 332.77) 50%,oklch(53.18% .28 296.97) 60%) */
+    /* background: radial-gradient( circle at center bottom, color-mix(in srgb, oklch(69.02% .277 332.77) 10%, white 80%) 0%, white 80% ); */
 }
 
-@media only screen and (max-width: 1140px) {
-
-    .video-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .video-section-left {
-        max-width: 480px;
-        margin-bottom: 10px;
-    }
-
-    .video-section-right {
-        max-width: 480px;
-        height: 360px;
-    }
-
-    .video-section-left-item:not(.active) {
-        display: none;
-    }
-
-    .video-section-left-item h4,
-    .video-section-left-item p
-    {
-        padding: 0px 0px;
-    }
-
-    .progressbar {
-        position: absolute;
-        top: unset;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: #4254663c;
-    }
-    
-    .progressbar-done {
-        height: 2px;
-        background-color: #425466;
-    }
-
+.video-section .video-section-content {
+    margin-top: 0.5rem;
+    border-width: 1px;
+    border-radius: 0.5rem;
+    border-style: solid;
+    border-color: #e5e7eb;
 }
 
-@media only screen and (max-width: 680px) {
+.video-section-text,
+.video-section-video-wrapper {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
 
-    .video-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .video-section-left {
-        max-width: 344.2px;
-        margin-bottom: 10px;
-    }
-
-    .video-section-right {
-        max-width: 344.2px;
-        height: 258.15px;
-    }
-
-    .video-section-left-item:not(.active) {
-        display: none;
-    }
-
-    .video-section-left-item h4,
-    .video-section-left-item p
-    {
-        padding: 0px 0px;
-    }
-
-    .progressbar {
-        position: absolute;
-        top: unset;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: #4254663c;
-    }
-    
-    .progressbar-done {
-        height: 2px;
-        background-color: #425466;
-    }
+.video-section-text h4 {
+    letter-spacing: -0.025em;
+    line-height: 1;
+    /* font-weight: 600; */
+    font-size: 1.5rem;
 }

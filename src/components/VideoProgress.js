@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 const VideoProgress = ({ videoRef, currentVideo, vertical=true }) => {
 
-    const initial = vertical ? { height: "0%" } : { width: "0%" };
-    const animate = vertical ? { height: "100%" } : { width: "100%" };
+    const initial = vertical ? { height: "100%" } : { width: "100%" };
+    const animate = vertical ? { height: "0%" } : { width: "0%" };
 
     return (
         <div 
