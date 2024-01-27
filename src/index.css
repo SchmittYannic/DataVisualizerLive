@@ -25,6 +25,7 @@
     --accordion-paddingX: 1.25rem;
     --accordion-paddingY-mobile: .5rem;
     --accordion-paddingX-mobile: .75rem;
+    --horizontal-scrollbar-height: 0;
 }
 
 *, 
@@ -147,7 +148,7 @@ br {
 
 .navigation-wrapper {
     position: absolute;
-    bottom: 0;
+    bottom: var(--horizontal-scrollbar-height);
     left: 50%;
     margin: 0 auto;
     padding: 0 var(--paddingX);

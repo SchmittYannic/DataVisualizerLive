@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import {
@@ -14,7 +14,7 @@ import {
     ChartSettingsDesktop,
 } from "./charts";
 import ChartSettingsMobile from "./charts/chartsettings/ChartSettingsMobile";
-import { useData, useWindowSize } from "../hooks";
+import { useData, useWindowSize, useIsOverflow } from "../hooks";
 import { saveSvg } from "./charts/saveSvg";
 import { renderChart } from "./charts/renderChart";
 import { InfoBox } from "./ui";
@@ -24,6 +24,9 @@ const VisualizationStep = () => {
     const { dataAsJSON, catColumns, fileIsUploaded } = useData();
     const windowSize = useWindowSize();
     const isMobile = windowSize.width && windowSize.width < 850;
+
+    const rootRef = useRef(document.getElementById("root"));
+    const isOverflow = useIsOverflow(rootRef, false);
 
     const defaultDimensions = {
         svgWidth: 1000,
@@ -158,6 +161,14 @@ const VisualizationStep = () => {
             renderChart(settingsRef, dataAsJSON);
         }
     }, [catColumns, dataAsJSON]);
+
+    useLayoutEffect(() => {
+        if (!isOverflow) {
+            document.documentElement.style.setProperty("--horizontal-scrollbar-height", 0);
+        } else {
+            document.documentElement.style.setProperty("--horizontal-scrollbar-height", "16px");
+        }
+    }, [isOverflow])
 
     if (fileIsUploaded) {
         return (

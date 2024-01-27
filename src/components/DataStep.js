@@ -1,10 +1,22 @@
+import { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { InfoBox, AsyncLink } from "./ui";
-import { useData } from "../hooks";
+import { useData, useIsOverflow } from "../hooks";
 import DataTable from "./ui/DataTable";
 
 const DataStep = () => {
     const { dataAsJSON ,dataAsJSONLength, fileIsUploaded, isLoading } = useData();
+
+    const rootRef = useRef(document.getElementById("root"));
+    const isOverflow = useIsOverflow(rootRef, false);
+
+    useLayoutEffect(() => {
+        if (!isOverflow) {
+            document.documentElement.style.setProperty("--horizontal-scrollbar-height", 0);
+        } else {
+            document.documentElement.style.setProperty("--horizontal-scrollbar-height", "16px");
+        }
+    }, [isOverflow])
 
     if (fileIsUploaded) {
         return (
