@@ -4,6 +4,7 @@ import useFontContext from "./useFontContext";
 import useWindowSize from "./useWindowSize";
 import useScrollPosition from "./useScrollPosition";
 import useScrollTracker from "./useScrollTracker";
+import useIsOverflow from "./useIsOverflow";
 
 export {
     useData,
@@ -12,4 +13,5 @@ export {
     useWindowSize,
     useScrollPosition,
     useScrollTracker,
+    useIsOverflow,
 }
