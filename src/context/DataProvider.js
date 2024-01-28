@@ -1,8 +1,8 @@
 import { toJSON, DataFrame } from "danfojs";
 import { useState, createContext, useEffect } from "react";
-import { AutoData } from "../data/AutoData";
-import { WetterData } from "../data/WetterData";
-import { placeholderString } from "../constants";
+import { AutoData } from "data/AutoData";
+import { WetterData } from "data/WetterData";
+import { placeholderString } from "constants";
 
 const initContextState = {
     fileIsUploaded: false,
