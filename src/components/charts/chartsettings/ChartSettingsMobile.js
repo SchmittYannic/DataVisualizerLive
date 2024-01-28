@@ -29,7 +29,7 @@ const BackButton = ({ onClick }) => (
 
 const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) => {
 
-    const { dataAsJSONLength, catColumns, catColumnsLength, numColumns, numColumnsLength, dateOptions } = useData();
+    const { dataAsJSONLength, catColumns, catColumnsLength, numColumns, numColumnsLength, dateOptions, dateColumnsLength } = useData();
     const windowSize = useWindowSize();
     const isMobile = windowSize.width && windowSize.width < 850;
     
@@ -37,6 +37,8 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
     const [activeTab, setActiveTab] = useState("nav");
     const [settings, setSettings] = useState(settingsRef.current);
     const [scope, animate] = useAnimate();
+
+    const selectedChart = settingsRef.current.charttype;
 
     const handleExpandableSideMenuTriggerClick = () => {
         if (menuIsOpen) {
@@ -145,25 +147,59 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
                                 >
                                     Diagrammkonfiguration
                                 </div>
-                                {defaultMultiAccordionState.map((state, idx) => (                                   
-                                    <motion.button
-                                        key={idx}
-                                        className="side-menu-link"
-                                        type="button"
-                                        onClick={() => setActiveTab(state.name)}
-                                        title={`Öffnen Konfiguration: ${state.name}`}
-                                        initial={{ x: 500 }}
-                                        animate={{ x: 0 }}
-                                        transition={{ 
-                                            delay: 0.1 * idx, 
-                                            stiffness: 100 
-                                        }}
-                                        exit={{ x: -500 }}
-                                    >
-                                        {state.name}
-                                        <FaArrowRightLong />
-                                    </motion.button>                  
-                                ))}
+                                {defaultMultiAccordionState.map((state, idx) => {
+                                    if (((selectedChart === "barchart" && dataAsJSONLength > 0 && catColumnsLength > 0)
+                                    ||  (selectedChart === "piechart" && dataAsJSONLength > 0 && catColumnsLength > 0)
+                                    || (selectedChart === "boxplot" && dataAsJSONLength > 0 && numColumnsLength > 0)
+                                    || (selectedChart === "histogram" && dataAsJSONLength > 0 && numColumnsLength > 0)
+                                    || (selectedChart === "linechart" && dataAsJSONLength > 0 && numColumnsLength > 0 && dateColumnsLength > 0)
+                                    || (selectedChart === "areachart" && dataAsJSONLength > 0 && numColumnsLength > 0 && dateColumnsLength > 0)
+                                    || (selectedChart === "scatterplot" && dataAsJSONLength > 0 && numColumnsLength > 0))) {
+                                        return (
+                                            <motion.button
+                                                key={idx}
+                                                className="side-menu-link"
+                                                type="button"
+                                                onClick={() => setActiveTab(state.name)}
+                                                title={`Öffnen Konfiguration: ${state.name}`}
+                                                initial={{ x: 500 }}
+                                                animate={{ x: 0 }}
+                                                transition={{ 
+                                                    delay: 0.1 * idx, 
+                                                    stiffness: 100 
+                                                }}
+                                                exit={{ x: -500 }}
+                                            >
+                                                {state.name}
+                                                <FaArrowRightLong />
+                                            </motion.button>
+                                        )
+                                    } else {
+                                        return (
+                                            <>
+                                                {idx === 0 && (
+                                                    <motion.button
+                                                        key={idx}
+                                                        className="side-menu-link"
+                                                        type="button"
+                                                        onClick={() => setActiveTab(state.name)}
+                                                        title={`Öffnen Konfiguration: ${state.name}`}
+                                                        initial={{ x: 500 }}
+                                                        animate={{ x: 0 }}
+                                                        transition={{ 
+                                                            delay: 0.1 * idx, 
+                                                            stiffness: 100 
+                                                        }}
+                                                        exit={{ x: -500 }}
+                                                    >
+                                                        {state.name}
+                                                        <FaArrowRightLong />
+                                                    </motion.button>
+                                                )}
+                                            </>
+                                        )
+                                    }
+                                })}
                             </>
                         )
                     }
