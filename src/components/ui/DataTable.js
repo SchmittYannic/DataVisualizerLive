@@ -13,10 +13,10 @@ import {
 import { MdSwapVert, MdArrowDownward, MdArrowUpward } from "react-icons/md"
 import { DataFrame } from "danfojs"
 
-import { useData, useWindowSize } from "../../hooks"
-import { Accordion, DebouncedInput, FilterTable } from "./"
-import FuzzyFilter from "../../utils/FuzzyFilter"
-import sortColumn from "../../utils/sortColumn"
+import { useData, useWindowSize } from "hooks"
+import { Accordion, DebouncedInput, FilterTable } from "components/ui"
+import FuzzyFilter from "utils/FuzzyFilter"
+import sortColumn from "utils/sortColumn"
 import "./DataTable.css"
 
 const DataTable = ({ data }) => {
