@@ -130,7 +130,7 @@
 
 .charts-settings-divider {
     width: 100%;
-    padding: var(--button-paddingY) 0;
+    padding: 1.25rem;
     display: flex;
     align-items: center;
 }
@@ -143,6 +143,7 @@
 }
 
 .chart-settings-item {
+    padding: 1.25rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
@@ -155,6 +156,7 @@
 }
 
 .chart-options-mobile {
+    padding: 1.25rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -212,7 +214,7 @@ input[type=range]::-moz-range-thumb {
 
 .main-visualization .expandable-side-menu {
     width: max(250px, 50vw);
-    min-height: min(429px, 100vh);
+    min-height: min(758px, 100vh);
     background-color: var(--background-color);
     border-bottom-right-radius: var(--border-radius);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -226,6 +228,13 @@ input[type=range]::-moz-range-thumb {
 .main-visualization .expandable-side-menu.expanded .expandable-side-menu-content {
     overflow-y: auto;
     scrollbar-width: thin;
+}
+
+.main-visualization .expandable-side-menu .expandable-side-menu-content-header {
+    padding: 1.25rem;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .main-visualization .expandable-side-menu-trigger-wrapper {
@@ -272,7 +281,7 @@ input[type=range]::-moz-range-thumb {
     font-family: inherit;
     font-style: inherit;
     cursor: pointer;
-    padding: var(--accordion-paddingY-mobile) var(--accordion-paddingX-mobile);
+    padding: 1.25rem;
     border: 1px solid var(--background-color);
     background-color: white;
     color: var(--action-color-dark);
@@ -288,10 +297,20 @@ input[type=range]::-moz-range-thumb {
 }
 
 .main-visualization .expandable-side-menu .side-menu-content {
-    padding: var(--accordion-paddingY-mobile) var(--accordion-paddingX-mobile);
     display: flex;
     flex-direction: column;
-    gap: .75em;
+}
+
+.main-visualization .expandable-side-menu .side-menu-content .side-menu-content-header {
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.side-menu-content-header p {
+    flex-grow: 1;
+    text-align: center;
 }
 
 .main-visualization .expandable-side-menu .side-menu-back-btn {
@@ -328,7 +347,7 @@ input[type=range]::-moz-range-thumb {
     padding: var(--accordion-paddingY) var(--accordion-paddingX);
 }
 
-@media screen and ( max-height: 430px ) {
+@media screen and ( max-height: 758px ) {
     .expandable-side-menu {
         top: 0;
         height: 100%;

@@ -14,6 +14,17 @@ import TooltipSettings from "./TooltipSettings";
 import DownloadSettings from "./DownloadSettings";
 import TickSettings from "./TickSettings";
 
+const BackButton = ({ onClick }) => (
+    <button
+        className="side-menu-back-btn"
+        type="button"
+        onClick={onClick}
+        title="Zurück zur Navigation"
+    >
+        <FaArrowLeft />
+    </button>
+);
+
 const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) => {
 
     const { dataAsJSONLength, catColumns, catColumnsLength, numColumns, numColumnsLength, dateOptions } = useData();
@@ -93,26 +104,6 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
         setSelectedChart(input);
     };
 
-    const BackButton = () => (
-        <button
-            className="side-menu-back-btn"
-            type="button"
-            onClick={() => setActiveTab("nav")}
-            title="Zurück zur Navigation"
-        >
-            <FaArrowLeft />
-        </button>
-    );
-
-    const SideMenuContent = ({ children }) => {
-        return (
-            <div className="side-menu-content">
-                <BackButton />
-                {children}
-            </div>
-        )
-    };
-
     if (dataAsJSONLength > 0) {
         return (
             <div className={`expandable-side-menu ${menuIsOpen ? "expanded" : ""}`}>
@@ -129,161 +120,242 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
                 <div className="inverted-corner" />
 
                 <div className="expandable-side-menu-content">
-                {
-                    activeTab === "nav" &&
-                    defaultMultiAccordionState.map((state, idx) => (
-                        <button
-                            key={idx}
-                            className="side-menu-link"
-                            type="button"
-                            onClick={() => setActiveTab(state.name)}
-                            title={`Öffnen Konfiguration: ${state.name}`}
-                        >
-                            {state.name}
-                            <FaArrowRightLong />
-                        </button>
-                    ))
-                }
-
-                {
-                    activeTab === "Chartoptionen" && (
-                        <div className="side-menu-content">
-                            <BackButton />
-                            <div className={`${isMobile ? "chart-options-mobile" : "chart-options"}`}>
-                                {ChartOptions.map((option, key) => (
+                    {
+                        activeTab === "nav" && (
+                            <>
+                                <div className="expandable-side-menu-content-header">
+                                    Diagrammkonfiguration
+                                </div>
+                                {defaultMultiAccordionState.map((state, idx) => (
                                     <button
-                                        key={key}
+                                        key={idx}
+                                        className="side-menu-link"
                                         type="button"
-                                        className={`${isMobile ? "btn" : "btn full"}`}
-                                        onClick={()=>handleSelectChart(option.action)}
-                                        title={`Wechsel zu ${option.name}`}
+                                        onClick={() => setActiveTab(state.name)}
+                                        title={`Öffnen Konfiguration: ${state.name}`}
                                     >
-                                        {isMobile ? option.icon : option.name}
+                                        {state.name}
+                                        <FaArrowRightLong />
                                     </button>
                                 ))}
+                            </>
+                        )
+                    }
+
+                    {
+                        activeTab === "Chartoptionen" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        Chartoptionen
+                                    </p>
+                                </div>
+                                <div className={`${isMobile ? "chart-options-mobile" : "chart-options"}`}>
+                                    {ChartOptions.map((option, key) => (
+                                        <button
+                                            key={key}
+                                            type="button"
+                                            className={`${isMobile ? "btn" : "btn full"}`}
+                                            onClick={()=>handleSelectChart(option.action)}
+                                            title={`Wechsel zu ${option.name}`}
+                                        >
+                                            {isMobile ? option.icon : option.name}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    )
-                } 
+                        )
+                    } 
 
-                {
-                    activeTab === "Dimensionen" && (
-                        <SideMenuContent>
-                            <DimensionSettings
-                                settingsRef={settingsRef}
-                                setDimensions={setDimensions}
-                                settings={settings}
-                                setSettings={setSettings}
-                            />
-                        </SideMenuContent>
-                    )
-                }
+                    {
+                        activeTab === "Dimensionen" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        Dimensionen
+                                    </p>
+                                </div>
 
-                {
-                    activeTab === "Daten" && (
-                        <SideMenuContent>
-                            <DataSettings
-                                settingsRef={settingsRef}
-                                settings={settings}
-                                setSettings={setSettings}
-                            />
-                        </SideMenuContent>
-                    )
-                }
+                                <DimensionSettings
+                                    settingsRef={settingsRef}
+                                    setDimensions={setDimensions}
+                                    settings={settings}
+                                    setSettings={setSettings}
+                                />
+                            </div>
+                        )
+                    }
 
-                {
-                    activeTab === "Allgemein" && (
-                        <SideMenuContent>
-                            <GeneralSettings
-                                settingsRef={settingsRef}
-                                settings={settings}
-                                setSettings={setSettings}
-                            />
-                        </SideMenuContent>
-                    )
-                }
+                    {
+                        activeTab === "Daten" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        Daten
+                                    </p>
+                                </div>
 
-                {
-                    activeTab === "Elemente" && (
-                        <SideMenuContent>
-                            <ElementSettings
-                                settingsRef={settingsRef}
-                                settings={settings}
-                                setSettings={setSettings}
-                            />
-                        </SideMenuContent>
-                    )
-                }
+                                <DataSettings
+                                    settingsRef={settingsRef}
+                                    settings={settings}
+                                    setSettings={setSettings}
+                                />
+                            </div>
+                        )
+                    }
 
-                {
-                    activeTab === "Titel" && (
-                        <SideMenuContent>
-                            <TitelSettings
-                                settingsRef={settingsRef}
-                                settings={settings}
-                                setSettings={setSettings}
-                            />
-                        </SideMenuContent>
-                    )
-                }
+                    {
+                        activeTab === "Allgemein" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        Allgemein
+                                    </p>
+                                </div>
 
-                {
-                    activeTab === "X-Achsenbeschriftung" && (
-                        <SideMenuContent>
-                            <XAxisSettings
-                                settingsRef={settingsRef}
-                                settings={settings}
-                                setSettings={setSettings}
-                            />
-                        </SideMenuContent>
-                    )
-                }
+                                <GeneralSettings
+                                    settingsRef={settingsRef}
+                                    settings={settings}
+                                    setSettings={setSettings}
+                                />
+                            </div>
+                        )
+                    }
 
-                {
-                    activeTab === "Y-Achsenbeschriftung" && (
-                        <SideMenuContent>
-                            <YAxisSettings
-                                settingsRef={settingsRef}
-                                settings={settings}
-                                setSettings={setSettings}
-                            />
-                        </SideMenuContent>
-                    )
-                }
+                    {
+                        activeTab === "Elemente" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        Elemente
+                                    </p>
+                                </div>
 
-                {
-                    activeTab === "Teilstriche und Gitternetz" && (
-                        <SideMenuContent>
-                            <TickSettings
-                                settingsRef={settingsRef}
-                                settings={settings}
-                                setSettings={setSettings}
-                            />
-                        </SideMenuContent>
-                    )
-                }
+                                <ElementSettings
+                                    settingsRef={settingsRef}
+                                    settings={settings}
+                                    setSettings={setSettings}
+                                />
+                            </div>
+                        )
+                    }
 
-                {
-                    activeTab === "Tooltip" && (
-                        <SideMenuContent>
-                            <TooltipSettings
-                                settingsRef={settingsRef}
-                                settings={settings}
-                                setSettings={setSettings}
-                            />
-                        </SideMenuContent>
-                    )
-                }
+                    {
+                        activeTab === "Titel" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        Titel
+                                    </p>
+                                </div>
 
-                {
-                    activeTab === "Download" && (
-                        <SideMenuContent>
-                            <DownloadSettings
-                                settingsRef={settingsRef}
-                            />
-                        </SideMenuContent>
-                    )
-                }
+                                <TitelSettings
+                                    settingsRef={settingsRef}
+                                    settings={settings}
+                                    setSettings={setSettings}
+                                />
+                            </div>
+                        )
+                    }
+
+                    {
+                        activeTab === "X-Achsenbeschriftung" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        X-Achsenbeschriftung
+                                    </p>
+                                </div>
+
+                                <XAxisSettings
+                                    settingsRef={settingsRef}
+                                    settings={settings}
+                                    setSettings={setSettings}
+                                />
+                            </div>
+                        )
+                    }
+
+                    {
+                        activeTab === "Y-Achsenbeschriftung" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        Y-Achsenbeschriftung
+                                    </p>
+                                </div>
+
+                                <YAxisSettings
+                                    settingsRef={settingsRef}
+                                    settings={settings}
+                                    setSettings={setSettings}
+                                />
+                            </div>
+                        )
+                    }
+
+                    {
+                        activeTab === "Teilstriche und Gitternetz" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        Teilstriche und Gitternetz
+                                    </p>
+                                </div>
+
+                                <TickSettings
+                                    settingsRef={settingsRef}
+                                    settings={settings}
+                                    setSettings={setSettings}
+                                />
+                            </div>
+                        )
+                    }
+
+                    {
+                        activeTab === "Tooltip" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        Tooltip
+                                    </p>
+                                </div>
+
+                                <TooltipSettings
+                                    settingsRef={settingsRef}
+                                    settings={settings}
+                                    setSettings={setSettings}
+                                />
+                            </div>
+                        )
+                    }
+
+                    {
+                        activeTab === "Download" && (
+                            <div className="side-menu-content">
+                                <div className="side-menu-content-header">
+                                    <BackButton onClick={() => setActiveTab("nav")} />
+                                    <p>
+                                        Download
+                                    </p>
+                                </div>
+
+                                <DownloadSettings
+                                    settingsRef={settingsRef}
+                                />
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         )
