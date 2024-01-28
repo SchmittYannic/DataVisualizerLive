@@ -128,7 +128,7 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
                 </div>
                 <div className="inverted-corner" />
 
-                
+                <div className="expandable-side-menu-content">
                 {
                     activeTab === "nav" &&
                     defaultMultiAccordionState.map((state, idx) => (
@@ -284,6 +284,7 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
                         </SideMenuContent>
                     )
                 }
+                </div>
             </div>
         )
     } else {
