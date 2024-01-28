@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Homepage, Header, UploadStep, DataStep, VisualizationStep } from "components";
+import { Homepage, Header } from "components";
+import { UploadStep, DataStep, VisualizationStep } from "features/datavisualizer";
 import ScrollToTop from "components/ScrollToTop";
 
 export const steps = [
