@@ -257,7 +257,7 @@ tr:nth-child(2n+1) td {
     }
 
     .table__cell {
-        padding: 1.25rem;
+        padding: var(--paddingX);
         display: block;
     }
 

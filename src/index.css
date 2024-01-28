@@ -15,10 +15,11 @@
     --element-gap: 10px;
     --navigation-wrapper-height: 100px;
     --navigation-wrapper-height-mobile: 70px;
-    --paddingX: 50px;
-    --paddingY: 30px;
-    --paddingX-mobile: 30px;
-    --paddingY-mobile: 30px;
+    --paddingX: 1.25rem;
+    --center-container-paddingX: 3rem;
+    --center-container-paddingY: 1.875rem;
+    --center-container-paddingX-mobile: 1.875rem;
+    --center-container-paddingY-mobile: 1.875rem;
     --button-paddingX: 1rem;
     --button-paddingY: .75rem;
     --button-paddingX-mobile: .75rem;
@@ -144,7 +145,7 @@ br {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: var(--paddingY) var(--paddingX);
+    padding: var(--center-container-paddingY) var(--center-container-paddingX);
     background-color: var(--background-color);
 }
 
@@ -153,7 +154,7 @@ br {
     bottom: var(--horizontal-scrollbar-height);
     left: 50%;
     margin: 0 auto;
-    padding: 0 var(--paddingX);
+    padding: 0 var(--center-container-paddingX);
     width: 100%;
     height: var(--navigation-wrapper-height);
     min-width: var(--min-page-width);

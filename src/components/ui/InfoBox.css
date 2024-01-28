@@ -1,7 +1,7 @@
 .infobox {
     min-width: var(--min-page-width);
     max-width: 600px;
-    padding: var(--paddingY) var(--paddingX);
+    padding: var(--center-container-paddingY) var(--center-container-paddingX);
     background-color: var(--background-color);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
@@ -23,7 +23,7 @@
 
 @media only screen and (max-width: 680px) {
     .infobox {
-        padding: var(--paddingY-mobile) var(--paddingX-mobile);
+        padding: var(--center-container-paddingY-mobile) var(--center-container-paddingX-mobile);
     }
 
     .infobox img {

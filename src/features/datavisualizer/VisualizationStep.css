@@ -65,7 +65,7 @@
 
 .draggable {
     position: relative;
-    padding: 1.25rem;
+    padding: var(--paddingX);
     background-color: var(--background-color);
     border-top-right-radius: var(--border-radius);
     border-top-left-radius: var(--border-radius);
@@ -140,7 +140,7 @@
 
 .charts-settings-divider {
     width: 100%;
-    padding: 1.25rem;
+    padding: var(--paddingX);
     display: flex;
     align-items: center;
 }
@@ -153,21 +153,21 @@
 }
 
 .chart-settings-item {
-    padding: 1.25rem;
+    padding: var(--paddingX);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
 }
 
 .chart-options {
-    padding: 1.25rem;
+    padding: var(--paddingX);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
 .chart-options-mobile {
-    padding: 1.25rem;
+    padding: var(--paddingX);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -243,7 +243,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .main-visualization .expandable-side-menu .expandable-side-menu-content-header {
-    padding: 1.25rem;
+    padding: var(--paddingX);
     display: flex;
     justify-content: center;
     border-bottom: 1px solid var(--border-color);
@@ -305,7 +305,7 @@ input[type=range]::-moz-range-thumb {
     font-family: inherit;
     font-style: inherit;
     cursor: pointer;
-    padding: 1.25rem;
+    padding: var(--paddingX);
     border: 1px solid var(--background-color);
     background-color: var(--background-color);
     color: var(--action-color-dark);
@@ -342,7 +342,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .main-visualization .side-menu-content .side-menu-content-header {
-    padding: 1.25rem;
+    padding: var(--paddingX);
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--border-color);
