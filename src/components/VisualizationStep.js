@@ -11,9 +11,9 @@ import {
     Linechart,
     Areachart,
     
-    ChartSettingsDesktop,
+    
 } from "./charts";
-import ChartSettingsMobile from "./charts/chartsettings/ChartSettingsMobile";
+import { ChartSettingsMobile, ChartSettingsDesktop } from "./charts/chartsettings/ChartSettingsMobile";
 import { useData, useWindowSize, useIsOverflow } from "../hooks";
 import { saveSvg } from "./charts/saveSvg";
 import { renderChart } from "./charts/renderChart";

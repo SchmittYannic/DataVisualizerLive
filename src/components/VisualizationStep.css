@@ -48,6 +48,7 @@
 
 .chart-settings {
     width: 400px;
+    height: 760px;
     position: absolute;
     top: 0;
     left: 0;
@@ -65,9 +66,10 @@
 .draggable {
     position: relative;
     padding: 1.25rem;
-    background-color: var(--action-color-light);
+    background-color: var(--background-color);
     border-top-right-radius: var(--border-radius);
     border-top-left-radius: var(--border-radius);
+    border-bottom: 1px solid var(--border-color);
     text-align: center;
     cursor: grab;
     -webkit-touch-callout: none;
@@ -91,6 +93,13 @@
 .draggable-icon svg {
     width: 30px;
     height: 30px;
+}
+
+.draggable-back-btn {
+    position: absolute;
+    top: 50%;
+    left: 7px;
+    transform: translate(0, -50%);
 }
 
 .draggable-close {
@@ -151,9 +160,10 @@
 }
 
 .chart-options {
+    padding: 1.25rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: .5em;
+    gap: 1rem;
 }
 
 .chart-options-mobile {
@@ -221,7 +231,8 @@ input[type=range]::-moz-range-thumb {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.main-visualization .expandable-side-menu .expandable-side-menu-content {
+.main-visualization .expandable-side-menu-content,
+.main-visualization .draggable-menu-content {
     height: 100%;
     overflow: hidden;
 }
@@ -284,7 +295,7 @@ input[type=range]::-moz-range-thumb {
     background-color: inherit;
 }
 
-.main-visualization .expandable-side-menu .side-menu-link {
+.main-visualization .side-menu-link {
     width: 100%;
     position: relative;
     display: flex;
@@ -300,33 +311,37 @@ input[type=range]::-moz-range-thumb {
     color: var(--action-color-dark);
 }
 
-.main-visualization .expandable-side-menu .side-menu-link:hover {
+.main-visualization .side-menu-link:hover {
     background-color: var(--hover-color);
 }
 
-.main-visualization .expandable-side-menu .side-menu-link:focus {
+.main-visualization .side-menu-link:focus {
     background-color: var(--focus-color);
 }
 
-.main-visualization .expandable-side-menu .side-menu-link:active {
+.main-visualization .side-menu-link:active {
     background-color: var(--active-color);
 }
 
-.main-visualization .expandable-side-menu .side-menu-link svg {
+.main-visualization .side-menu-link svg {
     height: 1.25rem;
     width: 1.25rem;
 }
 
-.main-visualization .expandable-side-menu .side-menu-link:last-of-type {
+.main-visualization .side-menu-link:last-of-type {
     border-bottom-right-radius: var(--border-radius);
 }
 
-.main-visualization .expandable-side-menu .side-menu-content {
+.main-visualization .draggable-menu-content .side-menu-link:last-of-type {
+    border-bottom-left-radius: var(--border-radius);
+}
+
+.main-visualization .side-menu-content {
     display: flex;
     flex-direction: column;
 }
 
-.main-visualization .expandable-side-menu .side-menu-content .side-menu-content-header {
+.main-visualization .side-menu-content .side-menu-content-header {
     padding: 1.25rem;
     display: flex;
     align-items: center;
@@ -366,25 +381,6 @@ input[type=range]::-moz-range-thumb {
     margin: 0 auto;
 }
 
-.main-visualization .accordion:last-of-type .accordion-trigger:not(.expanded),
-.main-visualization .accordion:last-of-type .accordion-content-wrapper {
-    border-bottom-right-radius: var(--border-radius);
-}
-
-.main-visualization .accordion:last-of-type .accordion-trigger:not(.expanded) {
-    border-bottom-left-radius: var(--border-radius);
-}
-
-.main-visualization .chart-settings .accordion-trigger {
-    padding: var(--accordion-paddingY) var(--accordion-paddingX);
-    border: 1px solid #e5e7eb;
-    color: #6b7280;
-}
-
-.main-visualization .chart-settings .accordion-content {
-    padding: var(--accordion-paddingY) var(--accordion-paddingX);
-}
-
 @media screen and ( max-height: 758px ) {
     .expandable-side-menu {
         top: 0;
@@ -396,65 +392,3 @@ input[type=range]::-moz-range-thumb {
         transform: translate(0,0);
     }
 }
-
-/* .main-visualization .expandable-side-menu .accordion-trigger {
-    padding: var(--accordion-paddingY-mobile) var(--accordion-paddingX-mobile);
-    border: 1px solid #e5e7eb;
-    color: var(--action-color-dark);
-}
-
-.main-visualization .expandable-side-menu,
-.main-visualization .accordion:last-of-type .accordion-trigger:not(.expanded),
-.main-visualization .accordion:last-of-type .accordion-content-wrapper {
-    border-bottom-right-radius: var(--border-radius);
-}
-
-.main-visualization .accordion:last-of-type .accordion-trigger:not(.expanded) {
-    border-bottom-left-radius: var(--border-radius);
-}
-
-.main-visualization .expandable-side-menu .accordion-content-wrapper {
-    border: 1px solid #e5e7eb;
-    border-top-width: 0;
-    border-bottom-width: 0;
-}
-
-.main-visualization .expandable-side-menu .accordion-content {
-    padding: var(--accordion-paddingY-mobile) var(--accordion-paddingX-mobile);
-    gap: .5em;
-}
-
-.main-visualization .expandable-side-menu .accordion-content label {
-    color: var(--action-color-dark);
-}
-
-.main-visualization .expandable-side-menu .accordion-content input[type=number] {
-    padding: var(--button-paddingY-mobile) var(--button-paddingX-mobile);
-    color: var(--action-color-dark);
-}
-
-.main-visualization .expandable-side-menu .accordion-content .dropdown-button,
-.main-visualization .expandable-side-menu .accordion-content .dropdown-menu {
-    color: var(--action-color-dark);
-}
-
-.main-visualization .expandable-side-menu .accordion-content .custom-textarea-wrapper {
-    padding-top: var(--button-paddingY-mobile);
-    padding-bottom: var(--button-paddingY-mobile);
-}
-
-.main-visualization .expandable-side-menu .accordion-content .custom-textarea {
-    padding-right: var(--button-paddingX-mobile);
-    padding-left: var(--button-paddingX-mobile);
-    color: var(--action-color-dark);
-}
-
-.main-visualization .chart-settings .accordion-trigger {
-    padding: var(--accordion-paddingY) var(--accordion-paddingX);
-    border: 1px solid #e5e7eb;
-    color: #6b7280;
-}
-
-.main-visualization .chart-settings .accordion-content {
-    padding: var(--accordion-paddingY) var(--accordion-paddingX);
-} */
