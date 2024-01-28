@@ -10,6 +10,10 @@ import TickSettings from "./TickSettings";
 import TooltipSettings from "./TooltipSettings";
 import XAxisSettings from "./XAxisSettings";
 import YAxisSettings from "./YAxisSettings";
+import ChartSettings from "./ChartSettings";
+import ChartSettingsDesktop from "./ChartSettingsDesktop";
+import ChartSettingsMobile from "./ChartSettingsMobile";
+import BackButton from "./BackButton";
 
 export {
     ChartSettingsItem, 
@@ -24,4 +28,8 @@ export {
     TooltipSettings,
     XAxisSettings,
     YAxisSettings,
+    ChartSettings,
+    ChartSettingsDesktop,
+    ChartSettingsMobile,
+    BackButton,
 }
