@@ -19,11 +19,11 @@ import FuzzyFilter from "utils/FuzzyFilter"
 import sortColumn from "utils/sortColumn"
 import "./DataTable.css"
 
-const DataTable = ({ data }) => {
+const DataTable = () => {
 
     const windowSize = useWindowSize();
     const isMobile = windowSize.width && windowSize.width < 850;
-    const { setDataframe, setIsLoading } = useData();
+    const { setDataframe, setIsLoading, dataAsJSON : data } = useData();
 
     const [filterAccordionIsOpen, setFilterAccordionIsOpen] = useState(false);
     const [sortAccordionIsOpen, setIsSortAccordionIsOpen] = useState(false);

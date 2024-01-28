@@ -6,7 +6,7 @@ import { useData, useIsOverflow } from "hooks";
 import { DataTable } from "features/datavisualizer";
 
 const DataStep = () => {
-    const { dataAsJSON ,dataAsJSONLength, fileIsUploaded, isLoading } = useData();
+    const { dataAsJSONLength, fileIsUploaded, isLoading } = useData();
 
     const rootRef = useRef(document.getElementById("root"));
     const isOverflow = useIsOverflow(rootRef, false);
@@ -25,7 +25,7 @@ const DataStep = () => {
                 <main className="main-data">
                     <div className="table-wrapper">
                         {
-                            dataAsJSONLength !== 0 && <DataTable data={dataAsJSON} />
+                            dataAsJSONLength !== 0 && <DataTable />
                         }
                     </div>
                 </main>
