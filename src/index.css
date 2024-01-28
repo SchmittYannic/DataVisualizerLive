@@ -5,7 +5,9 @@
     --subtext-color: #425466;
     --border-radius: .5em;
     --border-color: rgb(209,213,219); /* rgb(197, 197, 197) */
-    --hover-color: rgb(249,250,251);
+    --hover-color: rgb(225, 226, 228); /* rgb(249,250,251) */
+    --focus-color: rgb(202, 203, 205);
+    --active-color: rgb(160, 160, 160);
     --background-color: #fff;
     --min-page-width: 320px;
     --header-height: 130px;
@@ -184,6 +186,14 @@ input[type=number] {
 
 .btn:hover, input[type=number]:hover {
     background-color: var(--hover-color);
+}
+
+.btn:focus {
+    background-color: var(--focus-color);
+}
+
+.btn:active {
+    background-color: var(--active-color);
 }
 
 .btn {

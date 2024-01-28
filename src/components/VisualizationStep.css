@@ -262,8 +262,20 @@ input[type=range]::-moz-range-thumb {
     width: 50px;
     height: 50px;
     color: var(--action-color-dark);
-    background-color: inherit;
+    background-color: var(--background-color);
     cursor: pointer;
+}
+
+.main-visualization .expandable-side-menu-trigger:hover {
+    background-color: var(--hover-color);
+}
+
+.main-visualization .expandable-side-menu-trigger:focus {
+    background-color: var(--focus-color);
+}
+
+.main-visualization .expandable-side-menu-trigger:active {
+    background-color: var(--active-color);
 }
 
 .main-visualization .expandable-side-menu-trigger svg {
@@ -284,8 +296,20 @@ input[type=range]::-moz-range-thumb {
     cursor: pointer;
     padding: 1.25rem;
     border: 1px solid var(--background-color);
-    background-color: white;
+    background-color: var(--background-color);
     color: var(--action-color-dark);
+}
+
+.main-visualization .expandable-side-menu .side-menu-link:hover {
+    background-color: var(--hover-color);
+}
+
+.main-visualization .expandable-side-menu .side-menu-link:focus {
+    background-color: var(--focus-color);
+}
+
+.main-visualization .expandable-side-menu .side-menu-link:active {
+    background-color: var(--active-color);
 }
 
 .main-visualization .expandable-side-menu .side-menu-link svg {
@@ -314,16 +338,29 @@ input[type=range]::-moz-range-thumb {
     text-align: center;
 }
 
-.main-visualization .expandable-side-menu .side-menu-back-btn {
+.main-visualization .side-menu-back-btn {
     border: none;
     border-radius: 50%;
     width: 50px;
     height: 50px;
     color: var(--action-color-dark);
+    background-color: var(--background-color);
     cursor: pointer;
 }
 
-.main-visualization .expandable-side-menu .side-menu-back-btn svg {
+.main-visualization .side-menu-back-btn:hover {
+    background-color: var(--hover-color);
+}
+
+.main-visualization .side-menu-back-btn:focus {
+    background-color: var(--focus-color);
+}
+
+.main-visualization .side-menu-back-btn:active {
+    background-color: var(--active-color);
+}
+
+.main-visualization .side-menu-back-btn svg {
     width: 25px;
     height: 25px;
     margin: 0 auto;
