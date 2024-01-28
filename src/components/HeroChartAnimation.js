@@ -1,5 +1,5 @@
 import { motion, useCycle } from "framer-motion";
-import { hpchart1, hpchart2, hpchart3, hpchart4, hpchart5 } from "../assets/";
+import { hpchart1, hpchart2, hpchart3, hpchart4, hpchart5 } from "assets";
 import { useEffect } from "react";
 
 const images = [hpchart1, hpchart2, hpchart3, hpchart4, hpchart5];

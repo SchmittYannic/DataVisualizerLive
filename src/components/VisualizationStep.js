@@ -9,15 +9,13 @@ import {
     Histogram,
     Scatterplot,
     Linechart,
-    Areachart,
-    
-    
-} from "./charts";
-import { ChartSettingsMobile, ChartSettingsDesktop } from "./charts/chartsettings/ChartSettingsMobile";
-import { useData, useWindowSize, useIsOverflow } from "../hooks";
-import { saveSvg } from "./charts/saveSvg";
-import { renderChart } from "./charts/renderChart";
-import { InfoBox } from "./ui";
+    Areachart, 
+} from "features/charts";
+import { ChartSettingsMobile, ChartSettingsDesktop } from "features/chartsettings/ChartSettingsMobile";
+import { useData, useWindowSize, useIsOverflow } from "hooks";
+import { saveSvg } from "features/charts/saveSvg";
+import { renderChart } from "features/charts/renderChart";
+import { InfoBox } from "components/ui";
 import "./VisualizationStep.css"
 
 const VisualizationStep = () => {

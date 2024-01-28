@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 
-import { uploadwebm, datawebm, viswebm } from "../assets";
+import { uploadwebm, datawebm, viswebm } from "assets";
 import VideoProgress from "./VideoProgress";
 import "./VideoSection.css"
 

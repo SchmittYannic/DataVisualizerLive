@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { InfoBox, AsyncLink } from "./ui";
-import { useData, useIsOverflow } from "../hooks";
-import DataTable from "./ui/DataTable";
+import { InfoBox, AsyncLink } from "components/ui";
+import { useData, useIsOverflow } from "hooks";
+import DataTable from "components/ui/DataTable";
 
 const DataStep = () => {
     const { dataAsJSON ,dataAsJSONLength, fileIsUploaded, isLoading } = useData();

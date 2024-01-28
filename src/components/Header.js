@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { steps } from "../App";
+import { steps } from "App";
+import { useData, useScrollTracker } from "hooks";
 import "./Header.css";
-import { useData, useScrollTracker } from "../hooks";
 
 const Header = () => {
     //inspired by: https://www.codevertiser.com/creating-reusable-progress-steps-component-in-reactjs/

@@ -1,5 +1,5 @@
 import { useContext, useRef } from "react"
-import { DataContext } from "../context/DataProvider";
+import { DataContext } from "context/DataProvider";
 
 // Component from: https://www.pluralsight.com/guides/how-to-use-a-simple-form-submit-with-files-in-react
 const FileUploader = ({ onFileSelectSuccess, onFileSelectError }) => {

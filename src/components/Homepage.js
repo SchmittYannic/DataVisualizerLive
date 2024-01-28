@@ -2,11 +2,11 @@ import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
 
-import { chartLottie, lightningLottie, settingLottie } from "../assets/";
+import { chartLottie, lightningLottie, settingLottie } from "assets";
 import HeroChartAnimation from "./HeroChartAnimation";
 import VideoSection from "./VideoSection";
 import BottomSection from "./BottomSection";
-import { useWindowSize } from "../hooks";
+import { useWindowSize } from "hooks";
 import "./Homepage.css";
 
 const Homepage = () => {

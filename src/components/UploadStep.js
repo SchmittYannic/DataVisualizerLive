@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-import { DropZone, InfoBox, SpeechBubble } from "./ui";
-import { useData } from "../hooks/";
+import { DropZone, InfoBox, SpeechBubble } from "components/ui";
+import { useData } from "hooks";
 
 const UploadStep = () => {
     const { fileIsUploaded, setDemodata, isLoading } = useData();
