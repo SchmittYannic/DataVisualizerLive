@@ -47,6 +47,8 @@ const placeholderString = "keine Gruppierung";
 
 const colorSchemeOptions = ["accent", "category10",  "dark2", "paired", "pastel1", "pastel2", "set1", "set2", "set3", "tableau10"];
 
+const navigationTabName = "Diagrammkonfiguration";
+
 const defaultMultiAccordionState = [
     {
         id: 0,
@@ -110,4 +112,5 @@ export {
     placeholderString,
     colorSchemeOptions,
     defaultMultiAccordionState,
+    navigationTabName,
 }

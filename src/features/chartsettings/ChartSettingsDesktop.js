@@ -4,13 +4,14 @@ import { RiDragMove2Fill } from "react-icons/ri";
 
 import { ChartSettings, BackButton } from "features/chartsettings";
 import { useData } from "hooks";
+import { navigationTabName } from "constants";
 
 const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, setIsOpen }) => {
     const { dataAsJSONLength } = useData();
     const controls = useDragControls();
     const draggableRef = useRef(null);
 
-    const [activeTab, setActiveTab] = useState("nav");
+    const [activeTab, setActiveTab] = useState(navigationTabName);
 
     // get body and html element
     const body = document.body;
@@ -83,13 +84,13 @@ const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, se
                     <div 
                         className="draggable" 
                         onPointerDown={startDrag}>
-                        {activeTab === "nav" ? (
+                        {activeTab === navigationTabName ? (
                             <div className="draggable-icon">
                                 <RiDragMove2Fill />
                             </div>
                         ): (
                             <div className="draggable-back-btn">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                             </div>
                         )}
                         

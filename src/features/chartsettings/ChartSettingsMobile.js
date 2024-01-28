@@ -4,6 +4,7 @@ import { useAnimate, stagger } from "framer-motion";
 
 import { useData } from "hooks";
 import { ChartSettings } from "features/chartsettings";
+import { navigationTabName } from "constants";
 
 
 const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) => {
@@ -11,12 +12,12 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
     const { dataAsJSONLength } = useData();
     
     const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const [activeTab, setActiveTab] = useState("nav");
+    const [activeTab, setActiveTab] = useState(navigationTabName);
     const [scope, animate] = useAnimate();
 
     const handleExpandableSideMenuTriggerClick = () => {
         if (menuIsOpen) {
-            setActiveTab("nav")
+            setActiveTab(navigationTabName)
             setMenuIsOpen(false)
         } else {
             setMenuIsOpen(true);

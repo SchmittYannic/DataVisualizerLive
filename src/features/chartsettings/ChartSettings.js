@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 import { useData, useWindowSize } from "hooks";
-import { placeholderString, defaultMultiAccordionState, ChartOptions } from "constants";
+import { placeholderString, defaultMultiAccordionState, ChartOptions, navigationTabName } from "constants";
 import { 
     DimensionSettings,
     DataSettings,
@@ -109,7 +109,7 @@ const ChartSettings = ({
     return (
         <AnimatePresence>
             {
-                activeTab === "nav" && (
+                activeTab === navigationTabName && (
                     <>
                         {isMobile && (
                             <div className="expandable-side-menu-content-header">
@@ -179,7 +179,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     Chartoptionen
                                 </p>
@@ -214,7 +214,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     Dimensionen
                                 </p>
@@ -236,7 +236,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     Daten
                                 </p>
@@ -257,7 +257,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     Allgemein
                                 </p>
@@ -278,7 +278,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     Elemente
                                 </p>
@@ -299,7 +299,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     Titel
                                 </p>
@@ -320,7 +320,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     X-Achsenbeschriftung
                                 </p>
@@ -341,7 +341,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     Y-Achsenbeschriftung
                                 </p>
@@ -362,7 +362,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     Teilstriche und Gitternetz
                                 </p>
@@ -383,7 +383,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     Tooltip
                                 </p>
@@ -404,7 +404,7 @@ const ChartSettings = ({
                     <div className="side-menu-content">
                         {isMobile && (
                             <div className="side-menu-content-header">
-                                <BackButton onClick={() => setActiveTab("nav")} />
+                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
                                 <p>
                                     Download
                                 </p>
