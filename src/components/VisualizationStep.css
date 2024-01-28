@@ -212,15 +212,16 @@ input[type=range]::-moz-range-thumb {
 
 .main-visualization .expandable-side-menu {
     width: max(250px, 50vw);
-    min-height: 429px;
-    background-color: #e5e7eb;
+    background-color: var(--background-color);
     border-bottom-right-radius: var(--border-radius);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .main-visualization .expandable-side-menu-trigger-wrapper {
-    background-color: #e5e7eb;
+    background-color: var(--background-color);
     border-top-right-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .main-visualization .inverted-corner {
@@ -229,7 +230,7 @@ input[type=range]::-moz-range-thumb {
     height: 1em;
     top: 50px;
     right: -.5em;
-    box-shadow: 0 -.5em 0 0 #e5e7eb;
+    box-shadow: 0 -.5em 0 0 var(--background-color);
     background-color: transparent;
     border-top-left-radius: .5em;
 }
@@ -240,12 +241,14 @@ input[type=range]::-moz-range-thumb {
     width: 50px;
     height: 50px;
     color: var(--action-color-dark);
+    background-color: inherit;
     cursor: pointer;
 }
 
 .main-visualization .expandable-side-menu-trigger svg {
     width: 25px;
     height: 25px;
+    background-color: inherit;
 }
 
 .main-visualization .expandable-side-menu .side-menu-link {
@@ -259,7 +262,8 @@ input[type=range]::-moz-range-thumb {
     font-style: inherit;
     cursor: pointer;
     padding: var(--accordion-paddingY-mobile) var(--accordion-paddingX-mobile);
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--background-color);
+    background-color: inherit;
     color: var(--action-color-dark);
 }
 
@@ -311,6 +315,18 @@ input[type=range]::-moz-range-thumb {
 
 .main-visualization .chart-settings .accordion-content {
     padding: var(--accordion-paddingY) var(--accordion-paddingX);
+}
+
+@media screen and ( max-height: 430px ) {
+    .expandable-side-menu {
+        top: 0;
+        height: 100%;
+        transform: translate(calc(-100% + 8px),0);
+    }
+    
+    .expandable-side-menu.expanded {
+        transform: translate(0,0);
+    }
 }
 
 /* .main-visualization .expandable-side-menu .accordion-trigger {
