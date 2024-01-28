@@ -219,7 +219,7 @@ tr:nth-child(2n+1) td {
     gap: 0.25rem;
 }
 
-.table--pagination input {
+.table--pagination .input__number {
     border-width: 1px;
     border-radius: var(--border-radius);
     padding: 0.25rem;
@@ -257,6 +257,7 @@ tr:nth-child(2n+1) td {
     }
 
     .table__cell {
+        padding: 1.25rem;
         display: block;
     }
 
