@@ -24,7 +24,7 @@ const GeneralSettings = ({ settingsRef, settings, setSettings}) => {
 
     return (
         <>
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={0}>
                 <Dropdown
                     OptionsList={availableFonts}
                     selectedOption={settings.general.fontFamily}
@@ -42,7 +42,7 @@ const GeneralSettings = ({ settingsRef, settings, setSettings}) => {
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={1}>
                 <MyColorPicker
                     color={svgBgColor}
                     setColor={setSvgBgColor}

@@ -35,7 +35,7 @@ const TooltipSettings = ({ settingsRef, settings, setSettings}) => {
 
     return (
         <>
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={0}>
                 <NumberInput
                     title="Schriftgröße des Tooltips in Pixel"
                     min={0}
@@ -55,7 +55,7 @@ const TooltipSettings = ({ settingsRef, settings, setSettings}) => {
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={1}>
                 <MyColorPicker
                     color={tooltipColor}
                     setColor={setTooltipColor}
@@ -63,7 +63,7 @@ const TooltipSettings = ({ settingsRef, settings, setSettings}) => {
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={2}>
                 <MyColorPicker
                     color={tooltipBgColor}
                     setColor={setTooltipBgColor}

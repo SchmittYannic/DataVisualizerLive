@@ -147,7 +147,7 @@ const DataSettings = ({ settingsRef, settings, setSettings  }) => {
         <>
             {
                 (selectedChart === "barchart" || selectedChart === "piechart") && (
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={0}>
                         <Dropdown
                             OptionsList={catColumns}
                             selectedOption={settings.dataInput.xColumn}
@@ -159,7 +159,7 @@ const DataSettings = ({ settingsRef, settings, setSettings  }) => {
             }
             {
                 (selectedChart === "scatterplot" || selectedChart === "boxplot" || selectedChart === "histogram") && (
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={0}>
                         <Dropdown
                             OptionsList={numColumns}
                             selectedOption={settings.dataInput.xColumn}
@@ -175,7 +175,7 @@ const DataSettings = ({ settingsRef, settings, setSettings  }) => {
             }
             {
                 (selectedChart === "linechart" || selectedChart === "areachart") && (
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={0}>
                         <Dropdown
                             OptionsList={dateOptions}
                             selectedOption={settings.dataInput.xColumn}
@@ -187,7 +187,7 @@ const DataSettings = ({ settingsRef, settings, setSettings  }) => {
             }
             {
                 (selectedChart === "scatterplot" || selectedChart === "linechart" || selectedChart === "areachart") && (
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={1}>
                         <Dropdown
                             OptionsList={numColumns}
                             selectedOption={settings.dataInput.yColumn}
@@ -199,7 +199,7 @@ const DataSettings = ({ settingsRef, settings, setSettings  }) => {
             }
             {
                 (selectedChart === "scatterplot" || selectedChart === "boxplot") && (
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={selectedChart === "scatterplot" ? 2 : 1}>
                         <Dropdown
                             OptionsList={catOptions}
                             selectedOption={settings.dataInput.zGrouping}

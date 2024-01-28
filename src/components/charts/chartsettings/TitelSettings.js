@@ -22,7 +22,7 @@ const TitelSettings = ({ settingsRef, settings, setSettings }) => {
 
     return (
         <>
-             <ChartSettingsItem>
+             <ChartSettingsItem idx={0}>
                 <TextArea 
                     value={settings.label.titleText}
                     label={"Text:"}
@@ -38,7 +38,7 @@ const TitelSettings = ({ settingsRef, settings, setSettings }) => {
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={1}>
                 <NumberInput
                     title="Abstand des Titels in Pixel"
                     min={0}
@@ -58,7 +58,7 @@ const TitelSettings = ({ settingsRef, settings, setSettings }) => {
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={2}>
                 <NumberInput
                     title="Schriftgröße des Titels in Pixel"
                     min={0}
@@ -78,7 +78,7 @@ const TitelSettings = ({ settingsRef, settings, setSettings }) => {
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={3}>
                 <MyColorPicker
                     color={titleColor}
                     setColor={setTitleColor}

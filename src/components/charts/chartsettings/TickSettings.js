@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 import { NumberInput, MyColorPicker } from "../../ui";
 import ChartSettingsItem from "./ChartSettingsItem";
@@ -34,12 +35,21 @@ const TickSettings = ({ settingsRef, settings, setSettings }) => {
 
     return (
         <>
-            <div className="charts-settings-divider">
+            <motion.div 
+                className="charts-settings-divider"
+                initial={{ x: 500 }}
+                animate={{ x: 0 }}
+                transition={{ 
+                    delay: 0.1 * 0, 
+                    stiffness: 100 
+                }}
+                exit={{ x: -500 }}
+            >
                 Teilstriche
                 <div className="charts-settings-divider-line" aria-hidden="true" />
-            </div>
+            </motion.div>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={1}>
                 <NumberInput
                     title="Schriftgröße der Teilstrichbeschriftung in Pixel"
                     min={0}
@@ -59,7 +69,7 @@ const TickSettings = ({ settingsRef, settings, setSettings }) => {
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={2}>
                 <MyColorPicker
                     color={tickTextColor}
                     setColor={setTickTextColor}
@@ -67,12 +77,21 @@ const TickSettings = ({ settingsRef, settings, setSettings }) => {
                 />
             </ChartSettingsItem>
 
-            <div className="charts-settings-divider">
+            <motion.div 
+                className="charts-settings-divider"
+                initial={{ x: 500 }}
+                animate={{ x: 0 }}
+                transition={{ 
+                    delay: 0.1 * 3, 
+                    stiffness: 100 
+                }}
+                exit={{ x: -500 }}
+            >
                 Gitternetz
                 <div className="charts-settings-divider-line" aria-hidden="true" />
-            </div>
+            </motion.div>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={4}>
                 <NumberInput
                     title="Linienbreite des Gitternetzes in Pixel"
                     min={0}
@@ -92,7 +111,7 @@ const TickSettings = ({ settingsRef, settings, setSettings }) => {
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={5}>
                 <MyColorPicker
                     color={tickLineColor}
                     setColor={setTickLineColor}

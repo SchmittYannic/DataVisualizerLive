@@ -1,6 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useAnimate, stagger, AnimatePresence, motion } from "framer-motion";
+
 import { useData, useWindowSize } from "../../../hooks";
 import { defaultMultiAccordionState, placeholderString, ChartOptions } from "../../../constants";
 import DimensionSettings from "./DimensionSettings";
@@ -34,6 +36,7 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
     const [menuIsOpen, setMenuIsOpen] = useState(false);
     const [activeTab, setActiveTab] = useState("nav");
     const [settings, setSettings] = useState(settingsRef.current);
+    const [scope, animate] = useAnimate();
 
     const handleExpandableSideMenuTriggerClick = () => {
         if (menuIsOpen) {
@@ -104,6 +107,19 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
         setSelectedChart(input);
     };
 
+    useEffect(() => {
+        animate(
+            "button",
+            menuIsOpen
+              ? { x: 0, }
+              : { x: -500 },
+            {
+              duration: 0.2,
+              delay: menuIsOpen ? stagger(0.1, { startDelay: 0.15 }) : 0,
+            }
+        );
+    }, [menuIsOpen, animate]);
+
     if (dataAsJSONLength > 0) {
         return (
             <div className={`expandable-side-menu ${menuIsOpen ? "expanded" : ""}`}>
@@ -119,28 +135,39 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
                 </div>
                 <div className="inverted-corner" />
 
-                <div className="expandable-side-menu-content">
+                <div ref={scope} className="expandable-side-menu-content">
+                    <AnimatePresence>
                     {
                         activeTab === "nav" && (
                             <>
-                                <div className="expandable-side-menu-content-header">
+                                <div 
+                                    className="expandable-side-menu-content-header"
+                                >
                                     Diagrammkonfiguration
                                 </div>
-                                {defaultMultiAccordionState.map((state, idx) => (
-                                    <button
+                                {defaultMultiAccordionState.map((state, idx) => (                                   
+                                    <motion.button
                                         key={idx}
                                         className="side-menu-link"
                                         type="button"
                                         onClick={() => setActiveTab(state.name)}
                                         title={`Öffnen Konfiguration: ${state.name}`}
+                                        initial={{ x: 500 }}
+                                        animate={{ x: 0 }}
+                                        transition={{ 
+                                            delay: 0.1 * idx, 
+                                            stiffness: 100 
+                                        }}
+                                        exit={{ x: -500 }}
                                     >
                                         {state.name}
                                         <FaArrowRightLong />
-                                    </button>
+                                    </motion.button>                  
                                 ))}
                             </>
                         )
                     }
+                    
 
                     {
                         activeTab === "Chartoptionen" && (
@@ -153,15 +180,22 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
                                 </div>
                                 <div className={`${isMobile ? "chart-options-mobile" : "chart-options"}`}>
                                     {ChartOptions.map((option, key) => (
-                                        <button
+                                        <motion.button
                                             key={key}
                                             type="button"
                                             className={`${isMobile ? "btn" : "btn full"}`}
                                             onClick={()=>handleSelectChart(option.action)}
                                             title={`Wechsel zu ${option.name}`}
+                                            initial={{ x: 500 }}
+                                            animate={{ x: 0 }}
+                                            transition={{ 
+                                                delay: 0.1 * key, 
+                                                stiffness: 100 
+                                            }}
+                                            exit={{ x: -500 }}
                                         >
                                             {isMobile ? option.icon : option.name}
-                                        </button>
+                                        </motion.button>
                                     ))}
                                 </div>
                             </div>
@@ -356,6 +390,7 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
                             </div>
                         )
                     }
+                    </AnimatePresence>
                 </div>
             </div>
         )

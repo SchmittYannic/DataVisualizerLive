@@ -66,7 +66,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
                 || selectedChart === "piechart" 
                 || selectedChart === "boxplot" 
                 || selectedChart === "scatterplot") &&
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={0}>
                         <Dropdown
                             OptionsList={colorSchemeOptions}
                             selectedOption={settings.chartelements.colorscheme}
@@ -86,7 +86,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
             {
                 selectedChart === "histogram" && (
                     <>
-                        <ChartSettingsItem>
+                        <ChartSettingsItem idx={0}>
                             <NumberInput
                                 title="Einstellen einer ungefähren Klassenanzahl des Histogramms"
                                 min={0}
@@ -106,7 +106,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
                             />
                         </ChartSettingsItem>
 
-                        <ChartSettingsItem>
+                        <ChartSettingsItem idx={1}>
                             <MyColorPicker
                                 color={binColor}
                                 setColor={setBinColor}
@@ -119,7 +119,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
             {
                 (selectedChart === "linechart" || selectedChart === "areachart") && (
                     <>
-                        <ChartSettingsItem>
+                        <ChartSettingsItem idx={0}>
                             <NumberInput
                                 title="Einstellen der Linienbreite im Diagramm"
                                 min={0}
@@ -139,7 +139,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
                             />
                         </ChartSettingsItem>
                         
-                        <ChartSettingsItem>
+                        <ChartSettingsItem idx={1}>
                             <MyColorPicker
                                 color={lineColor}
                                 setColor={setLineColor}
@@ -149,7 +149,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
 
                         {
                             selectedChart === "areachart" &&
-                            <ChartSettingsItem>
+                            <ChartSettingsItem idx={2}>
                                 <MyColorPicker
                                     color={areaColor}
                                     setColor={setAreaColor}
@@ -158,7 +158,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
                             </ChartSettingsItem>
                         }
 
-                        <ChartSettingsItem>
+                        <ChartSettingsItem idx={selectedChart === "areachart" ? 3 : 2}>
                             <MyColorPicker
                                 color={pointColor}
                                 setColor={setPointColor}
@@ -170,7 +170,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
             }
             {
                 (selectedChart === "scatterplot" || selectedChart === "linechart" || selectedChart === "areachart") && (
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={selectedChart === "scatterplot" ? 1 : selectedChart === "linechart" ? 3 : 4}>
                         <NumberInput
                             title="Einstellen der Radien der Punkte im Diagramm"
                             min={0}
@@ -194,7 +194,7 @@ const ElementSettings = ({ settingsRef, settings, setSettings }) => {
 
             {
                 (selectedChart === "scatterplot" || selectedChart === "linechart" || selectedChart ==="areachart") && (
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={selectedChart === "scatterplot" ? 2 : selectedChart === "linechart" ? 4 : 5}>
                         <RangeInput
                             title="Einstellen der Transparenz der Punkte im Diagramm"
                             min={0}

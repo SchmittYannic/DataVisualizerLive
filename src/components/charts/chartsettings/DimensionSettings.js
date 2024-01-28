@@ -4,7 +4,7 @@ import { ChartSettingsItem } from ".";
 const DimensionSettings = ({ settingsRef, setDimensions, settings, setSettings }) => {
     return (
         <>
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={0}>
                 <NumberInput
                     title="Einstellen der Breite des gesamten Svgs"
                     min={0}
@@ -29,7 +29,7 @@ const DimensionSettings = ({ settingsRef, setDimensions, settings, setSettings }
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={1}>
                 <NumberInput
                     title="Einstellen der Höhe des gesamten Svgs"
                     min={0}
@@ -54,7 +54,7 @@ const DimensionSettings = ({ settingsRef, setDimensions, settings, setSettings }
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={2}>
                 <NumberInput
                     title="Einstellen der linken Randbreite des Diagramms"
                     min={0}
@@ -79,7 +79,7 @@ const DimensionSettings = ({ settingsRef, setDimensions, settings, setSettings }
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={3}>
                 <NumberInput
                     title="Einstellen der rechten Randbreite des Diagramms"
                     min={0}
@@ -104,7 +104,7 @@ const DimensionSettings = ({ settingsRef, setDimensions, settings, setSettings }
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={4}>
                 <NumberInput
                     title="Einstellen der oberen Randbreite des Diagramms"
                     min={0}
@@ -129,7 +129,7 @@ const DimensionSettings = ({ settingsRef, setDimensions, settings, setSettings }
                 />
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={5}>
                 <NumberInput
                     title="Einstellen der unteren Randbreite des Diagramms"
                     min={0}

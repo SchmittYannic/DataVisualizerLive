@@ -30,7 +30,7 @@ const DownloadSettings = ({ settingsRef }) => {
 
     return (
         <>
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={0}>
                 <label>Download Diagramm: </label>
                 <button
                     type="button"
@@ -50,7 +50,7 @@ const DownloadSettings = ({ settingsRef }) => {
                 </button>
             </ChartSettingsItem>
 
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={1}>
                 <label>Diagramm HTML kopieren: </label>
                 <button
                     type="button"

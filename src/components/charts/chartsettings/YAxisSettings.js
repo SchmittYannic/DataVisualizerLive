@@ -25,7 +25,7 @@ const YAxisSettings = ({ settingsRef, settings, setSettings }) => {
 
     return (
         <>
-            <ChartSettingsItem>
+            <ChartSettingsItem idx={0}>
                 <TextArea 
                     value={settings.label.yaxisText}
                     label={selectedChart !== "piechart" ? "Text:" : "Tooltip 2:"}
@@ -44,7 +44,7 @@ const YAxisSettings = ({ settingsRef, settings, setSettings }) => {
             {
                 selectedChart !== "piechart" &&
                 <>
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={1}>
                         <NumberInput
                             title="Abstand des Y-Achsentitels in Pixel"
                             min={0}
@@ -64,7 +64,7 @@ const YAxisSettings = ({ settingsRef, settings, setSettings }) => {
                         />
                     </ChartSettingsItem>
 
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={2}>
                         <NumberInput
                             title="Schriftgröße des Y-Achsentitels in Pixel"
                             min={0}
@@ -84,7 +84,7 @@ const YAxisSettings = ({ settingsRef, settings, setSettings }) => {
                         />
                     </ChartSettingsItem>
 
-                    <ChartSettingsItem>
+                    <ChartSettingsItem idx={3}>
                         <MyColorPicker
                             color={yaxisColor}
                             setColor={setYaxisColor}
