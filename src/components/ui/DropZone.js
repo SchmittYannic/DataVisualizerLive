@@ -6,7 +6,7 @@ import AsyncButton from "./AsyncButton";
 import "./DropZone.css";
 
 const DropZone = () => {
-    const { setDataframe, setIsLoading, isLoading } = useData();
+    const { setDataframe, setDemodata, setIsLoading, isLoading } = useData();
     const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFileInput = (file) => {
@@ -64,6 +64,7 @@ const DropZone = () => {
             return
         }
         
+        setDemodata("");
         setDataframe(df);
     }
 
