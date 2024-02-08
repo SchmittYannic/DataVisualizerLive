@@ -59,7 +59,7 @@ const Homepage = () => {
     return (
         <main className="landing-main">
             <header className="hero">
-                <div className="hero-content">
+                <div className="hero-content">                
                     <h1 ref={heroTitle} className="hero-title">
                         DataVisualizer
                     </h1>
@@ -74,9 +74,10 @@ const Homepage = () => {
                     >
                         DataVisualizer starten
                     </Link>
-
-                    {windowSize.width >= 1140 && <HeroChartAnimation />}
+     
+                    {windowSize.width >= 1140 && <HeroChartAnimation />}                 
                 </div>
+                <div className="hero-content-border" />
                 <div className="canvas-container">
                     <canvas ref={canvasRef} id="canv" width={32} height={32}></canvas>
                 </div>

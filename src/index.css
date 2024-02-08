@@ -11,6 +11,7 @@
     --background-color: #fff;
     --red: rgb(234, 55, 55);
     --min-page-width: 320px;
+    --max-content-width: 1140px;
     --header-height: 130px;
     --header-height-mobile: 100px;
     --element-gap: 10px;

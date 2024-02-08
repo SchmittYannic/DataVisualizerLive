@@ -64,6 +64,9 @@ const VideoSection = () => {
 
     return (
         <section className="video-section">
+
+            <h2>Prozess der Diagrammerstellung</h2>
+
             <div className="tabs">
                 <button
                     className={`tab${currentVideo === uploadwebmRef.current ? " active" : ""}`}
