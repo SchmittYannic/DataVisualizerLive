@@ -67,6 +67,7 @@
     position: relative;
     padding: var(--paddingX);
     background-color: var(--background-color);
+    color: var(--action-color-dark);
     border-top-right-radius: var(--border-radius);
     border-top-left-radius: var(--border-radius);
     border-bottom: 1px solid var(--border-color);
@@ -107,16 +108,20 @@
     width: 61px;
     right: 0;
     top: 0;
-    bottom: 0;
+    bottom: 1px;
     cursor: pointer;
     margin: auto;
-    background-color: rgb(234, 55, 55);
-    color: white;
+    background-color: var(--background-color);
     border: none;
     border-top-right-radius: var(--border-radius);
 }
 
-.draggable-close::after, .draggable-close::before {
+.draggable-close:hover {
+    background-color: var(--red);
+}
+
+.draggable-close::after,
+.draggable-close::before {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -124,7 +129,7 @@
     height: 30px;
     width: 2px;
     content: ' ';
-    background-color: white;
+    background-color: var(--action-color-dark);
 }
 .draggable-close::before {
     transform: translate(-50%, -50%) rotate(45deg);
@@ -135,7 +140,7 @@
 
 .draggable-close:hover::before,
 .draggable-close:hover::after {
-    background-color: #333;
+    background-color: var(--background-color);
 }
 
 .charts-settings-divider {
@@ -157,6 +162,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
+    color: var(--action-color-dark);
 }
 
 .chart-options {
@@ -247,6 +253,7 @@ input[type=range]::-moz-range-thumb {
     display: flex;
     justify-content: center;
     border-bottom: 1px solid var(--border-color);
+    color: var(--action-color-dark);
 }
 
 .main-visualization .expandable-side-menu-trigger-wrapper {
@@ -342,7 +349,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .main-visualization .side-menu-content .side-menu-content-header {
-    padding: var(--paddingX);
+    padding: 7px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--border-color);
@@ -351,6 +358,7 @@ input[type=range]::-moz-range-thumb {
 .side-menu-content-header p {
     flex-grow: 1;
     text-align: center;
+    color: var(--action-color-dark);
 }
 
 .main-visualization .side-menu-back-btn {
