@@ -96,6 +96,10 @@ const VideoSection = () => {
         currentVideo.play();
     }, [currentVideo]);
 
+    useEffect(() => {
+        setCurrentVideo(uploadwebmRef.current);
+    }, []);
+
     return (
         <section className="video-section">
 
@@ -157,7 +161,6 @@ const VideoSection = () => {
                         height={videoHeight}
                         muted="muted"
                         onEnded={() => handleVideoEnded(datawebmRef)}
-                        onLoadedMetadata={() => setCurrentVideo(uploadwebmRef.current)}
                     >
                         <source src={uploadwebm} type="video/webm" />
                         Your browser does not support the video tag.

@@ -16,7 +16,7 @@ const VideoProgress = ({ videoRef, currentVideo, vertical=true }) => {
 
                         initial={initial}
                         animate={animate}
-                        transition={{ duration: videoRef.current.duration }}
+                        transition={{ duration: isNaN(videoRef.current.duration) ? 13.299 : videoRef.current.duration}}
                         layout
                     >
                     </motion.div>
