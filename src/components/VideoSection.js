@@ -1,8 +1,12 @@
-import React, { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect } from "react";
 
-import { uploadwebm, datawebm, viswebm } from "assets";
+import {
+    vsection_upload_1024x768,
+    vsection_data_1024x768,
+    vsection_vis_1024x768
+} from "assets";
 import VideoProgress from "./VideoProgress";
-import "./VideoSection.css"
+import "./VideoSection.css";
 
 const VideoSection = () => {
 
@@ -118,7 +122,7 @@ const VideoSection = () => {
                         // onCanPlay={() => setCurrentVideo(uploadwebmRef.current)}
                         onEnded={() => handleVideoEnded(datawebmRef)}
                     >
-                        <source src={uploadwebm} type="video/webm" />
+                        <source src={vsection_upload_1024x768} type="video/webm" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -140,7 +144,7 @@ const VideoSection = () => {
                         muted="muted"
                         onEnded={() => handleVideoEnded(viswebmRef)}
                     >
-                        <source src={datawebm} type="video/webm" />
+                        <source src={vsection_data_1024x768} type="video/webm" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -162,7 +166,7 @@ const VideoSection = () => {
                         muted="muted"
                         onEnded={() => handleVideoEnded(uploadwebmRef)}
                     >
-                        <source src={viswebm} type="video/webm" />
+                        <source src={vsection_vis_1024x768} type="video/webm" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
