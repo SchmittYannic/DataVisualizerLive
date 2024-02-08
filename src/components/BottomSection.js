@@ -18,7 +18,7 @@ const BottomSection = () => {
                         className="btn next-btn"
                         to="/DataVisualizer/UploadStep"
                     >
-                        Get Started
+                        Diagramm erstellen
                     </Link>
                 </div>
             </div>
