@@ -5,6 +5,15 @@ import {
     vsection_upload_1024x768,
     vsection_data_1024x768,
     vsection_vis_1024x768,
+    vsection_upload_960x720,
+    vsection_upload_800x600,
+    vsection_upload_640x480,
+    vsection_data_960x720,
+    vsection_data_800x600,
+    vsection_data_640x480,
+    vsection_vis_960x720,
+    vsection_vis_800x600,
+    vsection_vis_640x480,
 } from "assets";
 import VideoProgress from "./VideoProgress";
 import "./VideoSection.css";
@@ -29,6 +38,21 @@ const VideoSection = () => {
                     : windowSize.width < 1050 ? 600
                     : windowSize.width < 1140 ? 720 
                     : 768;
+
+    const uploadwebm = windowSize.width < 850 ? vsection_upload_640x480
+                    : windowSize.width < 1050 ? vsection_upload_800x600
+                    : windowSize.width < 1140 ? vsection_upload_960x720 
+                    : vsection_upload_1024x768;
+
+    const datawebm = windowSize.width < 850 ? vsection_data_640x480
+                    : windowSize.width < 1050 ? vsection_data_800x600
+                    : windowSize.width < 1140 ? vsection_data_960x720 
+                    : vsection_data_1024x768;
+
+    const viswebm = windowSize.width < 850 ? vsection_vis_640x480
+                    : windowSize.width < 1050 ? vsection_vis_800x600
+                    : windowSize.width < 1140 ? vsection_vis_960x720 
+                    : vsection_vis_1024x768;
 
     const handleVideoEnded = (ref) => {
         const nextVideo = ref.current;
@@ -139,7 +163,7 @@ const VideoSection = () => {
                         // onCanPlay={() => setCurrentVideo(uploadwebmRef.current)}
                         onEnded={() => handleVideoEnded(datawebmRef)}
                     >
-                        <source src={vsection_upload_1024x768} type="video/webm" />
+                        <source src={uploadwebm} type="video/webm" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -161,7 +185,7 @@ const VideoSection = () => {
                         muted="muted"
                         onEnded={() => handleVideoEnded(viswebmRef)}
                     >
-                        <source src={vsection_data_1024x768} type="video/webm" />
+                        <source src={datawebm} type="video/webm" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -183,7 +207,7 @@ const VideoSection = () => {
                         muted="muted"
                         onEnded={() => handleVideoEnded(uploadwebmRef)}
                     >
-                        <source src={vsection_vis_1024x768} type="video/webm" />
+                        <source src={viswebm} type="video/webm" />
                         Your browser does not support the video tag.
                     </video>
                 </div>

@@ -8,8 +8,17 @@ import chartLottie from "./chartLottie.json";
 import lightningLottie from "./lightningLottie.json";
 import settingLottie from "./settingLottie.json";
 import vsection_upload_1024x768 from "./vsection_upload_1024x768.webm";
+import vsection_upload_960x720 from "./vsection_upload_960x720.webm";
+import vsection_upload_800x600 from "./vsection_upload_800x600.webm";
+import vsection_upload_640x480 from "./vsection_upload_640x480.webm";
 import vsection_data_1024x768 from "./vsection_data_1024x768.webm";
+import vsection_data_960x720 from "./vsection_data_960x720.webm";
+import vsection_data_800x600 from "./vsection_data_800x600.webm";
+import vsection_data_640x480 from "./vsection_data_640x480.webm";
 import vsection_vis_1024x768 from "./vsection_vis_1024x768.webm";
+import vsection_vis_960x720 from "./vsection_vis_960x720.webm";
+import vsection_vis_800x600 from "./vsection_vis_800x600.webm";
+import vsection_vis_640x480 from "./vsection_vis_640x480.webm";
 
 export {
     info,
@@ -22,6 +31,15 @@ export {
     lightningLottie,
     settingLottie,
     vsection_upload_1024x768,
+    vsection_upload_960x720,
+    vsection_upload_800x600,
+    vsection_upload_640x480,
     vsection_data_1024x768,
+    vsection_data_960x720,
+    vsection_data_800x600,
+    vsection_data_640x480,
     vsection_vis_1024x768,
+    vsection_vis_960x720,
+    vsection_vis_800x600,
+    vsection_vis_640x480,
 }
