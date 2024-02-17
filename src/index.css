@@ -31,6 +31,7 @@
     --accordion-paddingY-mobile: .5rem;
     --accordion-paddingX-mobile: .75rem;
     --horizontal-scrollbar-height: 0;
+    --homepage-guides: 1px dashed var(--border-color);
 }
 
 *, 

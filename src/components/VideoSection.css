@@ -10,7 +10,7 @@
     font-size: 3rem;
     line-height: 1;
     letter-spacing: -0.05em;
-    border: 2px dashed var(--border-color);
+    border: var(--homepage-guides);
     border-top: none;
 }
 
@@ -32,8 +32,8 @@
     color: var(--subtext-color);
     background-color: transparent;
     border-radius: calc(0.5rem - 2px);
-    border-left: 2px dashed var(--border-color);
-    border-bottom: 2px dashed var(--border-color);
+    border-left: var(--homepage-guides);
+    border-bottom: var(--homepage-guides);
     border-top: none;
     border-right: none;
     overflow: hidden;
@@ -45,7 +45,7 @@
 }
 
 .video-section .tab:last-of-type {
-    border-right: 2px dashed var(--border-color);
+    border-right: var(--homepage-guides);
 }
 
 .video-section .tab.active {
@@ -80,7 +80,7 @@
 }
 
 .video-section .video-section-content {
-    border: 2px dashed var(--border-color);
+    border: var(--homepage-guides);
     border-top: none;
 }
 
