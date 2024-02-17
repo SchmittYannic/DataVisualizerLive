@@ -50,7 +50,6 @@ html {
 body {
     position: relative;
     margin: 0 auto;
-    /* max-width: 1920px; */
     min-width: var(--min-page-width);
     min-height: 100vh;
     display: flex;
@@ -132,14 +131,10 @@ br {
 }
 
 .main-upload, .main-data {
-    /* min-width: 600px; */
     margin: calc(var(--header-height) + var(--element-gap) * 2) auto calc(var(--navigation-wrapper-height) + var(--element-gap) * 2) auto;
-    /* margin: 0 auto; */
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    /* background-color: var(--background-color); */
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
 }
