@@ -239,7 +239,6 @@ input[type=range]::-moz-range-thumb {
 
 .main-visualization .expandable-side-menu-content,
 .main-visualization .draggable-menu-content {
-    height: 100%;
     overflow: hidden;
 }
 
