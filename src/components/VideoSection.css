@@ -58,6 +58,10 @@
     z-index: 4;
 }
 
+.video-section .tab:not(.active):hover {
+    background-color: var(--hover-color);
+}
+
 .tab.active .progressbar {
     z-index: 2;
     position: absolute;
