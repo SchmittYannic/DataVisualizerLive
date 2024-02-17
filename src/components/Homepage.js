@@ -75,7 +75,7 @@ const Homepage = () => {
                         DataVisualizer starten
                     </Link>
      
-                    {windowSize.width >= 1140 && <HeroChartAnimation />}                 
+                    {windowSize.width > 1140 && <HeroChartAnimation />}                 
                 </div>
                 <div className="hero-content-border" />
                 <div className="canvas-container">
