@@ -75,6 +75,8 @@
 .chart-img-wrapper {
     position: absolute;   
     border: 1px solid black;
+    border-radius: var(--border-radius);
+    overflow: hidden;
     width: fit-content;
     height: fit-content;
 }
