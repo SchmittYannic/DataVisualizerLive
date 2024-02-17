@@ -61,38 +61,48 @@ const VideoSection = () => {
 
     const handleTabClicked = (tab) => { 
         if (tab === "upload") {
-            datawebmRef.current.pause();
-            datawebmRef.current.currentTime = 0;
-            datawebmRef.current.load();
-            viswebmRef.current.pause();
-            viswebmRef.current.currentTime = 0;
-            viswebmRef.current.load();
             handleVideoEnded(uploadwebmRef); 
         }
 
         if (tab === "data") {
-            uploadwebmRef.current.pause();
-            uploadwebmRef.current.currentTime = 0;
-            uploadwebmRef.current.load();
-            viswebmRef.current.pause();
-            viswebmRef.current.currentTime = 0;
-            viswebmRef.current.load();
             handleVideoEnded(datawebmRef); 
         }
 
         if (tab === "visualization") {
-            datawebmRef.current.pause();
-            datawebmRef.current.currentTime = 0;
-            datawebmRef.current.load();
-            uploadwebmRef.current.pause();
-            uploadwebmRef.current.currentTime = 0;
-            uploadwebmRef.current.load();
             handleVideoEnded(viswebmRef); 
         }
     }
 
     useEffect(() => {
         if (!currentVideo) return;
+
+        if (currentVideo === uploadwebmRef.current) {
+            datawebmRef.current.pause();
+            datawebmRef.current.currentTime = 0;
+            datawebmRef.current.load();
+            viswebmRef.current.pause();
+            viswebmRef.current.currentTime = 0;
+            viswebmRef.current.load();
+        }
+
+        if (currentVideo === datawebmRef.current) {
+            uploadwebmRef.current.pause();
+            uploadwebmRef.current.currentTime = 0;
+            uploadwebmRef.current.load();
+            viswebmRef.current.pause();
+            viswebmRef.current.currentTime = 0;
+            viswebmRef.current.load();
+        }
+
+        if (currentVideo === viswebmRef.current) {
+            uploadwebmRef.current.pause();
+            uploadwebmRef.current.currentTime = 0;
+            uploadwebmRef.current.load();
+            datawebmRef.current.pause();
+            datawebmRef.current.currentTime = 0;
+            datawebmRef.current.load();
+        }
+
         currentVideo.play();
     }, [currentVideo]);
 
@@ -114,11 +124,11 @@ const VideoSection = () => {
                 >
                     <b>Upload</b>                   
                     
-                    <VideoProgress 
-                        videoRef={uploadwebmRef} 
-                        currentVideo={currentVideo} 
-                        vertical={false} 
-                    />                             
+                    <VideoProgress
+                        videoRef={uploadwebmRef}
+                        active={currentVideo === uploadwebmRef.current}
+                        vertical={false}
+                    />
                 </button>
                 <button
                     className={`tab${currentVideo === datawebmRef.current ? " active" : ""}`}
@@ -128,11 +138,11 @@ const VideoSection = () => {
                 >
                     <b>Datenansicht</b> 
 
-                    <VideoProgress 
-                        videoRef={datawebmRef} 
-                        currentVideo={currentVideo} 
-                        vertical={false} 
-                    />               
+                    <VideoProgress
+                        videoRef={datawebmRef}
+                        active={currentVideo === datawebmRef.current}
+                        vertical={false}
+                    />
                 </button>
                 <button
                     className={`tab${currentVideo === viswebmRef.current ? " active" : ""}`}
@@ -141,11 +151,12 @@ const VideoSection = () => {
                     title={`${currentVideo === viswebmRef.current ? "" : "auf Visualisierung Registerkarte umschalten"}`}
                 >
                     <b>Visualisierung</b> 
-                    <VideoProgress 
-                        videoRef={viswebmRef} 
-                        currentVideo={currentVideo} 
-                        vertical={false} 
-                    />  
+                    
+                    <VideoProgress
+                        videoRef={viswebmRef}
+                        active={currentVideo === viswebmRef.current}
+                        vertical={false}
+                    />
                 </button>
             </div>
 
