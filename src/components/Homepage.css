@@ -90,7 +90,8 @@
     top: 0;
     left: 50%;
     height: 100%;
-    width: min(var(--max-content-width), calc(100vw - var(--paddingX) * 2));
+    width: 100%;
+    max-width: var(--max-content-width);
     border: var(--homepage-guides);
     border-top: none;
     transform: translate(-50%, 0);
