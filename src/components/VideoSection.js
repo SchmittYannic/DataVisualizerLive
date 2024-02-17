@@ -110,6 +110,7 @@ const VideoSection = () => {
                     className={`tab${currentVideo === uploadwebmRef.current ? " active" : ""}`}
                     type="button"
                     onClick={() => handleTabClicked("upload")}
+                    title={`${currentVideo === uploadwebmRef.current ? "" : "auf Upload Registerkarte umschalten"}`}
                 >
                     <b>Upload</b>                   
                     
@@ -123,6 +124,7 @@ const VideoSection = () => {
                     className={`tab${currentVideo === datawebmRef.current ? " active" : ""}`}
                     type="button"
                     onClick={() => handleTabClicked("data")}
+                    title={`${currentVideo === datawebmRef.current ? "" : "auf Datenansicht Registerkarte umschalten"}`}
                 >
                     <b>Datenansicht</b> 
 
@@ -136,6 +138,7 @@ const VideoSection = () => {
                     className={`tab${currentVideo === viswebmRef.current ? " active" : ""}`}
                     type="button"
                     onClick={() => handleTabClicked("visualization")}
+                    title={`${currentVideo === viswebmRef.current ? "" : "auf Visualisierung Registerkarte umschalten"}`}
                 >
                     <b>Visualisierung</b> 
                     <VideoProgress 
