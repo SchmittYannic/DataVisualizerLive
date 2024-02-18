@@ -21,11 +21,9 @@ import "./VideoSection.css";
 const VideoSection = () => {
 
     const windowSize = useWindowSize();
-    const uploadwebmRef = useRef(null);
-    const datawebmRef = useRef(null);
-    const viswebmRef = useRef(null);
+    const videoRef = useRef(null);
 
-    const [currentVideo, setCurrentVideo] = useState(null);
+    const [activeTab, setActiveTab] = useState("upload");
 
     const videoWidth = windowSize.width < 680 ? 344.2
                     : windowSize.width < 850 ? 640
@@ -54,61 +52,10 @@ const VideoSection = () => {
                     : windowSize.width < 1140 ? vsection_vis_960x720 
                     : vsection_vis_1024x768;
 
-    const handleVideoEnded = (ref) => {
-        const nextVideo = ref.current;
-        setCurrentVideo(nextVideo);
-    };
-
-    const handleTabClicked = (tab) => { 
-        if (tab === "upload") {
-            handleVideoEnded(uploadwebmRef); 
-        }
-
-        if (tab === "data") {
-            handleVideoEnded(datawebmRef); 
-        }
-
-        if (tab === "visualization") {
-            handleVideoEnded(viswebmRef); 
-        }
-    }
-
     useEffect(() => {
-        if (!currentVideo) return;
-
-        if (currentVideo === uploadwebmRef.current) {
-            datawebmRef.current.pause();
-            datawebmRef.current.currentTime = 0;
-            datawebmRef.current.load();
-            viswebmRef.current.pause();
-            viswebmRef.current.currentTime = 0;
-            viswebmRef.current.load();
-        }
-
-        if (currentVideo === datawebmRef.current) {
-            uploadwebmRef.current.pause();
-            uploadwebmRef.current.currentTime = 0;
-            uploadwebmRef.current.load();
-            viswebmRef.current.pause();
-            viswebmRef.current.currentTime = 0;
-            viswebmRef.current.load();
-        }
-
-        if (currentVideo === viswebmRef.current) {
-            uploadwebmRef.current.pause();
-            uploadwebmRef.current.currentTime = 0;
-            uploadwebmRef.current.load();
-            datawebmRef.current.pause();
-            datawebmRef.current.currentTime = 0;
-            datawebmRef.current.load();
-        }
-
-        currentVideo.play();
-    }, [currentVideo]);
-
-    useEffect(() => {
-        setCurrentVideo(uploadwebmRef.current);
-    }, []);
+        if (!videoRef.current) return
+        videoRef.current.play();
+    }, [activeTab]);
 
     return (
         <section className="video-section">
@@ -117,113 +64,124 @@ const VideoSection = () => {
 
             <div className="tabs">
                 <button
-                    className={`tab${currentVideo === uploadwebmRef.current ? " active" : ""}`}
+                    className={`tab${activeTab === "upload" ? " active" : ""}`}
                     type="button"
-                    onClick={() => handleTabClicked("upload")}
-                    title={`${currentVideo === uploadwebmRef.current ? "" : "auf Upload Registerkarte umschalten"}`}
+                    onClick={() => setActiveTab("upload")}
+                    title={`${activeTab === "upload" ? "" : "auf Upload Registerkarte umschalten"}`}
                 >
                     <b>Upload</b>                   
                     
-                    <VideoProgress
-                        videoRef={uploadwebmRef}
-                        active={currentVideo === uploadwebmRef.current}
-                        vertical={false}
-                    />
+                    {activeTab === "upload" && (
+                        <VideoProgress
+                            videoRef={videoRef}
+                            vertical={false}
+                        />
+                    )}
                 </button>
                 <button
-                    className={`tab${currentVideo === datawebmRef.current ? " active" : ""}`}
+                    className={`tab${activeTab === "data" ? " active" : ""}`}
                     type="button"
-                    onClick={() => handleTabClicked("data")}
-                    title={`${currentVideo === datawebmRef.current ? "" : "auf Datenansicht Registerkarte umschalten"}`}
+                    onClick={() => setActiveTab("data")}
+                    title={`${activeTab === "data" ? "" : "auf Datenansicht Registerkarte umschalten"}`}
                 >
                     <b>Datenansicht</b> 
 
-                    <VideoProgress
-                        videoRef={datawebmRef}
-                        active={currentVideo === datawebmRef.current}
-                        vertical={false}
-                    />
+                    {activeTab === "data" && (
+                        <VideoProgress
+                            videoRef={videoRef}
+                            vertical={false}
+                        />
+                    )}
                 </button>
                 <button
-                    className={`tab${currentVideo === viswebmRef.current ? " active" : ""}`}
+                    className={`tab${activeTab === "visualisierung" ? " active" : ""}`}
                     type="button"
-                    onClick={() => handleTabClicked("visualization")}
-                    title={`${currentVideo === viswebmRef.current ? "" : "auf Visualisierung Registerkarte umschalten"}`}
+                    onClick={() => setActiveTab("visualisierung")}
+                    title={`${activeTab === "visualisierung" ? "" : "auf Visualisierung Registerkarte umschalten"}`}
                 >
                     <b>Visualisierung</b> 
                     
-                    <VideoProgress
-                        videoRef={viswebmRef}
-                        active={currentVideo === viswebmRef.current}
-                        vertical={false}
-                    />
+                    {activeTab === "visualisierung" && (
+                        <VideoProgress
+                            videoRef={videoRef}
+                            vertical={false}
+                        />
+                    )}
                 </button>
             </div>
 
-            <div className={`video-section-content${currentVideo === uploadwebmRef.current ? " display-block" : " display-none"}`}>
-                <div className="video-section-text">
-                    <h4>Upload</h4>
-                    <p>
-                        Der erste Schritt besteht aus dem Hochladen einer Datei. DataVisualizer unterstützt das Dateiformat: csv.
-                    </p>
-                </div>
-                <div className="video-section-video-wrapper">
-                    <video
-                        id="uploadvideo"
-                        ref={uploadwebmRef}
-                        width={videoWidth}
-                        height={videoHeight}
-                        muted="muted"
-                        onEnded={() => handleVideoEnded(datawebmRef)}
-                    >
-                        <source src={uploadwebm} type="video/webm" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
+            <div className={`video-section-content`}>
+                {activeTab === "upload" && (
+                    <>
+                        <div className="video-section-text">
+                            <h4>Upload</h4>
+                            <p>
+                                Der erste Schritt besteht aus dem Hochladen einer Datei. DataVisualizer unterstützt das Dateiformat: csv.
+                            </p>
+                        </div>
+                        <div className="video-section-video-wrapper">
+                            <video
+                                id="uploadvideo"
+                                ref={videoRef}
+                                width={videoWidth}
+                                height={videoHeight}
+                                muted="muted"
+                                onEnded={() => setActiveTab("data")}
+                            >
+                                <source src={uploadwebm} type="video/webm" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </>
+                )}
 
-            <div className={`video-section-content${currentVideo === datawebmRef.current ? " display-block" : " display-none"}`}>
-                <div className="video-section-text">
-                    <h4>Datenansicht</h4>
-                    <p>
-                        Hier wird ein Einblick in den Datensatz gewährt. An dieser Stelle wird sichergestellt, dass der Datensatz erfolgreich hochgeladen wurde.
-                    </p>
-                </div>
-                <div className="video-section-video-wrapper">
-                    <video 
-                        id="datavideo"
-                        ref={datawebmRef}
-                        width={videoWidth}
-                        height={videoHeight}
-                        muted="muted"
-                        onEnded={() => handleVideoEnded(viswebmRef)}
-                    >
-                        <source src={datawebm} type="video/webm" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            </div>
+                {activeTab === "data" && (
+                    <>
+                        <div className="video-section-text">
+                            <h4>Datenansicht</h4>
+                            <p>
+                                Hier wird ein Einblick in den Datensatz gewährt. An dieser Stelle wird sichergestellt, dass der Datensatz erfolgreich hochgeladen wurde.
+                            </p>
+                        </div>
+                        <div className="video-section-video-wrapper">
+                            <video 
+                                id="datavideo"
+                                ref={videoRef}
+                                width={videoWidth}
+                                height={videoHeight}
+                                muted="muted"
+                                onEnded={() => setActiveTab("visualisierung")}
+                            >
+                                <source src={datawebm} type="video/webm" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </>
+                )}
 
-            <div className={`video-section-content${currentVideo === viswebmRef.current ? " display-block" : " display-none"}`}>
-                <div className="video-section-text">
-                    <h4>Visualisierung</h4>
-                    <p>Durch eine Vielzahl an Einstellungen kann hier ein Diagramm erstellt und angepasst werden.</p>
-                    <br />
-                    <p>Das Diagramm kann im SVG-Format heruntergeladen oder als Alternative in die Zwischenablage in Form eines HTML Elements kopiert werden.</p>
-                </div>
-                <div className="video-section-video-wrapper">
-                    <video 
-                        id="visvideo"
-                        ref={viswebmRef}
-                        width={videoWidth}
-                        height={videoHeight}
-                        muted="muted"
-                        onEnded={() => handleVideoEnded(uploadwebmRef)}
-                    >
-                        <source src={viswebm} type="video/webm" />
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+                {activeTab === "visualisierung" && (
+                    <>
+                        <div className="video-section-text">
+                            <h4>Visualisierung</h4>
+                            <p>Durch eine Vielzahl an Einstellungen kann hier ein Diagramm erstellt und angepasst werden.</p>
+                            <br />
+                            <p>Das Diagramm kann im SVG-Format heruntergeladen oder als Alternative in die Zwischenablage in Form eines HTML Elements kopiert werden.</p>
+                        </div>
+                        <div className="video-section-video-wrapper">
+                            <video 
+                                id="visvideo"
+                                ref={videoRef}
+                                width={videoWidth}
+                                height={videoHeight}
+                                muted="muted"
+                                onEnded={() => setActiveTab("upload")}
+                            >
+                                <source src={viswebm} type="video/webm" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </>
+                )}
             </div>
         </section>
     )
