@@ -43,7 +43,13 @@ const UploadStep = () => {
             </main>
 
             <div className="navigation-wrapper">
-                <div />
+                <Link
+                    className="btn"
+                    title="Zurück zur Startseite"
+                    to={`/`}
+                >
+                    Zurück
+                </Link>
                 {
                     (fileIsUploaded === false || isLoading === true)
                     ?
