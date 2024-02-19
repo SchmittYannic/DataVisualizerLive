@@ -145,6 +145,7 @@ br {
     align-items: center;
     padding: var(--center-container-paddingY) var(--center-container-paddingX);
     background-color: var(--background-color);
+    border-radius: var(--border-radius);
 }
 
 .navigation-wrapper {
