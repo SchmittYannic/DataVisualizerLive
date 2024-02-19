@@ -1,7 +1,7 @@
 import Homepage from "./Homepage";
-import Header from "./Header";
+import ProgressSteps from "./ProgressSteps";
 
 export {
     Homepage,
-    Header,
+    ProgressSteps,
 }

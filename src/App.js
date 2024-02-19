@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Homepage, Header } from "components";
+import { Homepage, ProgressSteps } from "components";
 import { UploadStep, DataStep, VisualizationStep } from "features/datavisualizer";
 import ScrollToTop from "components/ScrollToTop";
 
@@ -31,7 +31,7 @@ const App = () => {
                 <Routes>
                     <Route exact path="/*" element={<Homepage />}/>
                     {steps.map((step, idx) => (
-                        <Route key={idx} path={step.path} element={<><Header /><step.component /></>}/>
+                        <Route key={idx} path={step.path} element={<><ProgressSteps /><step.component /></>}/>
                     ))}
                 </Routes>
             </ScrollToTop>
