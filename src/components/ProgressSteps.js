@@ -20,7 +20,7 @@ const ProgressSteps = () => {
     }, [currentUrlPathname]);
     
     return (
-        <div className={`main-container ${userScrollingAction === "up" ? "fixed" : ""}`}>
+        <div className={`progress-steps ${userScrollingAction === "up" ? "fixed" : ""}`}>
             <div className="step-container">
                 {steps.map((step, idx) => (
                     <div key={idx} className="step-wrapper">
