@@ -61,6 +61,14 @@ const Dropdown = ({ OptionsList, selectedOption, setSelectedOption, searchable=f
         // }
     };
 
+    const handleOnInputClick = () => {
+        if (isOpen) {
+            handleBlur();
+        } else {
+            setIsOpen(true);
+        }
+    };
+
     const handleInputChange = (e) => {
         const { value } = e.target;
         const filteredOptions = OptionsList.filter((option) => option.toLowerCase().includes(value.toLowerCase()))
@@ -104,14 +112,18 @@ const Dropdown = ({ OptionsList, selectedOption, setSelectedOption, searchable=f
                 <div>
                     {
                         searchable 
-                        ?   <>
+                        ?   <label 
+                                onClick={() => {
+                                    document.getElementById(comboboxId).focus();
+                                }}
+                            >
                                 <input 
                                     id={comboboxId}
                                     className="dropdown-search"
                                     type="text"
                                     value={inputValue}
                                     onChange={handleInputChange}
-                                    onClick={() => setIsOpen(true)}
+                                    onClick={handleOnInputClick}
                                     onKeyDown={handleKeyDown}
                                     onBlur={handleBlur}
                                     tabIndex={0}
@@ -123,7 +135,7 @@ const Dropdown = ({ OptionsList, selectedOption, setSelectedOption, searchable=f
                                 <MdKeyboardArrowDown 
                                     className={`dropdown-button-svg ${isOpen ? "open" : ""}`} 
                                 />
-                            </>
+                            </label>
                         :
                             <button 
                                 id={comboboxId}
