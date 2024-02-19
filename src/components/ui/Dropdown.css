@@ -49,6 +49,7 @@
     color: #9ca3af;
     transform: translate(0%, -50%);
     transition: transform 350ms;
+    cursor: pointer;
 }
 
 .dropdown-button-svg.open {
