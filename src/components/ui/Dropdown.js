@@ -165,7 +165,7 @@ const Dropdown = ({ OptionsList, selectedOption, setSelectedOption, searchable=f
                 <AnimatePresence>
                 {
                     isOpen &&
-                        <motion.div
+                        <motion.ul
                             id={listboxId}
                             className={`dropdown-menu`}
                             tabIndex="-1"
@@ -176,33 +176,31 @@ const Dropdown = ({ OptionsList, selectedOption, setSelectedOption, searchable=f
                             animate={{opacity: 1, visibility: "visible", scale: 1}}
                             exit={{opacity: 0, visibility: "hidden", scale: 0.7}}
                             transition={{duration: 0.2}}
-                        >
-                            <ul className="dropdown-menu-content-wrapper" role="none">
-                                {filteredOptions.map((Option, idx) => {
+                        >                          
+                            {filteredOptions.map((Option, idx) => {
 
-                                    const action = typeof(Option) === "object" ? Option.action : Option;
-                                    const name = typeof(Option) === "object" ? Option.name : Option;
+                                const action = typeof(Option) === "object" ? Option.action : Option;
+                                const name = typeof(Option) === "object" ? Option.name : Option;
 
-                                    return (
-                                        <li 
-                                            key={action}
-                                            role="option"
-                                            aria-selected={action === selectedOptionDisplay}
+                                return (
+                                    <li 
+                                        key={action}
+                                        role="option"
+                                        aria-selected={action === selectedOptionDisplay}
+                                    >
+                                        <button
+                                            className={`dropdown-menu-content ${typeof(selectedOption) === "object" && action === selectedOptionDisplay ? "active" : ""} ${typeof(selectedOption) !== "object" && action === selectedOptionDisplay ? "active" : ""} ${idx === focusedOption ? "focused" : ""}`} 
+                                            ref={idx === focusedOption ? optionContainer : null}
+                                            type="button"
+                                            onMouseDown={() => handleOnOptionClicked(action)}
+                                            tabIndex={-1}
                                         >
-                                            <button
-                                                className={`dropdown-menu-content ${typeof(selectedOption) === "object" && action === selectedOptionDisplay ? "active" : ""} ${typeof(selectedOption) !== "object" && action === selectedOptionDisplay ? "active" : ""} ${idx === focusedOption ? "focused" : ""}`} 
-                                                ref={idx === focusedOption ? optionContainer : null}
-                                                type="button"
-                                                onMouseDown={() => handleOnOptionClicked(action)}
-                                                tabIndex={-1}
-                                            >
-                                                {name}
-                                            </button>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </motion.div>
+                                            {name}
+                                        </button>
+                                    </li>
+                                )
+                            })}                          
+                        </motion.ul>
                 }
                 </AnimatePresence>
             </div>

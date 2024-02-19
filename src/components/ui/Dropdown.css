@@ -60,6 +60,8 @@
     position: absolute;
     left: 0;
     margin-top: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
     width: 100%;
     transform-origin: top right;
     border-radius: 0.375rem;
@@ -82,7 +84,7 @@
     padding-bottom: 0.25rem;
 }
 
-.dropdown-menu-content-wrapper li {
+.dropdown-menu li {
     list-style: none;
 }
 
