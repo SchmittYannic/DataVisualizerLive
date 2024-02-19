@@ -168,7 +168,6 @@ const Dropdown = ({ OptionsList, selectedOption, setSelectedOption, searchable=f
                         <motion.ul
                             id={listboxId}
                             className={`dropdown-menu`}
-                            tabIndex="-1"
                             role="listbox"
                             aria-labelledby={labelId} 
                             aria-orientation="vertical"
