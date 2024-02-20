@@ -140,7 +140,7 @@
 
 .video-section .video-section-text {
     padding: var(--homepage-padding);
-    max-width: calc(2 * var(--homepage-padding) + 1024px);
+    max-width: calc(2 * var(--homepage-padding) + var(--video-section-video-width));
 }
 
 .video-section .video-section-video-wrapper {

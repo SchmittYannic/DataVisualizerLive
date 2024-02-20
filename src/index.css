@@ -37,6 +37,7 @@
 
     --horizontal-scrollbar-height: 0;
     --homepage-guides: 1px dashed var(--border-color);
+    --video-section-video-width: 1024px;
 }
 
 *, 
