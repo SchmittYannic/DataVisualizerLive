@@ -6,6 +6,7 @@ import { chartLottie, lightningLottie, settingLottie } from "assets";
 import HeroChartAnimation from "./HeroChartAnimation";
 import VideoSection from "./VideoSection";
 import BottomSection from "./BottomSection";
+import VideoSectionMobile from "./VideoSectionMobile";
 import { useWindowSize } from "hooks";
 import "./Homepage.css";
 
@@ -101,7 +102,13 @@ const Homepage = () => {
                 </div>
             </section>
 
-            <VideoSection />
+            {
+                windowSize.width > 1140 ? (
+                    <VideoSection />
+                ) : (
+                    <VideoSectionMobile />
+                )
+            }
 
             <BottomSection />
         </main>
