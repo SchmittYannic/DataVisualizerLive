@@ -10,7 +10,7 @@
 }
 
 .video-section h2 {
-    padding: 3rem 0;
+    padding: 3rem 0rem;
     padding-top: 6rem;
     text-align: center;
     font-size: 3rem;
@@ -18,6 +18,12 @@
     letter-spacing: -0.05em;
     border: var(--homepage-guides);
     border-top: none;
+}
+
+.video-section-mobile h2 {
+    padding: 0 2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
 .video-section .tabs {
@@ -29,7 +35,8 @@
 
 .video-section-mobile .tabs { 
     width: 100%;
-    max-width: 416px;
+    max-width: 480px;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     background-color: var(--background-color);
@@ -112,6 +119,10 @@
 .video-section .video-section-content {
     border: var(--homepage-guides);
     border-top: none;
+}
+
+.video-section-mobile .video-section-content {
+    max-width: 480px;
 }
 
 .video-section-text,
