@@ -37,7 +37,7 @@ const VideoSectionMobile = () => {
                     onClick={() => setActiveTab("upload")}
                     title={`${isUploadActive ? "" : "auf Upload Registerkarte umschalten"}`}
                     animate={{ 
-                        width: isUploadActive ? 300 : 50,
+                        width: isUploadActive ? 350 : 50,
                     }}
                     transition={{
                         ease: "easeInOut",
@@ -62,7 +62,7 @@ const VideoSectionMobile = () => {
                     onClick={() => setActiveTab("data")}
                     title={`${isDataActive ? "" : "auf Datenansicht Registerkarte umschalten"}`}
                     animate={{ 
-                        width: isDataActive ? 300 : 50,
+                        width: isDataActive ? 350 : 50,
                     }}
                     transition={{
                         ease: "easeInOut",
@@ -87,7 +87,7 @@ const VideoSectionMobile = () => {
                     onClick={() => setActiveTab("visualisierung")}
                     title={`${isVisualisierungActive ? "" : "auf Visualisierung Registerkarte umschalten"}`}
                     animate={{ 
-                        width: isVisualisierungActive ? 300 : 50,
+                        width: isVisualisierungActive ? 350 : 50,
                     }}
                     transition={{
                         ease: "easeInOut",
