@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
 
 import { chartLottie, lightningLottie, settingLottie } from "assets";
-import HeroChartAnimation from "./HeroChartAnimation";
-import VideoSection from "./VideoSection";
-import BottomSection from "./BottomSection";
-import VideoSectionMobile from "./VideoSectionMobile";
+import {
+    HeroChartAnimation,
+    VideoSection,
+    VideoSectionMobile,
+    BottomSection,
+} from "components";
 import { useWindowSize } from "hooks";
 import "./Homepage.css";
 
