@@ -83,7 +83,7 @@ const VideoSection = () => {
                     <>
                         <div className="video-section-text">
                             <p>
-                                Der erste Schritt besteht aus dem Hochladen einer Datei. DataVisualizer unterstützt das Dateiformat: csv.
+                                Der erste Schritt besteht aus dem Hochladen eines Datensatzes. DataVisualizer unterstützt das Dateiformat: <span className="font-bold">csv</span>.<br/>Das Tool lässt sich auch ohne eigenen Datensatz testen. Hierfür werden Ihnen von uns zwei Datensätze zur Verfügung gestellt.
                             </p>
                         </div>
                         <div className="video-section-video-wrapper">
@@ -108,6 +108,9 @@ const VideoSection = () => {
                             <p>
                                 Hier wird ein Einblick in den Datensatz gewährt. An dieser Stelle wird sichergestellt, dass der Datensatz erfolgreich hochgeladen wurde.
                             </p>
+                            <p>
+                                Sortier- und Filterfunktionalität ermöglichen eine vereinfachte Navigation ihres Datensatzes. Zudem können hier einzelne Dateneinträge ein letztes Mal vor der Diagrammerstellung angepasst werden.
+                            </p>
                         </div>
                         <div className="video-section-video-wrapper">
                             <video 
@@ -128,8 +131,15 @@ const VideoSection = () => {
                 {activeTab === "visualisierung" && (
                     <>
                         <div className="video-section-text">
-                            <p>Durch eine Vielzahl an Einstellungen kann hier ein Diagramm erstellt und angepasst werden.</p>
-                            <p>Das Diagramm kann im SVG-Format heruntergeladen oder als Alternative in die Zwischenablage in Form eines HTML Elements kopiert werden.</p>
+                            <p>
+                                Durch eine Vielzahl an Einstellungen kann hier ein Diagramm erstellt und angepasst werden.
+                            </p>
+                            <p>
+                                Das Diagramm kann im <span className="font-bold">SVG</span>-Format heruntergeladen werden, wobei es hierbei seine Interaktivität verliert.
+                            </p>
+                            <p>
+                                Alternativ kann das Diagramm zusammen mit einem Script in die Zwischenablage kopiert werden. Dies ermöglicht ein einfaches Einfügen des Diagramms in ihre Webseite. Das beigefügte Script erhält die Interaktivität des Diagramms.
+                            </p>
                         </div>
                         <div className="video-section-video-wrapper">
                             <video 
