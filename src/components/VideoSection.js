@@ -82,7 +82,6 @@ const VideoSection = () => {
                 {activeTab === "upload" && (
                     <>
                         <div className="video-section-text">
-                            <h4>Upload</h4>
                             <p>
                                 Der erste Schritt besteht aus dem Hochladen einer Datei. DataVisualizer unterstützt das Dateiformat: csv.
                             </p>
@@ -106,7 +105,6 @@ const VideoSection = () => {
                 {activeTab === "data" && (
                     <>
                         <div className="video-section-text">
-                            <h4>Datenansicht</h4>
                             <p>
                                 Hier wird ein Einblick in den Datensatz gewährt. An dieser Stelle wird sichergestellt, dass der Datensatz erfolgreich hochgeladen wurde.
                             </p>
@@ -130,9 +128,7 @@ const VideoSection = () => {
                 {activeTab === "visualisierung" && (
                     <>
                         <div className="video-section-text">
-                            <h4>Visualisierung</h4>
                             <p>Durch eine Vielzahl an Einstellungen kann hier ein Diagramm erstellt und angepasst werden.</p>
-                            <br />
                             <p>Das Diagramm kann im SVG-Format heruntergeladen oder als Alternative in die Zwischenablage in Form eines HTML Elements kopiert werden.</p>
                         </div>
                         <div className="video-section-video-wrapper">
