@@ -144,6 +144,12 @@
     align-items: center;
 }
 
+.video-section-mobile .image-section-image-wrapper {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
 .video-section-text h4 {
     letter-spacing: -0.025em;
     line-height: 1;
