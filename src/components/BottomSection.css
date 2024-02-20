@@ -103,5 +103,12 @@
 @media only screen and (max-width: 1140px) {
     .bottom-section {
         border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bottom-section .bottom-section-content {
+        max-width: 480px;
     }
 }
