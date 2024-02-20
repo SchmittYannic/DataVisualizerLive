@@ -147,7 +147,6 @@ const VideoSectionMobile = () => {
                         <div className="video-section-text">
                             <h4>Visualisierung</h4>
                             <p>Durch eine Vielzahl an Einstellungen kann hier ein Diagramm erstellt und angepasst werden.</p>
-                            <br />
                             <p>Das Diagramm kann im SVG-Format heruntergeladen oder als Alternative in die Zwischenablage in Form eines HTML Elements kopiert werden.</p>
                         </div>
                         <div className="image-section-image-wrapper">
