@@ -7,12 +7,11 @@
 .hero {
     position: relative;
     isolation: isolate;
-    padding-bottom: 3rem;
 }
 
 .hero-content {
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 3rem 2rem;
     min-height: 310px;
     max-width: var(--max-content-width);
     display: grid; 
@@ -47,6 +46,7 @@
     grid-column-end: 5;
     color: var(--subtext-color);
     margin-left: 5px;
+    font-weight: 600;
 }
 
 .hero-btn {
@@ -95,8 +95,8 @@
     position: absolute;
     z-index: -1;
     inset: 0;
-    height: 280px;
-    clip-path: polygon(0 0, 100% 0, 100% 35%, 0% 100%);
+    height: 320px; /* 450px */
+    clip-path: polygon(0 0, 100% 0%, 100% 45%, 0% 100%);
 }
 
 canvas {
