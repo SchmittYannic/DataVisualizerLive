@@ -16,7 +16,7 @@ const VideoSectionMobile = () => {
     const isDataActive = activeTab === "data";
     const isVisualisierungActive = activeTab === "visualisierung";
 
-    const progressDuration = 20;
+    const progressDuration = 40;
 
     useEffect(() => {
         if (timeout.current) clearTimeout(timeout.current);
