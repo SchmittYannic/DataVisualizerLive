@@ -132,30 +132,3 @@
     /* font-weight: 600; */
     font-size: 1.5rem;
 }
-
-@media only screen and (max-width: 1140px) {
-    .video-section h2 {
-        /* padding: 0 2rem; */
-        padding: 1.5rem 2rem;
-        padding-top: 3rem;
-        border: none;
-        font-size: 2rem;
-    }
-
-    .video-section .tabs {
-        padding: 0 2rem;
-        gap: 10px;
-    }
-
-    .video-section .tab {
-        border: 1px solid var(--border-color);
-    }
-
-    .video-section .tab:last-of-type {
-        border: 1px solid var(--border-color);
-    }
-
-    .video-section .video-section-content {
-        border: none;
-    }
-}
