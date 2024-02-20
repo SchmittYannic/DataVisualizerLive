@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const VideoProgress = ({ videoRef, vertical=true }) => {
+const VideoProgress = ({ videoRef, fixDuration=null, vertical=true }) => {
 
     const [duration, setDuration] = useState(0);
 
@@ -9,6 +9,7 @@ const VideoProgress = ({ videoRef, vertical=true }) => {
     const animate = vertical ? { height: "0%" } : { width: "0%" };
 
     useEffect(() => {
+        if (fixDuration) return
         if (!videoRef.current) return
 
         const video = videoRef.current;
@@ -25,11 +26,11 @@ const VideoProgress = ({ videoRef, vertical=true }) => {
         videoLoading.then(() => {
             setDuration(video.duration);
         });
-    }, [videoRef]);
+    }, [videoRef, fixDuration]);
 
     return (
         <>
-            {duration > 0 && (
+            {(duration > 0 || fixDuration) && (
                 <div 
                     className="progressbar"
                 >    
@@ -37,7 +38,7 @@ const VideoProgress = ({ videoRef, vertical=true }) => {
                         className="progressbar-done"
                         initial={initial}
                         animate={animate}
-                        transition={{ duration: duration }}
+                        transition={{ duration: !fixDuration ? duration : fixDuration }}
                         layout
                     >
                     </motion.div>
