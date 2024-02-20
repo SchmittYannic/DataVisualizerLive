@@ -98,6 +98,11 @@
     .bottom-section-text .subtext {
         font-size: 1.25rem;
     }
+
+    .bottom-section .bottom-section-content {
+        padding-left: var(--homepage-padding);
+        padding-right: var(--homepage-padding);
+    }
 }
 
 @media only screen and (max-width: 1140px) {
