@@ -10,6 +10,7 @@
     --active-color: rgb(160, 160, 160);
     --background-color: #fff;
     --red: rgb(234, 55, 55);
+
     --min-page-width: 320px;
     --max-content-width: 1140px;
     --header-height: 130px;
@@ -17,6 +18,8 @@
     --element-gap: 10px;
     --navigation-wrapper-height: 100px;
     --navigation-wrapper-height-mobile: 70px;
+
+    --homepage-padding: 3rem;
     --paddingX: 1.25rem;
     --paddingX-mobile: .75rem;
     --center-container-paddingX: 3rem;
@@ -31,6 +34,7 @@
     --accordion-paddingX: 1.25rem;
     --accordion-paddingY-mobile: .5rem;
     --accordion-paddingX-mobile: .75rem;
+
     --horizontal-scrollbar-height: 0;
     --homepage-guides: 1px dashed var(--border-color);
 }

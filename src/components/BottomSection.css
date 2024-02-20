@@ -52,8 +52,8 @@
 
 @media (min-width: 640px) { 
     .bottom-section {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
+        padding-top: var(--homepage-padding);
+        padding-bottom: var(--homepage-padding);
     }
 
     .bottom-section-text .headtext {

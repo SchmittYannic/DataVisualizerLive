@@ -11,7 +11,7 @@
 
 .hero-content {
     margin: 0 auto;
-    padding: 3rem;
+    padding: var(--homepage-padding);
     min-height: 310px;
     max-width: var(--max-content-width);
     display: grid; 
@@ -113,7 +113,7 @@ canvas {
 }
 
 .card {
-    padding: 3rem 3rem;
+    padding: var(--homepage-padding);
     border-left: var(--homepage-guides);
     border-bottom: var(--homepage-guides);
 }
