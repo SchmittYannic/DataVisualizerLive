@@ -138,13 +138,14 @@
     gap: .5rem;
 }
 
-.video-section .video-section-text,
-.video-section .video-section-video-wrapper {
+.video-section .video-section-text {
     padding: 3rem;
+    max-width: calc(2 * 3rem + 1024px);
 }
 
-.video-section .video-section-text {
-    max-width: calc(2 * 3rem + 1024px);
+.video-section .video-section-video-wrapper {
+    padding: 3rem;
+    padding-top: 0;
 }
 
 .video-section-video-wrapper {
