@@ -161,7 +161,7 @@ canvas {
     }
 
     .hero-subtitle {
-        max-width: 480px;
+        max-width: var(--container-max-width-mobile);
     }
 
     .hero-content-border {
@@ -175,7 +175,7 @@ canvas {
     }
 
     .card {
-        max-width: 480px;
+        max-width: var(--container-max-width-mobile);
         border: none;
         padding: 2rem 0rem;
     }

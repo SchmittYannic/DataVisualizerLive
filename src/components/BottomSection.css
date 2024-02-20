@@ -109,6 +109,6 @@
     }
 
     .bottom-section .bottom-section-content {
-        max-width: 480px;
+        max-width: var(--container-max-width-mobile);
     }
 }
