@@ -67,7 +67,7 @@ const Homepage = () => {
                         DataVisualizer
                     </h1>
                     <p ref={heroTitleOverlay} className="hero-title" data-overlay aria-hidden="true"></p>
-                    <p className="hero-subtitle font-bold">
+                    <p className="hero-subtitle">
                         Veranschaulichen Sie komplexe Daten durch interaktive Diagramme mit DataVisualizer.
                         {/* Veranschaulichen Sie komplexe Daten durch interaktive Diagramme mit DataVisualizer und erhalten so wertvolle Erkenntnisse und ein umfassendes Verständnis Ihrer Daten */}
                     </p>
