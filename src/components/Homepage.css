@@ -118,6 +118,11 @@ canvas {
     border-bottom: var(--homepage-guides);
 }
 
+.card-icon {
+    width: 60px;
+    height: 60px;
+}
+
 .card:last-of-type {
     border-right: var(--homepage-guides);
 }
