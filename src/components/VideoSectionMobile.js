@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import VideoProgress from "./VideoProgress";
+import {
+    isection_upload_480x920,
+    isection_data_480x920,
+    isection_vis_480x920,
+} from "assets"
 
 const VideoSectionMobile = () => {
 
@@ -117,19 +122,9 @@ const VideoSectionMobile = () => {
                                 Der erste Schritt besteht aus dem Hochladen einer Datei. DataVisualizer unterstützt das Dateiformat: csv.
                             </p>
                         </div>
-                        {/* <div className="video-section-video-wrapper">
-                            <video
-                                id="uploadvideo"
-                                ref={videoRef}
-                                width={videoWidth}
-                                height={videoHeight}
-                                muted="muted"
-                                onEnded={() => setActiveTab("data")}
-                            >
-                                <source src={uploadwebm} type="video/webm" />
-                                Your browser does not support the video tag.
-                            </video>
-                        </div> */}
+                        <div className="image-section-image-wrapper">
+                            <img src={isection_upload_480x920} alt="Ansicht des Schritts: Upload" />
+                        </div>
                     </>
                 )}
 
@@ -141,19 +136,9 @@ const VideoSectionMobile = () => {
                                 Hier wird ein Einblick in den Datensatz gewährt. An dieser Stelle wird sichergestellt, dass der Datensatz erfolgreich hochgeladen wurde.
                             </p>
                         </div>
-                        {/* <div className="video-section-video-wrapper">
-                            <video 
-                                id="datavideo"
-                                ref={videoRef}
-                                width={videoWidth}
-                                height={videoHeight}
-                                muted="muted"
-                                onEnded={() => setActiveTab("visualisierung")}
-                            >
-                                <source src={datawebm} type="video/webm" />
-                                Your browser does not support the video tag.
-                            </video>
-                        </div> */}
+                        <div className="image-section-image-wrapper">
+                            <img src={isection_data_480x920} alt="Ansicht des Schritts: Datenansicht" />
+                        </div>
                     </>
                 )}
 
@@ -165,19 +150,9 @@ const VideoSectionMobile = () => {
                             <br />
                             <p>Das Diagramm kann im SVG-Format heruntergeladen oder als Alternative in die Zwischenablage in Form eines HTML Elements kopiert werden.</p>
                         </div>
-                        {/* <div className="video-section-video-wrapper">
-                            <video 
-                                id="visvideo"
-                                ref={videoRef}
-                                width={videoWidth}
-                                height={videoHeight}
-                                muted="muted"
-                                onEnded={() => setActiveTab("upload")}
-                            >
-                                <source src={viswebm} type="video/webm" />
-                                Your browser does not support the video tag.
-                            </video>
-                        </div> */}
+                        <div className="image-section-image-wrapper">
+                            <img src={isection_vis_480x920} alt="Ansicht des Schritts: Visualisierung" />
+                        </div>
                     </>
                 )}
             </div>
