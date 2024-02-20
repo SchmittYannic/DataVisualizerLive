@@ -11,7 +11,7 @@
 
 .hero-content {
     margin: 0 auto;
-    padding: 3rem 2rem;
+    padding: 3rem;
     min-height: 310px;
     max-width: var(--max-content-width);
     display: grid; 
@@ -28,7 +28,7 @@
     color: #1f1f1f;
     mix-blend-mode: color-burn;
     line-height: 1.1;
-    font-size: 5rem;
+    font-size: 4.5rem;
     font-weight: 700;
     margin: 0;
 }
