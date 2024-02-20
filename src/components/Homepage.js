@@ -67,7 +67,7 @@ const Homepage = () => {
                         DataVisualizer
                     </h1>
                     <p ref={heroTitleOverlay} className="hero-title" data-overlay aria-hidden="true"></p>
-                    <p className="hero-subtitle">
+                    <p className="hero-subtitle font-bold">
                         Veranschaulichen Sie komplexe Daten durch interaktive Diagramme mit DataVisualizer.
                         {/* Veranschaulichen Sie komplexe Daten durch interaktive Diagramme mit DataVisualizer und erhalten so wertvolle Erkenntnisse und ein umfassendes Verständnis Ihrer Daten */}
                     </p>
@@ -90,17 +90,17 @@ const Homepage = () => {
                 <div className="card">
                     <Lottie style={{ width: "48px", height: "48px" }} animationData={lightningLottie} />
                     <h4 className="card-header">Schnell</h4>
-                    <p>Nur 3 Schritte bis zum fertigen Diagramm.<br/>Der Prozess der Diagrammerstellung besteht aus: dem <b>Upload</b> des Datensatzes, der <b>Ansicht</b> der hochgeladenen Daten und der Erstellung der <b>Visualisierung</b>.</p>
+                    <p>Nur 3 Schritte bis zum fertigen Diagramm.<br/>Der Prozess der Diagrammerstellung besteht aus: dem <span className="font-bold">Upload</span> des Datensatzes, der <span className="font-bold">Ansicht</span> der hochgeladenen Daten und der Erstellung der <span className="font-bold">Visualisierung</span>.</p>
                 </div>
                 <div className="card">
                     <Lottie style={{ width: "48px", height: "48px" }} animationData={chartLottie} />
                     <h4 className="card-header">Auswahl</h4>
-                    <p>Eine große Auswahl an Diagrammtypen.<br/>Unterstützt die Erstellung von <b>Boxplots</b>, <b>Säulen-</b>, <b>Kreis-</b>, <b>Streu-</b>, <b>Linien-</b> und <b>Flächendiagrammen</b>.</p>
+                    <p>Eine große Auswahl an Diagrammtypen.<br/>Unterstützt die Erstellung von <span className="font-bold">Boxplots</span>, <span className="font-bold">Säulen-</span>, <span className="font-bold">Kreis-</span>, <span className="font-bold">Streu-</span>, <span className="font-bold">Linien-</span> und <span className="font-bold">Flächendiagrammen</span>.</p>
                 </div>
                 <div className="card">
                     <Lottie style={{ width: "48px", height: "48px" }} animationData={settingLottie} />
                     <h4 className="card-header">Anpassbarkeit</h4>
-                    <p>Einfache Anpassung der Diagramme an individuelle Bedürfnisse.<br/>Anpassung der <b>Dimensionen</b>, <b>Farbgestaltung</b> und <b>Textinhalte</b> des Diagramms.</p>
+                    <p>Einfache Anpassung der Diagramme an individuelle Bedürfnisse.<br/>Anpassung der <span className="font-bold">Dimensionen</span>, <span className="font-bold">Farbgestaltung</span> und <span className="font-bold">Textinhalte</span> des Diagramms.</p>
                 </div>
             </section>
 

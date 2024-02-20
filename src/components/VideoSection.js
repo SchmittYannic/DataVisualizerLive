@@ -37,7 +37,7 @@ const VideoSection = () => {
                     onClick={() => setActiveTab("upload")}
                     title={`${activeTab === "upload" ? "" : "auf Upload Registerkarte umschalten"}`}
                 >
-                    <b>Upload</b>                   
+                    <span className="font-bold">Upload</span>                   
                     
                     {activeTab === "upload" && (
                         <VideoProgress
@@ -52,7 +52,7 @@ const VideoSection = () => {
                     onClick={() => setActiveTab("data")}
                     title={`${activeTab === "data" ? "" : "auf Datenansicht Registerkarte umschalten"}`}
                 >
-                    <b>Datenansicht</b> 
+                    <span className="font-bold">Datenansicht</span> 
 
                     {activeTab === "data" && (
                         <VideoProgress
@@ -67,7 +67,7 @@ const VideoSection = () => {
                     onClick={() => setActiveTab("visualisierung")}
                     title={`${activeTab === "visualisierung" ? "" : "auf Visualisierung Registerkarte umschalten"}`}
                 >
-                    <b>Visualisierung</b> 
+                    <span className="font-bold">Visualisierung</span> 
                     
                     {activeTab === "visualisierung" && (
                         <VideoProgress

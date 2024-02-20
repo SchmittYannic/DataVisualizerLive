@@ -87,6 +87,10 @@ br {
     border-width: 0;
 }
 
+.font-bold {
+    font-weight: 700;
+}
+
 .full {
     width: 100%;
 }

@@ -50,7 +50,7 @@ const VideoSectionMobile = () => {
                 >                                 
                     {isUploadActive ? (
                         <>
-                            <b>Upload</b>
+                            <span className="font-bold">Upload</span>
 
                             <VideoProgress
                                 fixDuration={progressDuration}
@@ -58,7 +58,7 @@ const VideoSectionMobile = () => {
                             />
                         </>
                     ) : (
-                        <b>1</b> 
+                        <span className="font-bold">1</span> 
                     )}
                 </motion.button>
                 <motion.button
@@ -75,7 +75,7 @@ const VideoSectionMobile = () => {
                 >
                     {isDataActive ? (
                         <>
-                            <b>Datenansicht</b>
+                            <span className="font-bold">Datenansicht</span>
 
                             <VideoProgress
                                 fixDuration={progressDuration}
@@ -83,7 +83,7 @@ const VideoSectionMobile = () => {
                             />
                         </>
                     ) : (
-                        <b>2</b> 
+                        <span className="font-bold">2</span> 
                     )}
                 </motion.button>
                 <motion.button
@@ -100,7 +100,7 @@ const VideoSectionMobile = () => {
                 >                 
                     {isVisualisierungActive ? (
                         <>
-                            <b>Visualisierung</b>
+                            <span className="font-bold">Visualisierung</span>
 
                             <VideoProgress
                                 fixDuration={progressDuration}
@@ -108,7 +108,7 @@ const VideoSectionMobile = () => {
                             />
                         </>
                     ) : (
-                        <b>3</b> 
+                        <span className="font-bold">3</span> 
                     )}
                 </motion.button>
             </div>

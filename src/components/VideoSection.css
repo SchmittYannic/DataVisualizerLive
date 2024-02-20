@@ -87,8 +87,8 @@
     cursor: default;
 }
 
-.video-section .tab.active b,
-.video-section-mobile .tab.active b {
+.video-section .tab.active span,
+.video-section-mobile .tab.active span {
     z-index: 4;
 }
 
