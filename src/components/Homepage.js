@@ -1,18 +1,26 @@
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef, lazy } from "react";
 import { Link } from "react-router-dom";
+import { useInView } from "react-intersection-observer";
 import Lottie from "lottie-react";
 
 import { chartLottie, lightningLottie, settingLottie } from "assets";
 import {
     HeroChartAnimation,
-    VideoSection,
     VideoSectionMobile,
     BottomSection,
 } from "components";
 import { useWindowSize } from "hooks";
 import "./Homepage.css";
 
+const LazyVideoSection = lazy(() => import("components/VideoSection"));
+
 const Homepage = () => {
+
+    const { ref: videoSectionRef, inView } = useInView({
+        triggerOnce: true,
+        fallbackInView: true,
+    });
+
     const canvasRef = useRef(null);
     const heroTitle = useRef(null);
     const heroTitleOverlay = useRef(null);
@@ -106,7 +114,13 @@ const Homepage = () => {
 
             {
                 windowSize.width > 1140 ? (
-                    <VideoSection />
+                    <section className="video-section" ref={videoSectionRef}>
+                        {inView && (
+                            <Suspense>
+                                <LazyVideoSection />
+                            </Suspense>
+                        )}
+                    </section>
                 ) : (
                     <VideoSectionMobile />
                 )
