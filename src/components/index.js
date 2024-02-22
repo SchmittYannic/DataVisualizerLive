@@ -1,4 +1,4 @@
-import Homepage from "./Homepage";
+//import Homepage from "./Homepage";
 import ProgressSteps from "./ProgressSteps";
 import HeroChartAnimation from "./HeroChartAnimation";
 import VideoProgress from "./VideoProgress";
@@ -7,7 +7,7 @@ import VideoSectionMobile from "./VideoSectionMobile";
 import BottomSection from "./BottomSection";
 
 export {
-    Homepage,
+    //Homepage,
     ProgressSteps,
     HeroChartAnimation,
     VideoProgress,

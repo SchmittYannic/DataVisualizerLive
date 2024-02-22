@@ -1,11 +1,12 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Homepage, ProgressSteps } from "components";
 import ScrollToTop from "components/ScrollToTop";
 
+const LazyHomepage = lazy(() => import("components/Homepage"));
 const LazyUploadStep = lazy(() => import("features/datavisualizer/UploadStep"));
 const LazyDataStep = lazy(() => import("features/datavisualizer/DataStep"));
 const LazyVisualizationStep = lazy(() => import("features/datavisualizer/VisualizationStep"));
+const LazyProgressSteps = lazy(() => import("components/ProgressSteps"));
 
 export const steps = [
     {
@@ -33,11 +34,11 @@ const App = () => {
         <Router>
             <ScrollToTop>
                 <Routes>
-                    <Route exact path="/*" element={<Homepage />}/>
+                    <Route exact path="/*" element={<Suspense><LazyHomepage /></Suspense>}/>
                     {steps.map((step, idx) => (
                         <Route key={idx} path={step.path} element={
                             <Suspense>
-                                <ProgressSteps />
+                                <LazyProgressSteps />
                                 <step.component />
                             </Suspense>
                         }/>
