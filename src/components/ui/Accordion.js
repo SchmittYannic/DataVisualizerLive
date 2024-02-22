@@ -9,6 +9,7 @@ const AccordionTrigger = (props) => {
             {props.children}
             <MdKeyboardArrowDown
                 className={`accordion-trigger-svg ${props["aria-expanded"] ? "open" : ""}`}
+                aria-hidden="true"
             />
         </button>
     )

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { readCSV } from "danfojs";
 
 import { useData } from "../../hooks";
@@ -8,6 +8,7 @@ import "./DropZone.css";
 const DropZone = () => {
     const { setDataframe, setDemodata, setIsLoading, isLoading } = useData();
     const [selectedFile, setSelectedFile] = useState(null);
+    const inputRef = useRef(null);
 
     const handleFileInput = (file) => {
         if(file.type === "text/csv") {
@@ -68,6 +69,13 @@ const DropZone = () => {
         setDataframe(df);
     }
 
+    const handleLabelKeyDown = (e) => {
+        const  { key } = e;
+        if (!inputRef.current) return
+        if (key !== "Enter") return
+        inputRef.current.click();
+    };
+
     return (
         <div 
             className="dropzone-container" 
@@ -77,17 +85,27 @@ const DropZone = () => {
             
             <iframe name="dummyframe" id="dummyframe" title="dummyframe" style={{display: "none"}}></iframe>
             <form target="dummyframe" method="POST" encType="multipart/form-data" >
-                <label className="dropzone-label" title="Datei für Upload auswählen">
+                <label 
+                    className="dropzone-label"
+                    title="Datei für Upload auswählen"
+                    tabIndex={0}
+                    onKeyDown={handleLabelKeyDown}
+                    onClick={() => {
+                        if (!inputRef.current) return
+                        inputRef.current.click();
+                    }}
+                >
                     <div className="dropzone-content-container">
                         <svg className="dropzone-svg" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                         <p className="dropzone-headtext">
-                            <span style={{ fontWeight: 600}}>
+                            <span className="font-bold">
                                 Klicken zum Hochladen
                             </span> oder durch Drag & Drop
                         </p>
                         <p className="dropzone-subtext">nur .csv Dateien</p>
                     </div>
                     <input
+                        ref={inputRef}
                         className="dropzone-input"
                         type="file" 
                         name="file" 

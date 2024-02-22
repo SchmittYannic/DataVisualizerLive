@@ -62,13 +62,15 @@ const DataTable = () => {
             }, [initialValue]);
 
             return (
-                <input
-                    value={value}
-                    onChange={e => setValue(e.target.value)}
-                    onBlur={onBlur}
-                    title="Wert bearbeiten"
-                    tabIndex={0}
-                />
+                <label >
+                    <input
+                        value={value}
+                        onChange={e => setValue(e.target.value)}
+                        onBlur={onBlur}
+                        title="Wert bearbeiten"
+                        tabIndex={0}
+                    />
+                </label>
             )
         }
     }
@@ -178,9 +180,10 @@ const DataTable = () => {
                                     const isSorted = header.column.getIsSorted();
                                     return (
                                         <div key={header.id} className="table__sort">                                     
-                                            <div
+                                            <button
                                                 {...{
                                                     className: "flex",
+                                                    type: "button",
                                                     onClick: header.column.getToggleSortingHandler(),
                                                     title: `Nach Spalte ${header.id} sortieren`,
                                                 }}
@@ -191,20 +194,26 @@ const DataTable = () => {
                                                 )}
                                                 {!isSorted && (
                                                     <span className="swap-vert">
-                                                        <MdSwapVert />
+                                                        <MdSwapVert aria-hidden="true" />
                                                     </span> 
                                                 )}
                                                 {isSorted === "desc" && (
                                                     <span className="arrow-downward">
-                                                        <MdArrowDownward />
+                                                        <MdArrowDownward 
+                                                            role="graphics-symbol"
+                                                            aria-label="Absteigend sortiert" 
+                                                        />
                                                     </span>
                                                 )}
                                                 {isSorted === "asc" && (
                                                     <span className="arrow-upward">
-                                                        <MdArrowUpward />
+                                                        <MdArrowUpward 
+                                                            role="graphics-symbol"
+                                                            aria-label="Aufsteigend sortiert" 
+                                                        />
                                                     </span>
                                                 )}                                    
-                                            </div>
+                                            </button>
                                         </div>
                                     )
                                 } else {
@@ -228,9 +237,10 @@ const DataTable = () => {
                                     const isSorted = header.column.getIsSorted();
                                     return (
                                         <th key={header.id} colSpan={header.colSpan} scope="col" className="table__th table__sort">                              
-                                            <div
+                                            <button
                                                 {...{
                                                     className: "flex",
+                                                    type: "button",
                                                     onClick: header.column.getToggleSortingHandler(),
                                                     title: `Nach Spalte ${header.id} sortieren`,
                                                 }}
@@ -241,20 +251,26 @@ const DataTable = () => {
                                                 )}
                                                 {!isSorted && (
                                                     <span className="swap-vert">
-                                                        <MdSwapVert />
+                                                        <MdSwapVert aria-hidden="true" />
                                                     </span> 
                                                 )}
                                                 {isSorted === "desc" && (
                                                     <span className="arrow-downward">
-                                                        <MdArrowDownward />
+                                                        <MdArrowDownward 
+                                                            role="graphics-symbol"
+                                                            aria-label="Absteigend sortiert" 
+                                                        />
                                                     </span>
                                                 )}
                                                 {isSorted === "asc" && (
                                                     <span className="arrow-upward">
-                                                        <MdArrowUpward />
+                                                        <MdArrowUpward 
+                                                            role="graphics-symbol"
+                                                            aria-label="Aufsteigend sortiert" 
+                                                        />
                                                     </span>
                                                 )}                                    
-                                            </div>
+                                            </button>
                                         </th>
                                     )
                                 })}
@@ -345,31 +361,36 @@ const DataTable = () => {
                     </strong>
                 </span>
                 <span>
-                    | Seitenzahl:
-                    <DebouncedInput
-                        className="input__number"
-                        type="number"
-                        value={table.getState().pagination.pageIndex + 1}
-                        onChange={value => {
-                            const page = value ? Number(value) - 1 : 0
-                            table.setPageIndex(page)
-                        }}
-                        title="Seitenzahl"
-                    />
+                    | 
+                    <label>
+                        Seitenzahl:&nbsp;
+                        <DebouncedInput
+                            className="input__number"
+                            type="number"
+                            value={table.getState().pagination.pageIndex + 1}
+                            onChange={value => {
+                                const page = value ? Number(value) - 1 : 0
+                                table.setPageIndex(page)
+                            }}
+                            title="Seitenzahl"
+                        />
+                    </label>
                 </span>
-                <select
-                    value={table.getState().pagination.pageSize}
-                    onChange={e => {
-                        table.setPageSize(Number(e.target.value))
-                    }}
-                    title="Maximale Anzahl an Einträgen pro Seite"
-                >
-                    {[1, 5, 10, 20, 30, 40, 50].map(pageSize => (
-                        <option key={pageSize} value={pageSize}>
-                            Zeige {pageSize}
-                        </option>
-                    ))}
-                </select>
+                <label>
+                    <select
+                        value={table.getState().pagination.pageSize}
+                        onChange={e => {
+                            table.setPageSize(Number(e.target.value))
+                        }}
+                        title="Maximale Anzahl an Einträgen pro Seite"
+                    >
+                        {[1, 5, 10, 20, 30, 40, 50].map(pageSize => (
+                            <option key={pageSize} value={pageSize}>
+                                Zeige {pageSize}
+                            </option>
+                        ))}
+                    </select>
+                </label>            
                 <div>{table.getPrePaginationRowModel().rows.length} {isMobile ? "Einträge" : "Zeilen"}</div>
             </div>
 

@@ -74,6 +74,19 @@ br {
     margin: 2px 0;
 }
 
+button {    
+    background-color: transparent;
+    color: inherit;
+    border-width: 0;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    padding: 0;  
+    cursor: pointer; 
+}
+
 #root {
     flex-grow: 1;
     display: flex;
@@ -195,7 +208,7 @@ input[type=number] {
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-.btn:hover, input[type=number]:hover {
+.btn:not(.disabled-btn):hover, input[type=number]:hover {
     background-color: var(--hover-color);
 }
 
@@ -236,12 +249,18 @@ input[type=number] {
     color: var(--background-color);
 }
 
-.next-btn:hover {
+.next-btn:not(.disabled-btn):hover {
     background-color: var(--action-color-dark);
 }
 
-.disabled-btn {
-    opacity: 0.4;
+.btn.disabled-btn {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.next-btn.disabled-btn {
+    background-color: var(--action-color-light);
+    color: var(--subtext-color);
     cursor: not-allowed;
 }
 
