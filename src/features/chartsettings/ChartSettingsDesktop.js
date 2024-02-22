@@ -86,7 +86,10 @@ const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, se
                         onPointerDown={startDrag}>
                         {activeTab === navigationTabName ? (
                             <div className="draggable-icon">
-                                <RiDragMove2Fill />
+                                <RiDragMove2Fill
+                                    role="graphics-symbol"
+                                    aria-label="Drag des Menüs möglich"
+                                />
                             </div>
                         ): (
                             <div className="draggable-back-btn">

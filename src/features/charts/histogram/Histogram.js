@@ -18,6 +18,7 @@ const Histogram = ({ dimensions, settingsRef}) => {
             //svg erstellen
             d3.select(svgWrapperRef.current)
                 .append('svg')
+                    .attr('aria-label', 'histogram')
                     .attr('id', `${id}SVG`)
                     .attr('width', dimensions.svgWidth)
                     .attr('height', dimensions.svgHeight);

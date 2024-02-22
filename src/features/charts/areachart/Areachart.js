@@ -18,6 +18,7 @@ const Areachart = ({ settingsRef, dimensions }) => {
             //svg erstellen
             d3.select(svgWrapperRef.current)
                 .append('svg')
+                    .attr('aria-label', 'areachart')
                     .attr('id', `${id}SVG`)
                     .attr('width', dimensions.svgWidth)
                     .attr('height', dimensions.svgHeight);

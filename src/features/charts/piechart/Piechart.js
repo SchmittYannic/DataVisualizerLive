@@ -18,6 +18,7 @@ const Piechart = ({ dimensions, settingsRef }) => {
             //svg erstellen
             d3.select(svgWrapperRef.current)
                 .append('svg')
+                    .attr('aria-label', 'piechart')
                     .attr('id', `${id}SVG`)
                     .attr('width', settingsRef.current.dimensions.svgWidth)
                     .attr('height', settingsRef.current.dimensions.svgHeight);

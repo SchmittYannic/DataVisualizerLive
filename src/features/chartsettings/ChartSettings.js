@@ -140,7 +140,7 @@ const ChartSettings = ({
                                         exit={exitSlideIn}
                                     >
                                         {state.name}
-                                        <FaArrowRightLong />
+                                        <FaArrowRightLong aria-hidden="true" />
                                     </motion.button>
                                 )
                             } else {
@@ -162,7 +162,7 @@ const ChartSettings = ({
                                                 exit={exitSlideIn}
                                             >
                                                 {state.name}
-                                                <FaArrowRightLong />
+                                                <FaArrowRightLong aria-hidden="true" />
                                             </motion.button>
                                         )}
                                     </>

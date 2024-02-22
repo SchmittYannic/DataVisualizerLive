@@ -7,7 +7,9 @@ const BackButton = ({ onClick }) => (
         onClick={onClick}
         title="Zurück zur Navigation"
     >
-        <FaArrowLeft />
+        <FaArrowLeft 
+            role="graphics-symbol"
+            aria-label="Zurück Button" />
     </button>
 );
 
