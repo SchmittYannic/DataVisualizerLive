@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { InfoBox, AsyncLink } from "components/ui";
 import { useData, useIsOverflow } from "hooks";
-import { DataTable } from "features/datavisualizer";
+import DataTable from "features/datavisualizer/DataTable";
 
 const DataStep = () => {
     const { dataAsJSONLength, fileIsUploaded, isLoading } = useData();
