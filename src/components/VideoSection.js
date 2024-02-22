@@ -1,10 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 
-import {
-    vsection_upload_1024x768,
-    vsection_data_1024x768,
-    vsection_vis_1024x768,
-} from "assets";
 import VideoProgress from "./VideoProgress";
 import "./VideoSection.css";
 
@@ -16,9 +11,9 @@ const VideoSection = () => {
 
     const videoWidth = 1024;
     const videoHeight = 768;
-    const uploadwebm = vsection_upload_1024x768;
-    const datawebm = vsection_data_1024x768;
-    const viswebm = vsection_vis_1024x768;
+    const uploadwebm = process.env.PUBLIC_URL + "/vsection_upload_1024x768.webm";
+    const datawebm = process.env.PUBLIC_URL + "/vsection_data_1024x768.webm";
+    const viswebm = process.env.PUBLIC_URL + "/vsection_vis_1024x768.webm";
 
     useEffect(() => {
         if (!videoRef.current) return

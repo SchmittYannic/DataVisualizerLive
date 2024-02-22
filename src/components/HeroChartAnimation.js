@@ -1,7 +1,11 @@
 import { motion, useCycle } from "framer-motion";
-import { hpchart1, hpchart2, hpchart3, hpchart4, hpchart5 } from "assets";
 import { useEffect } from "react";
 
+const hpchart1 = process.env.PUBLIC_URL + "/hpchart1.svg";
+const hpchart2 = process.env.PUBLIC_URL + "/hpchart2.svg";
+const hpchart3 = process.env.PUBLIC_URL + "/hpchart3.svg";
+const hpchart4 = process.env.PUBLIC_URL + "/hpchart4.svg";
+const hpchart5 = process.env.PUBLIC_URL + "/hpchart5.svg";
 const images = [hpchart1, hpchart2, hpchart3, hpchart4, hpchart5];
 
 const orderA = [1, 2, 3, 4, 5];
