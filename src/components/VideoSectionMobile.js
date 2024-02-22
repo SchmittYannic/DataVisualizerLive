@@ -31,7 +31,7 @@ const VideoSectionMobile = () => {
     }, [activeTab]);
 
     return (
-        <section className="video-section-mobile">
+        <>
 
             <h2>Prozess der Diagrammerstellung</h2>
 
@@ -165,7 +165,7 @@ const VideoSectionMobile = () => {
                     </>
                 )}
             </div>
-        </section>
+        </>
     )
 }
 

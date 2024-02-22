@@ -6,17 +6,22 @@ import Lottie from "lottie-react";
 import { chartLottie, lightningLottie, settingLottie } from "assets";
 import {
     HeroChartAnimation,
-    VideoSectionMobile,
-    BottomSection,
 } from "components";
 import { useWindowSize } from "hooks";
 import "./Homepage.css";
 
 const LazyVideoSection = lazy(() => import("components/VideoSection"));
+const LazyVideoSectionMobile = lazy(() => import("components/VideoSectionMobile"));
+const LazyBottomSection = lazy(() => import("components/BottomSection"));
 
 const Homepage = () => {
 
-    const { ref: videoSectionRef, inView } = useInView({
+    const { ref: videoSectionRef, inView: isVideoSectionInView } = useInView({
+        triggerOnce: true,
+        fallbackInView: true,
+    });
+
+    const { ref: bottomSectionRef, inView: isBottomSectionInView } = useInView({
         triggerOnce: true,
         fallbackInView: true,
     });
@@ -115,18 +120,30 @@ const Homepage = () => {
             {
                 windowSize.width > 1140 ? (
                     <section className="video-section" ref={videoSectionRef}>
-                        {inView && (
+                        {isVideoSectionInView && (
                             <Suspense>
                                 <LazyVideoSection />
                             </Suspense>
                         )}
                     </section>
                 ) : (
-                    <VideoSectionMobile />
+                    <section className="video-section-mobile" ref={videoSectionRef}>
+                        {isVideoSectionInView && (
+                            <Suspense>
+                                <LazyVideoSectionMobile />
+                            </Suspense>
+                        )}
+                    </section>
                 )
             }
 
-            <BottomSection />
+            <section className="bottom-section" ref={bottomSectionRef}>
+                {isBottomSectionInView && (
+                    <Suspense>
+                        <LazyBottomSection />
+                    </Suspense>
+                )}
+            </section>
         </main>
     )
 }
