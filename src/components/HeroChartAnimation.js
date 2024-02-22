@@ -48,7 +48,6 @@ const HeroChartAnimation = () => {
                             }}
                             src={images[item - 1]}
                             alt=""
-                            loading="lazy"
                         />
                     </motion.div>
                 )
