@@ -28,7 +28,7 @@ const Linechart = ({ dimensions, settingsRef }) => {
 
     if (dataAsJSONLength > 0 && numColumnsLength > 0 && dateColumnsLength > 0) {
         return (
-            <div>
+            <div id="chart-wrapper">
                 <div id="chart-tt-wrapper"></div>
                 <div ref={svgWrapperRef} id={id} />
             </div>

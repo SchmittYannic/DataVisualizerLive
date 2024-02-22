@@ -28,7 +28,7 @@ const Barchart = ({ dimensions, settingsRef }) => {
 
     if (dataAsJSONLength > 0 && catColumnsLength > 0) {
         return (
-            <div>
+            <div id="chart-wrapper">
                 <div id="chart-tt-wrapper"></div>
                 <div ref={svgWrapperRef} id={id} />
             </div>
