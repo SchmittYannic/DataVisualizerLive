@@ -14,12 +14,18 @@ const useIsOverflow = (ref, vertical=true, callback) => {
             if (callback) callback(hasOverflow);
         };
 
+        const observer = new ResizeObserver(trigger);
+
         if (current) {
             trigger();
             window.addEventListener("resize", trigger);
+            observer.observe(current);
         }
 
-        return () => window.removeEventListener("resize", trigger);
+        return () => {
+            window.removeEventListener("resize", trigger);
+            observer.disconnect();
+        }
     }, [callback, ref, vertical]);
 
     return isOverflow;
