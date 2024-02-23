@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useDragControls, motion } from "framer-motion";
 import { RiDragMove2Fill } from "react-icons/ri";
 
-import { ChartSettings, BackButton } from "features/chartsettings";
+import ChartSettings from "features/chartsettings/ChartSettings";
+import BackButton from "features/chartsettings/BackButton";
 import { useData } from "hooks";
 import { navigationTabName } from "constants";
 

@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { useAnimate, stagger } from "framer-motion";
 
 import { useData } from "hooks";
-import { ChartSettings } from "features/chartsettings";
+import ChartSettings from "features/chartsettings/ChartSettings";
 import { navigationTabName } from "constants";
 
 
