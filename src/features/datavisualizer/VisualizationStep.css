@@ -236,7 +236,7 @@ input[type=range]::-moz-range-thumb {
 
 .main-visualization .expandable-side-menu {
     width: max(250px, 50vw);
-    min-height: min(758px, 100vh);
+    min-height: min(calc(var(--desktop-chart-settings-height) * 1px), 100vh);
     background-color: var(--background-color);
     border-bottom-right-radius: var(--border-radius);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
