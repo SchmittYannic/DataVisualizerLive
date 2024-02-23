@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaArrowRightLong } from "react-icons/fa6";
 
@@ -143,28 +143,29 @@ const ChartSettings = ({
                                         <FaArrowRightLong aria-hidden="true" />
                                     </motion.button>
                                 )
-                            } else if (idx === 0) {
-                                return (            
-                                    <motion.button
-                                        key={state.name+idx}
-                                        className="side-menu-link"
-                                        type="button"
-                                        onClick={() => setActiveTab(state.name)}
-                                        title={`Öffnen Konfiguration: ${state.name}`}
-                                        initial={initialSlideIn}
-                                        animate={animateSlideIn}
-                                        transition={{ 
-                                            delay: 0.1 * idx, 
-                                            stiffness: 100 
-                                        }}
-                                        exit={exitSlideIn}
-                                    >
-                                        {state.name}
-                                        <FaArrowRightLong aria-hidden="true" />
-                                    </motion.button>                                
-                                )
                             } else {
-                                return <></>
+                                return (
+                                    <Fragment key={state.name+idx}>
+                                        {idx === 0 && (
+                                            <motion.button
+                                                className="side-menu-link"
+                                                type="button"
+                                                onClick={() => setActiveTab(state.name)}
+                                                title={`Öffnen Konfiguration: ${state.name}`}
+                                                initial={initialSlideIn}
+                                                animate={animateSlideIn}
+                                                transition={{ 
+                                                    delay: 0.1 * idx, 
+                                                    stiffness: 100 
+                                                }}
+                                                exit={exitSlideIn}
+                                            >
+                                                {state.name}
+                                                <FaArrowRightLong aria-hidden="true" />
+                                            </motion.button>
+                                        )}
+                                    </Fragment>                              
+                                )
                             }
                         })}
                     </>
