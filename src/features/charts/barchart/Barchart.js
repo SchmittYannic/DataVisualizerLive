@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { select } from "d3-selection";
+import * as d3 from "d3";
 
 import { useData } from "hooks";
 import { renderChart } from "features/charts/renderChart";
@@ -16,7 +16,7 @@ const Barchart = ({ dimensions, settingsRef }) => {
             document.getElementById(id).textContent = "";
 
             //svg erstellen
-            select(svgWrapperRef.current)
+            d3.select(svgWrapperRef.current)
                 .append('svg')
                     .attr('aria-label', 'barchart')
                     .attr('id', `${id}SVG`)
