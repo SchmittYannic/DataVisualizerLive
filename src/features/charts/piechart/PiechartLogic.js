@@ -1,4 +1,3 @@
-import * as d3 from "d3";
 import {
     schemeAccent,
     schemeCategory10,
@@ -13,7 +12,7 @@ import {
 } from "d3-scale-chromatic";
 import { select, selectAll, event } from "d3-selection";
 import { scaleOrdinal } from "d3-scale";
-import { arc as d3arc } from "d3-shape";
+import { arc as d3arc, pie as d3pie } from "d3-shape";
 import { interpolate as d3interpolate } from "d3-interpolate";
 
 export const piechart = (selection, props) => {
@@ -137,7 +136,7 @@ export const piechart = (selection, props) => {
     let colorScale = scaleOrdinal(colorDict[`${colorscheme}`])
   	    .domain(data.map(d => d.key))
 	
-    let pie = d3.pie()
+    let pie = d3pie()
         .value( d => d.value );
         //nicht benötigt da Array bereits vorher sortiert wird
         //.sortValues(function(a, b) { return b - a; })
