@@ -1,7 +1,5 @@
-import SectionA from "./SectionA";
 import DropZone from "./DropZone";
 import Dropdown from "./Dropdown";
-import TableScroll from "./TableScroll";
 import NumberInput from "./NumberInput";
 import RangeInput from "./RangeInput";
 import Accordion from "./Accordion";
@@ -16,10 +14,8 @@ import ClipLoader from "./ClipLoader";
 import SpeechBubble from "./SpeechBubble";
 
 export {
-    SectionA,
     DropZone,
     Dropdown,
-    TableScroll,
     NumberInput,
     RangeInput,
     Accordion,
