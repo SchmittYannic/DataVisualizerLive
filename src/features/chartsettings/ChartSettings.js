@@ -126,7 +126,7 @@ const ChartSettings = ({
                             || (selectedChart === "scatterplot" && dataAsJSONLength > 0 && numColumnsLength > 0))) {
                                 return (
                                     <motion.button
-                                        key={idx}
+                                        key={state.name+idx}
                                         className="side-menu-link"
                                         type="button"
                                         onClick={() => setActiveTab(state.name)}
@@ -143,30 +143,28 @@ const ChartSettings = ({
                                         <FaArrowRightLong aria-hidden="true" />
                                     </motion.button>
                                 )
-                            } else {
-                                return (
-                                    <>
-                                        {idx === 0 && (
-                                            <motion.button
-                                                key={idx}
-                                                className="side-menu-link"
-                                                type="button"
-                                                onClick={() => setActiveTab(state.name)}
-                                                title={`Öffnen Konfiguration: ${state.name}`}
-                                                initial={initialSlideIn}
-                                                animate={animateSlideIn}
-                                                transition={{ 
-                                                    delay: 0.1 * idx, 
-                                                    stiffness: 100 
-                                                }}
-                                                exit={exitSlideIn}
-                                            >
-                                                {state.name}
-                                                <FaArrowRightLong aria-hidden="true" />
-                                            </motion.button>
-                                        )}
-                                    </>
+                            } else if (idx === 0) {
+                                return (            
+                                    <motion.button
+                                        key={state.name+idx}
+                                        className="side-menu-link"
+                                        type="button"
+                                        onClick={() => setActiveTab(state.name)}
+                                        title={`Öffnen Konfiguration: ${state.name}`}
+                                        initial={initialSlideIn}
+                                        animate={animateSlideIn}
+                                        transition={{ 
+                                            delay: 0.1 * idx, 
+                                            stiffness: 100 
+                                        }}
+                                        exit={exitSlideIn}
+                                    >
+                                        {state.name}
+                                        <FaArrowRightLong aria-hidden="true" />
+                                    </motion.button>                                
                                 )
+                            } else {
+                                <></>
                             }
                         })}
                     </>
@@ -188,7 +186,7 @@ const ChartSettings = ({
                         <div className={`${isMobile ? "chart-options-mobile" : "chart-options"}`}>
                             {ChartOptions.map((option, key) => (
                                 <motion.button
-                                    key={key}
+                                    key={option.name+key}
                                     type="button"
                                     className={`${isMobile ? "btn" : "btn full"}`}
                                     onClick={()=>handleSelectChart(option.action)}
