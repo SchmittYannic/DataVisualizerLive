@@ -1,4 +1,20 @@
 import * as d3 from "d3";
+import {
+    schemeAccent,
+    schemeCategory10,
+    schemeDark2,
+    schemePaired,
+    schemePastel1,
+    schemePastel2,
+    schemeSet1,
+    schemeSet2,
+    schemeSet3,
+    schemeTableau10,
+} from "d3-scale-chromatic";
+import { select, selectAll, event } from "d3-selection";
+import { scaleOrdinal } from "d3-scale";
+import { arc as d3arc } from "d3-shape";
+import { interpolate as d3interpolate } from "d3-interpolate";
 
 export const piechart = (selection, props) => {
     const { settingsRef, data } = props;
@@ -51,20 +67,20 @@ export const piechart = (selection, props) => {
     }
 
     const colorDict = {
-        "accent": d3.schemeAccent,
-        "category10": d3.schemeCategory10,
-        "dark2": d3.schemeDark2,
-        "paired": d3.schemePaired,
-        "pastel1": d3.schemePastel1,
-        "pastel2": d3.schemePastel2,
-        "set1": d3.schemeSet1,
-        "set2": d3.schemeSet2,
-        "set3": d3.schemeSet3,
-        "tableau10": d3.schemeTableau10,
+        "accent": schemeAccent,
+        "category10": schemeCategory10,
+        "dark2": schemeDark2,
+        "paired": schemePaired,
+        "pastel1": schemePastel1,
+        "pastel2": schemePastel2,
+        "set1": schemeSet1,
+        "set2": schemeSet2,
+        "set3": schemeSet3,
+        "tableau10": schemeTableau10,
     }
 
     //select tooltipWrapper element on page
-    const tooltipWrapper = d3.select("#chart-tt-wrapper");
+    const tooltipWrapper = select("#chart-tt-wrapper");
 
     //make sure it is empty
     tooltipWrapper.html("");
@@ -97,28 +113,28 @@ export const piechart = (selection, props) => {
     function mouseover(){
         tooltip.style('visibility', 'visible');
         //gehovertes slice hervorheben
-        d3.selectAll('.slice').attr('opacity', '0.7');
-        d3.select(this).attr('opacity', '1');
+        selectAll('.slice').attr('opacity', '0.7');
+        select(this).attr('opacity', '1');
     }
     function mousemove(){
-        let d = d3.select(this).data()[0]
+        let d = select(this).data()[0]
         let valuePercent = d.value / sum * 100;
         tooltip
             .html(xaxisText + ': ' + d.data.key + '</br></br>'
                 + yaxisText + ': ' + Math.round((valuePercent + Number.EPSILON) * 100) / 100 + '%')
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) + 'px');
+            .style('left', (event.pageX) + 'px')
+            .style('top', (event.pageY) + 'px');
     }
     function mouseout(){
         tooltip.style('visibility', 'hidden');
         //Hervorhebung des gehoverten slices aufheben
-        d3.selectAll('.slice').attr('opacity', '1');
+        selectAll('.slice').attr('opacity', '1');
     }
   
 	const innerWidth = svgWidth - svgMarginLeft - svgMarginRight;
 	const innerHeight = svgHeight - svgMarginTop - svgMarginBottom;
   
-    let colorScale = d3.scaleOrdinal(colorDict[`${colorscheme}`])
+    let colorScale = scaleOrdinal(colorDict[`${colorscheme}`])
   	    .domain(data.map(d => d.key))
 	
     let pie = d3.pie()
@@ -128,11 +144,11 @@ export const piechart = (selection, props) => {
   
     let radius = Math.min(innerWidth, innerHeight) / 2;
   
-    let arc = d3.arc()
+    let arc = d3arc()
         .innerRadius(0)
         .outerRadius(radius * 0.8);
   
-    var outerArc = d3.arc()
+    var outerArc = d3arc()
         .innerRadius(radius * 0.9)
         .outerRadius(radius * 0.9);
   
@@ -202,7 +218,7 @@ export const piechart = (selection, props) => {
     // from http://bl.ocks.org/nadinesk/99393098950665c471e035ac517c2224
     function arcTween() {
         return function(d) {
-            let interpolate = d3.interpolate(d.startAngle + 0.1, d.endAngle);
+            let interpolate = d3interpolate(d.startAngle + 0.1, d.endAngle);
                 return function(t) {
                     d.endAngle = interpolate(t);
                     return arc(d);
@@ -232,7 +248,7 @@ export const piechart = (selection, props) => {
         });
     polyline.exit().remove();
     //damit polylines immer über den slices
-    d3.selectAll('polyline').raise();
+    selectAll('polyline').raise();
   
     const sliceLabels = g.merge(gEnter).selectAll('.sliceLabel').data(data_ready);
     sliceLabels.enter().append('text')

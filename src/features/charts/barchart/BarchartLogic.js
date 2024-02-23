@@ -1,4 +1,20 @@
-import * as d3 from "d3";
+import {
+    schemeAccent,
+    schemeCategory10,
+    schemeDark2,
+    schemePaired,
+    schemePastel1,
+    schemePastel2,
+    schemeSet1,
+    schemeSet2,
+    schemeSet3,
+    schemeTableau10,
+} from "d3-scale-chromatic";
+import { select, selectAll, event } from "d3-selection";
+import { scaleBand, scaleLinear, scaleOrdinal } from "d3-scale";
+import { format } from "d3-format";
+import { axisBottom, axisLeft } from "d3-axis";
+import { max } from "d3-array";
 
 export const barchart = (selection, props) => {
 	const { settingsRef, data } = props;
@@ -50,22 +66,22 @@ export const barchart = (selection, props) => {
     } = settingsRef.current.tooltip;
 
     const colorDict = {
-        "accent": d3.schemeAccent,
-        "category10": d3.schemeCategory10,
-        "dark2": d3.schemeDark2,
-        "paired": d3.schemePaired,
-        "pastel1": d3.schemePastel1,
-        "pastel2": d3.schemePastel2,
-        "set1": d3.schemeSet1,
-        "set2": d3.schemeSet2,
-        "set3": d3.schemeSet3,
-        "tableau10": d3.schemeTableau10,
+        "accent": schemeAccent,
+        "category10": schemeCategory10,
+        "dark2": schemeDark2,
+        "paired": schemePaired,
+        "pastel1": schemePastel1,
+        "pastel2": schemePastel2,
+        "set1": schemeSet1,
+        "set2": schemeSet2,
+        "set3": schemeSet3,
+        "tableau10": schemeTableau10,
     }
 
     const yValue = d => d.value
 
     //select tooltipWrapper element on page
-    const tooltipWrapper = d3.select('#chart-tt-wrapper');
+    const tooltipWrapper = select('#chart-tt-wrapper');
 
     //make sure it is empty
     tooltipWrapper.html("");
@@ -99,12 +115,12 @@ export const barchart = (selection, props) => {
         tooltip.style('visibility', 'visible');
     }
     function mousemove(){
-        let d = d3.select(this).data()[0]
+        let d = select(this).data()[0]
         tooltip
         .html(xaxisText + ': ' + d.key + '</br></br>' 
                 + yaxisText + ': ' + d.value)
-        .style('left', (d3.event.pageX) + 'px')
-        .style('top', (d3.event.pageY) + 'px');
+        .style('left', (event.pageX) + 'px')
+        .style('top', (event.pageY) + 'px');
     }
     function mouseout(){
         tooltip.style('visibility', 'hidden');
@@ -113,17 +129,17 @@ export const barchart = (selection, props) => {
 	const innerWidth = svgWidth - svgMarginLeft - svgMarginRight;
     const innerHeight = svgHeight - svgMarginTop - svgMarginBottom;
   
-    const xScale = d3.scaleBand()
+    const xScale = scaleBand()
         .range([0, innerWidth])
         .domain(data.map((d) => d.key))
         .padding(0.3);
   
-    const yScale = d3.scaleLinear()
+    const yScale = scaleLinear()
         .range([innerHeight, 0])
-        .domain([0, d3.max(data, yValue)])
+        .domain([0, max(data, yValue)])
             .nice();
   
-    const colorScale = d3.scaleOrdinal(colorDict[`${colorscheme}`])
+    const colorScale = scaleOrdinal(colorDict[`${colorscheme}`])
         .domain(data.map(d => d.key));
 
     const background = selection.selectAll('.backgroundBarChart').data([null]);
@@ -146,22 +162,22 @@ export const barchart = (selection, props) => {
 
 
     const formatLarge = number =>
-        d3.format('~s')(number)
+        format('~s')(number)
         .replace('G', ' Mrd.')
         .replace('M', ' Mio.')
         .replace('k', ' Tsd.');
          
-    const formatSmall = d3.format('~f');
+    const formatSmall = format('~f');
        
     let customFormat = function(val) { 
         return Math.abs(val) < 1 ? formatSmall(val) : formatLarge(val);
     };
 
-    const xAxis = d3.axisBottom(xScale)
+    const xAxis = axisBottom(xScale)
         //.tickSize(-innerHeight)
         .tickPadding(10);
   
- 	const yAxis = d3.axisLeft(yScale)
+ 	const yAxis = axisLeft(yScale)
         .tickFormat(customFormat)
         .tickSize(-innerWidth)
         .tickPadding(10);
@@ -280,13 +296,13 @@ export const barchart = (selection, props) => {
         .on('mouseout', mouseout)
         .on('mouseenter', function(actual, i){
     		//Alle Rechtecke werden durchsichtig
-  			d3.selectAll('.bar')
+  			selectAll('.bar')
     			.attr('opacity', 0.7);
     		//Value der Bar wird unsichtbar wenn über Bar gehovert
-    		d3.selectAll('.barValue')
+    		selectAll('.barValue')
     			.attr('opacity', 0);
     		//gehoverte Bar wird ausgewählt und undurchsichtig gemacht
-    		d3.select(this)
+    		select(this)
     			.attr('opacity', 1)
     			//Animation
                 .transition()
@@ -323,14 +339,14 @@ export const barchart = (selection, props) => {
   	    })
         .on('mouseleave', function () {
             //alle Bars wieder undurchsichtig
-            d3.selectAll('.bar')
+            selectAll('.bar')
                 .attr('opacity', 1);
             //Value der Bar wird sichtbar gemacht
-            d3.selectAll('.barValue')
+            selectAll('.barValue')
                 .attr('opacity', 1);
                 
             //gehoverte Rechteck wieder auf normal Größe schrumpfen
-            d3.select(this)
+            select(this)
                 .transition()
                 .duration(300);
             //.attr('opacity', 1)
@@ -338,7 +354,7 @@ export const barchart = (selection, props) => {
             //.attr('width', xScale.bandwidth())
 
                 //Differenzwerte löschen
-            d3.selectAll('.divergence').remove();
+            selectAll('.divergence').remove();
         })
         .transition().duration(1000) //muss hinter den Mausfunktionen stehen
         .attr('opacity', 1);

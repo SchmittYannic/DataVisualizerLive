@@ -1,4 +1,11 @@
-import * as d3 from "d3";
+import { select, event, mouse } from "d3-selection";
+import { scaleTime, scaleLinear } from "d3-scale";
+import { format } from "d3-format";
+import { timeFormat } from "d3-time-format"
+import { axisBottom, axisLeft } from "d3-axis";
+import { max, extent } from "d3-array";
+import { area, line } from "d3-shape";
+
 
 export const areachart = (selection, props) => {
 	const { settingsRef, data, pathdata } = props;
@@ -60,7 +67,7 @@ export const areachart = (selection, props) => {
     const yValue = d => d[yColumn];
 
     //select tooltipWrapper element on page
-    const tooltipWrapper = d3.select('#chart-tt-wrapper');
+    const tooltipWrapper = select('#chart-tt-wrapper');
 
     //make sure it is empty
     tooltipWrapper.html("");
@@ -95,27 +102,27 @@ export const areachart = (selection, props) => {
         tooltip.style('visibility', 'visible');
     }
     function mousemove(){
-        var x0 = xScale.invert(d3.mouse(this)[0]);
-        var formatTime = d3.timeFormat("%H:%M %A %d.%m.%Y");
+        var x0 = xScale.invert(mouse(this)[0]);
+        var formatTime = timeFormat("%H:%M %A %d.%m.%Y");
         var x0formated = formatTime(x0);
         
-        var y0 = yScale.invert(d3.mouse(this)[1]);
+        var y0 = yScale.invert(mouse(this)[1]);
         var y0rounded = Math.round((y0 + Number.EPSILON) * 100) / 100;
         
         tooltip
             .html(yaxisText + ': ' + y0rounded + '</br></br>' + xaxisText + ': ' + x0formated)
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) + 'px');
+            .style('left', (event.pageX) + 'px')
+            .style('top', (event.pageY) + 'px');
     }
     function mousemoveDatapoint(){
-        var d = d3.select(this).data()[0];
-        var formatTime = d3.timeFormat("%H:%M %A %d.%m.%Y");
+        var d = select(this).data()[0];
+        var formatTime = timeFormat("%H:%M %A %d.%m.%Y");
         var formated = formatTime(d[xColumn]);
         
         tooltip
             .html('<b><u>Datenpunkt</u></b> </br>' + yaxisText + ': ' + d[yColumn] + '</br></br>' + xaxisText + ': ' + formated)
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) + 'px');
+            .style('left', (event.pageX) + 'px')
+            .style('top', (event.pageY) + 'px');
     }
     function mouseout(){
         tooltip.style('visibility', 'hidden');
@@ -126,12 +133,12 @@ export const areachart = (selection, props) => {
   
     const duration = 1000;
   
-    const xScale = d3.scaleTime()
-        .domain(d3.extent(data, xValue))
+    const xScale = scaleTime()
+        .domain(extent(data, xValue))
         .range([0, innerWidth]);
   
-    const yScale = d3.scaleLinear()
-        .domain([0, d3.max(data, yValue)])
+    const yScale = scaleLinear()
+        .domain([0, max(data, yValue)])
         .range([innerHeight, 0])
         .nice();
 
@@ -153,17 +160,17 @@ export const areachart = (selection, props) => {
                 `translate(${svgMarginLeft},${svgMarginTop})`);
   
     const axisTickFormat = number =>
-        d3.format('~s')(number)
+        format('~s')(number)
             .replace('G', ' Mrd.')
             .replace('M', ' Mio.')
             .replace('k', ' Tsd.');
   
-    const xAxis = d3.axisBottom(xScale)
-        .tickFormat(d3.timeFormat("%d.%m.%Y"))
+    const xAxis = axisBottom(xScale)
+        .tickFormat(timeFormat("%d.%m.%Y"))
         .tickSize(-innerHeight)
         .tickPadding(20);
   
- 	const yAxis = d3.axisLeft(yScale)
+ 	const yAxis = axisLeft(yScale)
         .tickFormat(axisTickFormat)
         .tickSize(-innerWidth)
         .tickPadding(10);
@@ -271,7 +278,7 @@ export const areachart = (selection, props) => {
             .attr("font-family", fontFamily);
       
 	
-    const areaGenerator = d3.area()
+    const areaGenerator = area()
         .x(d => xScale(xValue(d)))
         .y0(innerHeight)
         .y1(d => yScale(yValue(d)));
@@ -292,7 +299,7 @@ export const areachart = (selection, props) => {
 
     areas.exit().remove();
   
-    const lineGenerator = d3.line()
+    const lineGenerator = line()
         .x(d => xScale(xValue(d)))
         .y(d => yScale(yValue(d)));
 
@@ -327,7 +334,7 @@ export const areachart = (selection, props) => {
             .attr('cy', d => yScale(yValue(d)))
             .attr('cx', d => xScale(xValue(d)))
             .attr('data-x', d => {
-                var formatTime = d3.timeFormat("%H:%M %A %d.%m.%Y");
+                var formatTime = timeFormat("%H:%M %A %d.%m.%Y");
                 return formatTime(d[xColumn]);
             })
             .attr('data-y', d => d[yColumn])
