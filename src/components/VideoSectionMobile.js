@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import VideoProgress from "./VideoProgress";
+import VideoProgress from "components/VideoProgress";
 import {
     isection_upload_480x920,
     isection_data_480x920,

@@ -5,7 +5,7 @@ import {
     vsection_data_1024x768,
     vsection_vis_1024x768,
 } from "assets";
-import VideoProgress from "./VideoProgress";
+import VideoProgress from "components/VideoProgress";
 import "./VideoSection.css";
 
 const VideoSection = () => {
