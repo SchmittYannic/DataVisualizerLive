@@ -2,7 +2,8 @@ import { useEffect, useRef, useState, useLayoutEffect, lazy } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { ChartSettingsMobile, ChartSettingsDesktop } from "features/chartsettings";
+import ChartSettingsDesktop from "features/chartsettings/ChartSettingsDesktop";
+import ChartSettingsMobile from "features/chartsettings/ChartSettingsMobile";
 import { useData, useWindowSize, useIsOverflow } from "hooks";
 import { saveSvg } from "features/charts/saveSvg";
 import { renderChart } from "features/charts/renderChart";
