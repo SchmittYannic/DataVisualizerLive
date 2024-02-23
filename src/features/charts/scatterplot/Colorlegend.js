@@ -1,4 +1,4 @@
-export const colorlegend = (selection, props) => {
+const colorlegend = (selection, props) => {
     const {
         colorScale,
         positionX,
@@ -74,3 +74,5 @@ export const colorlegend = (selection, props) => {
             .transition().duration(2500)
             .attr('opacity', '1');
 };
+
+export default colorlegend
