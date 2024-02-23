@@ -1,6 +1,6 @@
-import { select, selectAll } from "d3-selection";
-import { nest } from "d3-collection";
-import { ascending , min, max, quantile } from "d3-array";
+import { select as d3select, selectAll as d3selectAll } from "d3-selection";
+import { nest as d3nest } from "d3-collection";
+import { ascending as d3ascending, min as d3min, max as d3max, quantile as d3quantile } from "d3-array";
 
 import { barchart } from "./barchart/BarchartLogic";
 import { piechart } from "./piechart/PiechartLogic";
@@ -17,7 +17,7 @@ export const renderChart = (settingsRef, dataAsJSON) => {
     const charttype = settingsRef.current.charttype;
     const { xColumn, zGrouping } = settingsRef.current.dataInput;
     const { svgWidth, svgHeight } = settingsRef.current.dimensions;
-    const svg = select(`#${charttype}SVG`);
+    const svg = d3select(`#${charttype}SVG`);
 
     switch(charttype) {
         case "barchart":
@@ -54,9 +54,9 @@ export const renderChart = (settingsRef, dataAsJSON) => {
     }
 
     function renderPiechart() {
-        selectAll('.slice').remove();
-        selectAll('polyline').remove();
-        selectAll('.sliceLabel').remove();
+        d3selectAll('.slice').remove();
+        d3selectAll('polyline').remove();
+        d3selectAll('.sliceLabel').remove();
 
         const abs = calcAbs();
         svg.call(piechart, {settingsRef, data: abs});
@@ -85,7 +85,7 @@ export const renderChart = (settingsRef, dataAsJSON) => {
 
     function renderLinechart() {
         const SortedData = sortByKey(dataAsJSON, xColumn);
-        const pathdata = nest()
+        const pathdata = d3nest()
             .key(function(d) { return d})  
             .entries(SortedData);
 
@@ -114,7 +114,7 @@ export const renderChart = (settingsRef, dataAsJSON) => {
 
     function renderAreachart() {
         const SortedData = sortByKey(dataAsJSON, xColumn);
-        const pathdata = nest()
+        const pathdata = d3nest()
             .key(function(d) { return d})  
             .entries(SortedData);
 
@@ -142,21 +142,21 @@ export const renderChart = (settingsRef, dataAsJSON) => {
     }
 
     function calcAbs() {
-        const abs = nest().key(d => d[xColumn]).rollup(d => d.length).entries(dataAsJSON);
+        const abs = d3nest().key(d => d[xColumn]).rollup(d => d.length).entries(dataAsJSON);
         return abs.sort( (a, b) => b.value - a.value );
     }
 
     function calcBoxplotStats() {
         const calcStats = d => {
             const array = d.map(e => e[xColumn]);
-            const q1 = quantile(array.sort(ascending),.25);
-            const median = quantile(array.sort(ascending),.5);
-            const q3 = quantile(array.sort(ascending),.75);
+            const q1 = d3quantile(array.sort(d3ascending),.25);
+            const median = d3quantile(array.sort(d3ascending),.5);
+            const q3 = d3quantile(array.sort(d3ascending),.75);
             const iqr = q3 - q1;
             const lowerIqr = q1 - 1.5 * iqr;
             const upperIqr = q3 + 1.5 * iqr;
-            const minimun = min(array);
-            const maximum = max(array);
+            const min = d3min(array);
+            const max = d3max(array);
             const lowOutlier = array.filter(outlier => outlier < lowerIqr);
             const highOutlier = array.filter(outlier => outlier > upperIqr);
             const skewness = calcSkewness(array);
@@ -168,8 +168,8 @@ export const renderChart = (settingsRef, dataAsJSON) => {
                 iqr: iqr,
                 lowerIqr: lowerIqr,
                 upperIqr: upperIqr,
-                min: minimun,
-                max: maximum,
+                min: min,
+                max: max,
                 lowOutlier: lowOutlier,
                 highOutlier: highOutlier,
                 skewness: skewness,
@@ -180,9 +180,9 @@ export const renderChart = (settingsRef, dataAsJSON) => {
         let stats;
 
         if (zGrouping !== placeholderString){
-            stats = nest().key(d => d[zGrouping]).rollup(calcStats).entries(dataAsJSON);
+            stats = d3nest().key(d => d[zGrouping]).rollup(calcStats).entries(dataAsJSON);
         } else {
-            stats = nest().key(d => d).rollup(calcStats).entries(dataAsJSON);
+            stats = d3nest().key(d => d).rollup(calcStats).entries(dataAsJSON);
         }
 
         return stats;
