@@ -47,8 +47,8 @@
 }
 
 .chart-settings {
-    width: 400px;
-    height: 760px;
+    width: calc(var(--desktop-chart-settings-width) * 1px);
+    height: calc(var(--desktop-chart-settings-height) * 1px);
     position: absolute;
     top: 0;
     left: 0;

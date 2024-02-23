@@ -39,6 +39,8 @@
     --horizontal-scrollbar-height: 0;
     --homepage-guides: 1px dashed var(--border-color);
     --video-section-video-width: 1024px;
+    --desktop-chart-settings-height: 760;
+    --desktop-chart-settings-width: 400;
 }
 
 *, 
