@@ -38,7 +38,10 @@ const VideoProgress = ({ videoRef, fixDuration=null, vertical=true }) => {
                         className="progressbar-done"
                         initial={initial}
                         animate={animate}
-                        transition={{ duration: !fixDuration ? duration : fixDuration }}
+                        transition={{ 
+                            duration: !fixDuration ? duration : fixDuration, 
+                            ease: "linear"
+                        }}
                         layout
                     >
                     </motion.div>
