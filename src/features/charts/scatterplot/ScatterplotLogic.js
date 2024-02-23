@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { colorlegend } from "features/charts/scatterplot/colorlegend";
+import colorlegend from "features/charts/scatterplot/colorlegend";
 
 export const scatterplot = (selection, props) => {
     const { settingsRef, data, placeholderString } = props;
