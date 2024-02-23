@@ -4,10 +4,8 @@ import { useInView } from "react-intersection-observer";
 import Lottie from "lottie-react";
 
 import { chartLottie, lightningLottie, settingLottie } from "assets";
-import {
-    HeroChartAnimation,
-} from "components";
-import { useWindowSize } from "hooks";
+import HeroChartAnimation from "components/HeroChartAnimation";
+import useWindowSize from "hooks/useWindowSize";
 import "./Homepage.css";
 
 const LazyVideoSection = lazy(() => import("components/VideoSection"));
