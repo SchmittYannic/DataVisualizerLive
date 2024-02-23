@@ -250,7 +250,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .main-visualization .expandable-side-menu-content {
-    min-height: min(758px, 100vh);
+    min-height: min(calc(var(--desktop-chart-settings-height) * 1px), 100vh);
 }
 
 .main-visualization .expandable-side-menu.expanded .expandable-side-menu-content {
