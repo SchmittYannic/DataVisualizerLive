@@ -164,7 +164,7 @@ const ChartSettings = ({
                                     </motion.button>                                
                                 )
                             } else {
-                                <></>
+                                return <></>
                             }
                         })}
                     </>
