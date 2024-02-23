@@ -2,6 +2,13 @@ import { useEffect, useRef, useState, useLayoutEffect, lazy } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
+import Barchart from "features/charts/barchart/Barchart";
+import Piechart from "features/charts/piechart/Piechart";
+import Boxplot from "features/charts/boxplot/Boxplot";
+import Histogram from "features/charts/histogram/Histogram";
+import Scatterplot from "features/charts/scatterplot/Scatterplot";
+import Linechart from "features/charts/linechart/Linechart";
+import Areachart from "features/charts/areachart/Areachart";
 import ChartSettingsDesktop from "features/chartsettings/ChartSettingsDesktop";
 import ChartSettingsMobile from "features/chartsettings/ChartSettingsMobile";
 import { useData, useWindowSize, useIsOverflow } from "hooks";
@@ -10,13 +17,6 @@ import { renderChart } from "features/charts/renderChart";
 import { InfoBox } from "components/ui";
 import "./VisualizationStep.css";
 
-const LazyBarchart = lazy(() => import("features/charts/barchart/Barchart"));
-const LazyPiechart = lazy(() => import("features/charts/piechart/Piechart"));
-const LazyBoxplot = lazy(() => import("features/charts/boxplot/Boxplot"));
-const LazyHistogram = lazy(() => import("features/charts/histogram/Histogram"));
-const LazyScatterplot = lazy(() => import("features/charts/scatterplot/Scatterplot"));
-const LazyLinechart = lazy(() => import("features/charts/linechart/Linechart"));
-const LazyAreachart = lazy(() => import("features/charts/areachart/Areachart"));
 
 const VisualizationStep = () => {
     const { dataAsJSON, catColumns, fileIsUploaded } = useData();
@@ -186,13 +186,13 @@ const VisualizationStep = () => {
         return (
             <>
                 <main className="main-visualization">
-                    { selectedChart === "barchart" && <LazyBarchart dimensions={dimensions} settingsRef={settingsRef} />}
-                    { selectedChart === "piechart" && <LazyPiechart dimensions={dimensions} settingsRef={settingsRef} />}
-                    { selectedChart === "boxplot" && <LazyBoxplot dimensions={dimensions} settingsRef={settingsRef} />}
-                    { selectedChart === "histogram" && <LazyHistogram dimensions={dimensions} settingsRef={settingsRef} />}
-                    { selectedChart === "scatterplot" && <LazyScatterplot dimensions={dimensions} settingsRef={settingsRef} />}
-                    { selectedChart === "linechart" && <LazyLinechart dimensions={dimensions} settingsRef={settingsRef} />}
-                    { selectedChart === "areachart" && <LazyAreachart dimensions={dimensions} settingsRef={settingsRef} />}
+                    { selectedChart === "barchart" && <Barchart dimensions={dimensions} settingsRef={settingsRef} />}
+                    { selectedChart === "piechart" && <Piechart dimensions={dimensions} settingsRef={settingsRef} />}
+                    { selectedChart === "boxplot" && <Boxplot dimensions={dimensions} settingsRef={settingsRef} />}
+                    { selectedChart === "histogram" && <Histogram dimensions={dimensions} settingsRef={settingsRef} />}
+                    { selectedChart === "scatterplot" && <Scatterplot dimensions={dimensions} settingsRef={settingsRef} />}
+                    { selectedChart === "linechart" && <Linechart dimensions={dimensions} settingsRef={settingsRef} />}
+                    { selectedChart === "areachart" && <Areachart dimensions={dimensions} settingsRef={settingsRef} />}
 
                     {isMobile ? (
                         <ChartSettingsMobile
