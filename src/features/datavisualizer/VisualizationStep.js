@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useLayoutEffect, lazy } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
