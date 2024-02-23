@@ -47,7 +47,7 @@ const HeroChartAnimation = () => {
                                 duration: 1,
                             }}
                             src={images[item - 1]}
-                            alt=""
+                            alt={`Beispiel Diagramm ${item}`}
                         />
                     </motion.div>
                 )
