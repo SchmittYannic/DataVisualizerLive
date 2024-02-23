@@ -1,7 +1,5 @@
 import { toJSON, DataFrame } from "danfojs";
 import { useState, createContext, useEffect } from "react";
-import { AutoData } from "data/AutoData";
-import { WetterData } from "data/WetterData";
 import { placeholderString } from "constants";
 
 const initContextState = {
@@ -70,13 +68,35 @@ export const DataProvider = ({children}) => {
     useEffect(() => {
         if (demodata === "useAutoData") {
             setIsLoading(true);
-            const df = new DataFrame(AutoData);
-            setDataframe(df);
+
+            const fetchAutoData = async () => {
+                try {
+                    const response = await fetch(`${process.env.PUBLIC_URL}/data/AutoData.json`);
+                    const AutoData = await response.json();
+                    const df = new DataFrame(AutoData);
+                    setDataframe(df);
+                } catch (err) {
+                    console.log("Error occured loading AutoData");
+                }
+            }
+
+            fetchAutoData();
         }
         if(demodata === "useWetterData"){
             setIsLoading(true);
-            const df = new DataFrame(WetterData);
-            setDataframe(df);
+
+            const fetchWetterData = async () => {
+                try {
+                    const response = await fetch(`${process.env.PUBLIC_URL}/data/WetterData.json`);
+                    const WetterData = await response.json();
+                    const df = new DataFrame(WetterData);
+                    setDataframe(df);
+                } catch (err) {
+                    console.log("Error occured loading AutoData");
+                }
+            }
+
+            fetchWetterData();
         }
     }, [demodata]);
 
