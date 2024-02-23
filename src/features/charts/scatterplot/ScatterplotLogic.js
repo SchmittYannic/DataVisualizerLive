@@ -1,21 +1,5 @@
-import colorlegend from "features/charts/scatterplot/colorlegend";
-import {
-    schemeAccent,
-    schemeCategory10,
-    schemeDark2,
-    schemePaired,
-    schemePastel1,
-    schemePastel2,
-    schemeSet1,
-    schemeSet2,
-    schemeSet3,
-    schemeTableau10,
-} from "d3-scale-chromatic";
-import { select, selectAll, event } from "d3-selection";
-import { scaleLinear, scaleOrdinal } from "d3-scale";
-import { format } from "d3-format";
-import { axisBottom, axisLeft } from "d3-axis";
-import { extent } from "d3-array";
+import * as d3 from "d3";
+import { colorlegend } from "./Colorlegend";
 
 export const scatterplot = (selection, props) => {
     const { settingsRef, data, placeholderString } = props;
@@ -71,16 +55,16 @@ export const scatterplot = (selection, props) => {
     } = settingsRef.current.tooltip;
 
     const colorDict = {
-        "accent": schemeAccent,
-        "category10": schemeCategory10,
-        "dark2": schemeDark2,
-        "paired": schemePaired,
-        "pastel1": schemePastel1,
-        "pastel2": schemePastel2,
-        "set1": schemeSet1,
-        "set2": schemeSet2,
-        "set3": schemeSet3,
-        "tableau10": schemeTableau10,
+        "accent": d3.schemeAccent,
+        "category10": d3.schemeCategory10,
+        "dark2": d3.schemeDark2,
+        "paired": d3.schemePaired,
+        "pastel1": d3.schemePastel1,
+        "pastel2": d3.schemePastel2,
+        "set1": d3.schemeSet1,
+        "set2": d3.schemeSet2,
+        "set3": d3.schemeSet3,
+        "tableau10": d3.schemeTableau10,
     }
 
     const xValue = d => d[xColumn];
@@ -91,7 +75,7 @@ export const scatterplot = (selection, props) => {
     ///////////////////////////Tooltip//////////////////////////////
     ////////////////////////////////////////////////////////////////
     //select tooltipWrapper element on page
-    const tooltipWrapper = select('#chart-tt-wrapper')
+    const tooltipWrapper = d3.select('#chart-tt-wrapper')
 
     //make sure it is empty
     tooltipWrapper.html("")
@@ -126,18 +110,18 @@ export const scatterplot = (selection, props) => {
         tooltip.style('visibility', 'visible');
     }
     function mousemove(){
-        let d = select(this).data()[0]
+        let d = d3.select(this).data()[0]
     
         if (zGrouping === placeholderString) {
             tooltip
                 .html(yaxisText + ': ' + d[yColumn] + '</br></br>' + xaxisText + ': ' + d[xColumn])
-                .style('left', (event.pageX) + 'px')
-                .style('top', (event.pageY) + 'px');
+                .style('left', (d3.event.pageX) + 'px')
+                .style('top', (d3.event.pageY) + 'px');
         } else {
             tooltip
                 .html(yaxisText + ': ' + d[yColumn] + '</br></br>' + xaxisText + ': ' + d[xColumn] + '</br></br>' + zGrouping + ': ' + d[zGrouping])
-                .style('left', (event.pageX) + 'px')
-                .style('top', (event.pageY) + 'px');
+                .style('left', (d3.event.pageX) + 'px')
+                .style('top', (d3.event.pageY) + 'px');
         }
     }
     function mouseout(){
@@ -151,17 +135,17 @@ export const scatterplot = (selection, props) => {
     const innerWidth = svgWidth - svgMarginLeft - svgMarginRight;
     const innerHeight = svgHeight - svgMarginTop - svgMarginBottom;
     //x, y und colorScale
-    const xScale = scaleLinear()
-        .domain(extent(data, xValue))
+    const xScale = d3.scaleLinear()
+        .domain(d3.extent(data, xValue))
         .range([0, innerWidth])
         .nice();
   
-    const yScale = scaleLinear()
-        .domain(extent(data, yValue))
+    const yScale = d3.scaleLinear()
+        .domain(d3.extent(data, yValue))
             .range([innerHeight, 0])
         .nice();
   
-    const colorScale = scaleOrdinal(colorDict[`${colorscheme}`]);
+    const colorScale = d3.scaleOrdinal(colorDict[`${colorscheme}`]);
 
     const background = selection.selectAll('.backgroundScatterPlot').data([null]);
     background.enter().append('rect')
@@ -182,23 +166,23 @@ export const scatterplot = (selection, props) => {
             );
     //custom Format für Achsen
     const formatLarge = number =>
-        format('~s')(number)
+        d3.format('~s')(number)
             .replace('G', ' Mrd.')
             .replace('M', ' Mio.')
             .replace('k', ' Tsd.');
   
-    const formatSmall = format('~f');
+    const formatSmall = d3.format('~f');
 
     let customFormat = function(val) { 
         return Math.abs(val) < 1 ? formatSmall(val) : formatLarge(val);
     };
     //Erstellung und Hinzufügen der Achsen und Achsenbeschreibung
-    const xAxis = axisBottom(xScale)
+    const xAxis = d3.axisBottom(xScale)
         .tickFormat(customFormat)
         .tickSize(-innerHeight)
         .tickPadding(20);
   
- 	const yAxis = axisLeft(yScale)
+ 	const yAxis = d3.axisLeft(yScale)
         .tickFormat(customFormat)
         .tickSize(-innerWidth)
         .tickPadding(10);
@@ -362,7 +346,7 @@ export const scatterplot = (selection, props) => {
     //Hinzufügen der Legende
     if (zGrouping !== placeholderString){
         //Hinzufügen der Legende, wenn Gruppierung gewählt
-        const svg = select('#scatterplot svg');
+        const svg = d3.select('#scatterplot svg');
         svg.call(colorlegend, {
             colorScale: colorScale,
             positionX: innerWidth + svgMarginLeft + svgMarginRight / 4,
@@ -377,7 +361,7 @@ export const scatterplot = (selection, props) => {
         });
     } else {
         //löschen der Legend, wenn keine Gruppierung ausgewählt wurde
-        selectAll('.legendScatterPlot').remove()
+        d3.selectAll('.legendScatterPlot').remove()
     }
     ////////////////////////////////////////////////////////////////
     /////////////////////////Zoom Funktionalität////////////////////

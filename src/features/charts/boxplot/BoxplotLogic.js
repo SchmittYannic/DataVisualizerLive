@@ -1,20 +1,4 @@
-import {
-    schemeAccent,
-    schemeCategory10,
-    schemeDark2,
-    schemePaired,
-    schemePastel1,
-    schemePastel2,
-    schemeSet1,
-    schemeSet2,
-    schemeSet3,
-    schemeTableau10,
-} from "d3-scale-chromatic";
-import { select, selectAll, event } from "d3-selection";
-import { scaleBand, scaleLinear, scaleOrdinal } from "d3-scale";
-import { format } from "d3-format";
-import { axisBottom, axisLeft } from "d3-axis";
-import { max, min } from "d3-array";
+import * as d3 from "d3";
 
 export const boxplot = (selection, props) => {
 	const { settingsRef, data } = props;
@@ -68,16 +52,16 @@ export const boxplot = (selection, props) => {
     } = settingsRef.current.tooltip;
 
     const colorDict = {
-        "accent": schemeAccent,
-        "category10": schemeCategory10,
-        "dark2": schemeDark2,
-        "paired": schemePaired,
-        "pastel1": schemePastel1,
-        "pastel2": schemePastel2,
-        "set1": schemeSet1,
-        "set2": schemeSet2,
-        "set3": schemeSet3,
-        "tableau10": schemeTableau10,
+        "accent": d3.schemeAccent,
+        "category10": d3.schemeCategory10,
+        "dark2": d3.schemeDark2,
+        "paired": d3.schemePaired,
+        "pastel1": d3.schemePastel1,
+        "pastel2": d3.schemePastel2,
+        "set1": d3.schemeSet1,
+        "set2": d3.schemeSet2,
+        "set3": d3.schemeSet3,
+        "tableau10": d3.schemeTableau10,
     }
 
     //styling
@@ -87,7 +71,7 @@ export const boxplot = (selection, props) => {
     const outlierStrokeColor = "black";
 
     //select tooltipWrapper element on page
-    const tooltipWrapper = select("#chart-tt-wrapper");
+    const tooltipWrapper = d3.select("#chart-tt-wrapper");
 
     //make sure it is empty
     tooltipWrapper.html("");
@@ -120,13 +104,13 @@ export const boxplot = (selection, props) => {
   
     function mouseover(){
         tooltip.style('visibility', 'visible');
-        selectAll('.iqr').attr('opacity', '0.7');
-        selectAll('.highOutlier').attr('opacity', '0.7');
-        selectAll('.lowOutlier').attr('opacity', '0.7');
-        select(this).attr('opacity', '1');
+        d3.selectAll('.iqr').attr('opacity', '0.7');
+        d3.selectAll('.highOutlier').attr('opacity', '0.7');
+        d3.selectAll('.lowOutlier').attr('opacity', '0.7');
+        d3.select(this).attr('opacity', '1');
     }
     function mousemoveIqr(){
-        let d = select(this).data()[0];
+        let d = d3.select(this).data()[0];
         tooltip
             .html('Maximum: ' + Math.round((d.value.max + Number.EPSILON) * 100) / 100 + '</br>' +
                 '3.Quantil: ' + Math.round((d.value.q3 + Number.EPSILON) * 100) / 100 + '</br>' +
@@ -135,23 +119,23 @@ export const boxplot = (selection, props) => {
                 'Minimum: ' + Math.round((d.value.min + Number.EPSILON) * 100) / 100 + '</br>' +
                 'Schiefe: ' + Math.round((d.value.skewness + Number.EPSILON) * 100) / 100 + '</br>' +
                 'Wölbung: ' + Math.round((d.value.kurtosis + Number.EPSILON) * 100) / 100)
-            .style('left', (event.pageX) + 'px')
-            .style('top', (event.pageY) + 'px');
+            .style('left', (d3.event.pageX) + 'px')
+            .style('top', (d3.event.pageY) + 'px');
     }
     function mouseout(){
         tooltip.style('visibility', 'hidden');
-        selectAll('.iqr').attr('opacity', '1');
-        selectAll('.highOutlier').attr('opacity', '1');
-        selectAll('.lowOutlier').attr('opacity', '1');
+        d3.selectAll('.iqr').attr('opacity', '1');
+        d3.selectAll('.highOutlier').attr('opacity', '1');
+        d3.selectAll('.lowOutlier').attr('opacity', '1');
     }
 
     function mousemoveCircle(){
-        let d = yScale.invert(select(this).attr('cy'));
+        let d = yScale.invert(d3.select(this).attr('cy'));
         
         tooltip
             .html('Ausreißer: ' + Math.round((d + Number.EPSILON) * 100) / 100)
-            .style('left', (event.pageX) + 'px')
-            .style('top', (event.pageY) + 'px');
+            .style('left', (d3.event.pageX) + 'px')
+            .style('top', (d3.event.pageY) + 'px');
     }
 
   
@@ -163,17 +147,17 @@ export const boxplot = (selection, props) => {
     const arrayOfMinimum = data.map(d => d.value.min);
     const arrayOfMaximum = data.map(d => d.value.max);
   
-    const yScale = scaleLinear()
+    const yScale = d3.scaleLinear()
         .range([innerHeight, 0])
-        .domain([min(arrayOfMinimum), max(arrayOfMaximum)])
+        .domain([d3.min(arrayOfMinimum), d3.max(arrayOfMaximum)])
         .nice();
 
-    const xScale = scaleBand()
+    const xScale = d3.scaleBand()
         .range([0, innerWidth])
         .domain(data.map(d => d.key))
         .padding(0.6);
   
-    const colorScale = scaleOrdinal(colorDict[`${colorscheme}`])
+    const colorScale = d3.scaleOrdinal(colorDict[`${colorscheme}`])
         .domain(data.map(d => d.key));
 
     const background = selection.selectAll('.backgroundBoxplot').data([null]);
@@ -195,21 +179,21 @@ export const boxplot = (selection, props) => {
             );
 
     const formatLarge = d =>
-        format('~s')(d)
+        d3.format('~s')(d)
         .replace('G', ' Mrd.')
         .replace('M', ' Mio.')
         .replace('k', ' Tsd.');
          
-    const formatSmall = format('~f');
+    const formatSmall = d3.format('~f');
        
     let customFormat = function(d) { 
         return Math.abs(d) < 1 ? formatSmall(d) : formatLarge(d);
     };
   
-    const xAxis = axisBottom(xScale)
+    const xAxis = d3.axisBottom(xScale)
         .tickPadding(10);
 
-    const yAxis = axisLeft(yScale)
+    const yAxis = d3.axisLeft(yScale)
         .tickFormat(customFormat)
         .tickSize(-innerWidth)
         .tickPadding(10);
@@ -368,8 +352,8 @@ export const boxplot = (selection, props) => {
             .style('stroke', 'black')
             .attr('x1', d => xScale(d.key))
             .attr('x2', d => xScale(d.key) + xScale.bandwidth())
-            .attr('y1', d => yScale(min([d.value.max, d.value.upperIqr])))
-            .attr('y2', d => yScale(min([d.value.max, d.value.upperIqr])))
+            .attr('y1', d => yScale(d3.min([d.value.max, d.value.upperIqr])))
+            .attr('y2', d => yScale(d3.min([d.value.max, d.value.upperIqr])))
             .transition().duration(duration)
             .attr('opacity', 1);
     upperWhiskerHor.exit().remove();
@@ -381,8 +365,8 @@ export const boxplot = (selection, props) => {
             .style('stroke', 'black')
             .attr('x1', d => xScale(d.key))
             .attr('x2', d => xScale(d.key) + xScale.bandwidth())
-            .attr('y1', d => yScale(max([d.value.min, d.value.lowerIqr])))
-            .attr('y2', d => yScale(max([d.value.min, d.value.lowerIqr])))
+            .attr('y1', d => yScale(d3.max([d.value.min, d.value.lowerIqr])))
+            .attr('y2', d => yScale(d3.max([d.value.min, d.value.lowerIqr])))
             .transition().duration(duration)
             .attr('opacity', 1);
     lowerWhiskerHor.exit().remove();
@@ -395,7 +379,7 @@ export const boxplot = (selection, props) => {
             .attr('x1', d => xScale(d.key) + xScale.bandwidth() / 2)
             .attr('x2', d => xScale(d.key) + xScale.bandwidth() / 2)
             .attr('y1', d => yScale(d.value.q3))
-            .attr('y2', d => yScale(min([d.value.max, d.value.upperIqr])))
+            .attr('y2', d => yScale(d3.min([d.value.max, d.value.upperIqr])))
             .transition().duration(duration)
             .attr('opacity', 1);
     upperWhiskerVert.exit().remove();
@@ -408,7 +392,7 @@ export const boxplot = (selection, props) => {
             .attr('x1', d => xScale(d.key) + xScale.bandwidth() / 2)
             .attr('x2', d => xScale(d.key) + xScale.bandwidth() / 2)
             .attr('y1', d => yScale(d.value.q1))
-            .attr('y2', d => yScale(max([d.value.min, d.value.lowerIqr])))
+            .attr('y2', d => yScale(d3.max([d.value.min, d.value.lowerIqr])))
             .transition().duration(duration)
             .attr('opacity', 1);
     lowerWhiskerVert.exit().remove();

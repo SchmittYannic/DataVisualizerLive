@@ -1,8 +1,4 @@
-import { select, selectAll, event } from "d3-selection";
-import { scaleLinear } from "d3-scale";
-import { format } from "d3-format";
-import { axisBottom, axisLeft } from "d3-axis";
-import { extent, max, histogram as d3histogram } from "d3-array";
+import * as d3 from "d3";
 
 export const histogram = (selection, props) => {
     const { settingsRef, data } = props;
@@ -56,7 +52,7 @@ export const histogram = (selection, props) => {
     const xValue = d => d[xColumn];
 
     //select tooltipWrapper element on page
-    const tooltipWrapper = select("#chart-tt-wrapper");
+    const tooltipWrapper = d3.select("#chart-tt-wrapper");
 
     //make sure it is empty
     tooltipWrapper.html("");
@@ -89,41 +85,41 @@ export const histogram = (selection, props) => {
 
     function mouseover(){
         tooltip.style('visibility', 'visible');
-        selectAll('.histBar').attr('opacity', '0.7');
-        select(this).attr('opacity', '1');
+        d3.selectAll('.histBar').attr('opacity', '0.7');
+        d3.select(this).attr('opacity', '1');
     };
     function mousemove(){
-        var d = select(this).data()[0];
+        var d = d3.select(this).data()[0];
 
         tooltip
             .html(xaxisText + ': ' + d.x0 + ' - ' + d.x1 + '</br></br>'
                     +	yaxisText + ': ' + d.length)
-            .style('left', (event.pageX) + 'px')
-            .style('top', (event.pageY) + 'px');
+            .style('left', (d3.event.pageX) + 'px')
+            .style('top', (d3.event.pageY) + 'px');
     };
     function mouseout(){
         tooltip.style('visibility', 'hidden');
-        selectAll('.histBar').attr('opacity', '1');
+        d3.selectAll('.histBar').attr('opacity', '1');
     };
 
     const innerWidth = svgWidth - svgMarginLeft - svgMarginRight;
     const innerHeight = svgHeight - svgMarginTop - svgMarginBottom;
 
-    const xScale = scaleLinear()
-        .domain(extent(data, xValue))	
+    const xScale = d3.scaleLinear()
+        .domain(d3.extent(data, xValue))	
         .range([0, innerWidth])
         .nice();
 
-    let createHistogram = d3histogram()
+    let histogram = d3.histogram()
         .value(xValue)
         .domain(xScale.domain())
         .thresholds(xScale.ticks(binNumber));
 
-    let bins = createHistogram(data);
+    let bins = histogram(data);
 
-    const yScale = scaleLinear()
+    const yScale = d3.scaleLinear()
         .range([innerHeight, 0])
-        .domain([0, max(bins, d => d.length)]);
+        .domain([0, d3.max(bins, d => d.length)]);
 
     const background = selection.selectAll('.backgroundHistogramChart').data([null]);
     background.enter().append('rect')
@@ -145,23 +141,23 @@ export const histogram = (selection, props) => {
                 );
 
     const formatLarge = number =>
-        format('~s')(number)
+        d3.format('~s')(number)
             .replace('G', ' Mrd.')
             .replace('M', ' Mio.')
             .replace('k', ' Tsd.');
 
-    const formatSmall = format('~f');
+    const formatSmall = d3.format('~f');
 
     var customFormat = function(val) { 
         return Math.abs(val) < 1 ? formatSmall(val) : formatLarge(val);
     };
 
-    const xAxis = axisBottom(xScale)
+    const xAxis = d3.axisBottom(xScale)
         .tickFormat(customFormat)	
         .tickPadding(20)
         .ticks(binNumber);
 
-    const yAxis = axisLeft(yScale)
+    const yAxis = d3.axisLeft(yScale)
         .tickFormat(customFormat)
         .tickSize(-innerWidth)
         .tickPadding(10);

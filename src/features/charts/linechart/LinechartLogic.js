@@ -1,12 +1,4 @@
-import { select, event, mouse, selectAll } from "d3-selection";
-import { scaleTime, scaleLinear } from "d3-scale";
-import { format } from "d3-format";
-import { timeFormat } from "d3-time-format"
-import { axisBottom, axisLeft } from "d3-axis";
-import { extent } from "d3-array";
-import { line } from "d3-shape";
-import { interpolateString } from "d3-interpolate";
-
+import * as d3 from "d3";
 
 export const linechart = (selection, props) => {
 	const { settingsRef, data, pathdata } = props;
@@ -67,7 +59,7 @@ export const linechart = (selection, props) => {
     const yValue = d => d[yColumn];
 
     //select tooltipWrapper element on page
-    const tooltipWrapper = select('#chart-tt-wrapper');
+    const tooltipWrapper = d3.select('#chart-tt-wrapper');
 
     //make sure it is empty
     tooltipWrapper.html("");
@@ -102,27 +94,27 @@ export const linechart = (selection, props) => {
         tooltip.style('visibility', 'visible');
     }
     function mousemove(){
-        var x0 = xScale.invert(mouse(this)[0]);
-        var formatTime = timeFormat("%H:%M %A %d.%m.%Y");
+        var x0 = xScale.invert(d3.mouse(this)[0]);
+        var formatTime = d3.timeFormat("%H:%M %A %d.%m.%Y");
         var x0formated = formatTime(x0);
         
-        var y0 = yScale.invert(mouse(this)[1]);
+        var y0 = yScale.invert(d3.mouse(this)[1]);
         var y0rounded = Math.round((y0 + Number.EPSILON) * 100) / 100;
         
         tooltip
             .html(yaxisText + ': ' + y0rounded + '</br></br>' + xaxisText + ': ' + x0formated)
-            .style('left', (event.pageX) + 'px')
-            .style('top', (event.pageY) + 'px');
+            .style('left', (d3.event.pageX) + 'px')
+            .style('top', (d3.event.pageY) + 'px');
     }
     function mousemoveDatapoint(){
-        var d = select(this).data()[0];
-        var formatTime = timeFormat("%H:%M %A %d.%m.%Y");
+        var d = d3.select(this).data()[0];
+        var formatTime = d3.timeFormat("%H:%M %A %d.%m.%Y");
         var formated = formatTime(d[xColumn]);
         
         tooltip
             .html('<b><u>Datenpunkt</u></b> </br>' + yaxisText + ': ' + d[yColumn] + '</br></br>' + xaxisText + ': ' + formated)
-            .style('left', (event.pageX) + 'px')
-            .style('top', (event.pageY) + 'px');
+            .style('left', (d3.event.pageX) + 'px')
+            .style('top', (d3.event.pageY) + 'px');
     }
     function mouseout(){
         tooltip.style('visibility', 'hidden');
@@ -133,13 +125,13 @@ export const linechart = (selection, props) => {
   
     const duration = 1000;
   
-    const xScale = scaleTime()
-        .domain(extent(data, xValue))
+    const xScale = d3.scaleTime()
+        .domain(d3.extent(data, xValue))
         .range([0, innerWidth]);
         //.nice();
   
-    const yScale = scaleLinear()
-        .domain(extent(data, yValue))
+    const yScale = d3.scaleLinear()
+        .domain(d3.extent(data, yValue))
         .range([innerHeight, 0])
         .nice();
 
@@ -161,17 +153,17 @@ export const linechart = (selection, props) => {
                 `translate(${svgMarginLeft},${svgMarginTop})`);
   
     const axisTickFormat = number =>
-        format('~s')(number)
+        d3.format('~s')(number)
             .replace('G', ' Mrd.')
             .replace('M', ' Mio.')
             .replace('k', ' Tsd.');
   
-    const xAxis = axisBottom(xScale)
-        .tickFormat(timeFormat("%d.%m.%Y"))
+    const xAxis = d3.axisBottom(xScale)
+        .tickFormat(d3.timeFormat("%d.%m.%Y"))
         .tickSize(-innerHeight)
         .tickPadding(20);
   
- 	const yAxis = axisLeft(yScale)
+ 	const yAxis = d3.axisLeft(yScale)
         .tickFormat(axisTickFormat)
         .tickSize(-innerWidth)
         .tickPadding(10);
@@ -279,7 +271,7 @@ export const linechart = (selection, props) => {
             .attr("font-family", fontFamily);
 
 	
-    const lineGenerator = line()
+    const lineGenerator = d3.line()
         .x(d => xScale(xValue(d)))
         .y(d => yScale(yValue(d)));
         //nicht verwenden, da linie nicht mehr durch Datenpunkte verläuft
@@ -316,7 +308,7 @@ export const linechart = (selection, props) => {
             .attr('cy', d => yScale(yValue(d)))
             .attr('cx', d => xScale(xValue(d)))
             .attr('data-x', d => {
-                var formatTime = timeFormat("%H:%M %A %d.%m.%Y");
+                var formatTime = d3.timeFormat("%H:%M %A %d.%m.%Y");
                 return formatTime(d[xColumn]);
             })
             .attr('data-y', d => d[yColumn])
@@ -327,7 +319,7 @@ export const linechart = (selection, props) => {
     
     circles.exit().remove();
   
-    selectAll('circle').raise();
+    d3.selectAll('circle').raise();
   
   
   
@@ -340,7 +332,7 @@ export const linechart = (selection, props) => {
     };
     function tweenDash() {
             var l = this.getTotalLength(),
-                i = interpolateString("0," + l, l + "," + l);
+                i = d3.interpolateString("0," + l, l + "," + l);
             return function (t) { return i(t);
         }
     };
