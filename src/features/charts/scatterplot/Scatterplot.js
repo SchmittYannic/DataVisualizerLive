@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import * as d3 from "d3";
+import { select } from "d3-selection";
 
 import { useData } from "hooks";
 import { renderChart } from "features/charts/renderChart";
@@ -16,7 +16,7 @@ const Scatterplot = ({ dimensions, settingsRef }) => {
             document.getElementById(id).textContent = "";
 
             //svg erstellen
-            d3.select(svgWrapperRef.current)
+            select(svgWrapperRef.current)
                 .append('svg')
                     .attr('aria-label', 'scatterplot')
                     .attr('id', `${id}SVG`)
