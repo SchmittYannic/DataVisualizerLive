@@ -1,21 +1,20 @@
-import { useState, Fragment, lazy } from "react";
+import { useState, Fragment } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaArrowRightLong } from "react-icons/fa6";
 
+import DimensionSettings from "features/chartsettings/DimensionSettings";
+import DataSettings from "features/chartsettings/DataSettings";
+import GeneralSettings from "features/chartsettings/GeneralSettings";
+import ElementSettings from "features/chartsettings/ElementSettings";
+import XAxisSettings from "features/chartsettings/XAxisSettings";
+import YAxisSettings from "features/chartsettings/YAxisSettings";
+import TickSettings from "features/chartsettings/TickSettings";
+import TitelSettings from "features/chartsettings/TitelSettings";
+import TooltipSettings from "features/chartsettings/TooltipSettings";
+import DownloadSettings from "features/chartsettings/DownloadSettings";
 import { useData, useWindowSize } from "hooks";
 import { placeholderString, defaultMultiAccordionState, ChartOptions, navigationTabName } from "constants";
 import BackButton from "features/chartsettings/BackButton";
-
-const DimensionSettings = lazy(() => import("features/chartsettings/DimensionSettings"));
-const DataSettings = lazy(() => import("features/chartsettings/DataSettings"));
-const GeneralSettings = lazy(() => import("features/chartsettings/GeneralSettings"));
-const ElementSettings = lazy(() => import("features/chartsettings/ElementSettings"));
-const XAxisSettings = lazy(() => import("features/chartsettings/XAxisSettings"));
-const YAxisSettings = lazy(() => import("features/chartsettings/YAxisSettings"));
-const TickSettings = lazy(() => import("features/chartsettings/TickSettings"));
-const TitelSettings = lazy(() => import("features/chartsettings/TitelSettings"));
-const TooltipSettings = lazy(() => import("features/chartsettings/TooltipSettings"));
-const DownloadSettings = lazy(() => import("features/chartsettings/DownloadSettings"));
 
 const ChartSettings = ({ 
     settingsRef,
