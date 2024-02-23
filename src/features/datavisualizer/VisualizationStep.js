@@ -26,6 +26,8 @@ const VisualizationStep = () => {
     const rootRef = useRef(document.getElementById("root"));
     const isOverflow = useIsOverflow(rootRef, false);
 
+    const desktopChartSettingsPosition = useRef(null);
+
     const defaultDimensions = {
         svgWidth: 1000,
         svgHeight: 600,
@@ -146,7 +148,7 @@ const VisualizationStep = () => {
     };
 
     const [selectedChart, setSelectedChart] = useState("barchart");   
-    const [isSettingsOpen, setIsSettingsOpen] = useState(true);
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
     
     const [dimensions, setDimensions] = useState(defaultDimensions);
     const settingsRef = useRef(defaultSettings);
@@ -166,7 +168,19 @@ const VisualizationStep = () => {
         } else {
             document.documentElement.style.setProperty("--horizontal-scrollbar-height", "16px");
         }
-    }, [isOverflow])
+    }, [isOverflow]);
+
+    useEffect(() => {
+        const body = document.body;
+
+        const settingsWidth = Number(getComputedStyle(document.documentElement).getPropertyValue("--desktop-chart-settings-width"));
+        const settingsHeight = Number(getComputedStyle(document.documentElement).getPropertyValue("--desktop-chart-settings-height"));
+
+        desktopChartSettingsPosition.current = {
+            y: body.scrollHeight / 2 - settingsHeight/2, 
+            x: body.scrollWidth / 2 - settingsWidth/2
+        }    
+    }, []);
 
     if (fileIsUploaded) {
         return (
@@ -192,6 +206,7 @@ const VisualizationStep = () => {
                                 isSettingsOpen &&
                                 
                                     <ChartSettingsDesktop 
+                                        settingsCurrentPosition={desktopChartSettingsPosition}
                                         settingsRef={settingsRef}
                                         setSelectedChart={setSelectedChart}
                                         setDimensions={setDimensions}

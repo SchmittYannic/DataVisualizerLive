@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDragControls, motion } from "framer-motion";
 import { RiDragMove2Fill } from "react-icons/ri";
 
@@ -6,12 +6,15 @@ import { ChartSettings, BackButton } from "features/chartsettings";
 import { useData } from "hooks";
 import { navigationTabName } from "constants";
 
-const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, setIsOpen }) => {
+const ChartSettingsDesktop = ({ settingsCurrentPosition, settingsRef, setSelectedChart, setDimensions, setIsOpen }) => {
     const { dataAsJSONLength } = useData();
     const controls = useDragControls();
     const draggableRef = useRef(null);
 
     const [activeTab, setActiveTab] = useState(navigationTabName);
+
+    const settingsWidth = Number(getComputedStyle(document.documentElement).getPropertyValue("--desktop-chart-settings-width"));
+    const settingsHeight = Number(getComputedStyle(document.documentElement).getPropertyValue("--desktop-chart-settings-height"));
 
     // get body and html element
     const body = document.body;
@@ -22,16 +25,13 @@ const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, se
     const maxWidth = Math.max( body.scrollWidth, body.offsetWidth,
         html.clientWidth, html.scrollWidth, html.offsetWidth );
 
-    //default position of chart-settings container
-    const settingsDefaultPosition = {
-        y: body.scrollHeight / 2 - 380, 
-        x: body.scrollWidth / 2 - 200
-    };
-    //initialize settingsCurrentPosition
-    const settingsCurrentPosition = {
-        y: 0,
-        x: 0,
-    };
+    const initialXPosition = !settingsCurrentPosition.current ? 0 
+        : settingsCurrentPosition.current.x + settingsWidth < body.scrollWidth ? settingsCurrentPosition.current.x 
+        : body.scrollWidth - settingsWidth;
+
+    const initialYPosition = !settingsCurrentPosition.current ? 0 
+        : settingsCurrentPosition.current.y + settingsHeight < body.scrollHeight ? settingsCurrentPosition.current.y 
+        : body.scrollHeight - settingsHeight;
 
     const startDrag = (event) => {
         controls.start(event)
@@ -49,9 +49,23 @@ const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, se
         const matchTranslateX = string.match(regexTranslateX);
         const matchTranslateY = string.match(regexTranslateY);
         //save the current position of settings
-        settingsCurrentPosition.x = matchTranslateX ? matchTranslateX[1] : 0;
-        settingsCurrentPosition.y = matchTranslateY ? matchTranslateY[1] : 0;
+        settingsCurrentPosition.current = {
+            x: matchTranslateX ? Number(matchTranslateX[1]) : 0,
+            y: matchTranslateY ? Number(matchTranslateY[1]) : 0,
+        }
     };
+
+    // force settings to close when window resizes. Window resize messes with the dragConstraints
+    // fix is to rerender the ChartSettings
+    useEffect(() => {
+        const forceSettingsClose = () => {
+            setIsOpen(false)
+        };
+
+        window.addEventListener("resize", forceSettingsClose);
+
+        return () => window.removeEventListener("resize", forceSettingsClose)
+    }, [setIsOpen]);
 
     if (dataAsJSONLength > 0) {
         return (
@@ -64,19 +78,19 @@ const ChartSettingsDesktop = ({ settingsRef, setSelectedChart, setDimensions, se
                 dragConstraints={{
                     top: 0,
                     left: 0,
-                    bottom: maxHeight - 760,
-                    right: maxWidth- 400,
+                    bottom: maxHeight - settingsHeight,
+                    right: maxWidth - settingsWidth,
                 }}
                 dragElastic={0}
                 initial={{ 
                     opacity: 1,
-                    x: settingsDefaultPosition.x,
-                    y: settingsDefaultPosition.y,
+                    x: initialXPosition,
+                    y: initialYPosition,
                 }}
                 exit={{ 
                     opacity: 0, 
-                    x: body.scrollWidth/2 - settingsCurrentPosition.x,
-                    y: body.scrollHeight/2 - settingsCurrentPosition.y,
+                    x: body.scrollWidth/2 - settingsWidth/2,
+                    y: body.scrollHeight - settingsHeight,
                 }}
                 transition={{ duration: 1}}
             >
