@@ -1,4 +1,3 @@
-import { toJSON, DataFrame } from "danfojs";
 import { useState, createContext, useEffect } from "react";
 import { placeholderString } from "constants";
 
@@ -66,38 +65,11 @@ export const DataProvider = ({children}) => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        if (demodata === "useAutoData") {
-            setIsLoading(true);
+        setIsLoading(true);
 
-            const fetchAutoData = async () => {
-                try {
-                    const response = await fetch(`${process.env.PUBLIC_URL}/data/AutoData.json`);
-                    const AutoData = await response.json();
-                    const df = new DataFrame(AutoData);
-                    setDataframe(df);
-                } catch (err) {
-                    console.log("Error occured loading AutoData");
-                }
-            }
-
-            fetchAutoData();
-        }
-        if(demodata === "useWetterData"){
-            setIsLoading(true);
-
-            const fetchWetterData = async () => {
-                try {
-                    const response = await fetch(`${process.env.PUBLIC_URL}/data/WetterData.json`);
-                    const WetterData = await response.json();
-                    const df = new DataFrame(WetterData);
-                    setDataframe(df);
-                } catch (err) {
-                    console.log("Error occured loading AutoData");
-                }
-            }
-
-            fetchWetterData();
-        }
+        import("context/functions").then(module => {
+            module.fetchTestData(demodata, setDataframe);
+        })
     }, [demodata]);
 
     useEffect(() => {
@@ -108,7 +80,10 @@ export const DataProvider = ({children}) => {
         }
         
         setFileIsUploaded(true);
-        setDataAsJSON(toJSON(dataframe));
+
+        import("context/functions").then(module => {
+            module.dataFrameToJSON(dataframe, setDataAsJSON);
+        })
 
         const columnNames = dataframe.columns;
         const uniqueColumns = dataframe.nUnique(0).$dataIncolumnFormat;
