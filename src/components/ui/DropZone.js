@@ -49,6 +49,7 @@ const DropZone = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        e.stopPropagation();
         if (!selectedFile) {
             alert("Keine Datei ausgewählt");
             return
@@ -71,19 +72,6 @@ const DropZone = () => {
                 setDataAsJSON(results.data);
             }
         });
-
-        // const df = await readCSV(selectedFile);
-        // console.log(df)
-
-        // if (df.index.length > 5000 || df.columns.length > 20) {
-        //     setIsLoading(false);
-        //     setSelectedFile(null);
-        //     alert("Datensatz zu groß! Da es sich um ein reines Frontend Projekt handelt, darf der Datensatz maximal 5.000 Zeilen und 20 Spalten enthalten. Dies soll ein Absturz des Browsers verhindern.")
-        //     return
-        // }
-        
-        // setDemodata("");
-        // setDataframe(df);
     }
 
     const handleLabelKeyDown = (e) => {
