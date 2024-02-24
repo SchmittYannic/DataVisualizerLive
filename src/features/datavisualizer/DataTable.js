@@ -11,7 +11,6 @@ import {
     flexRender,
 } from "@tanstack/react-table"
 import { MdSwapVert, MdArrowDownward, MdArrowUpward } from "react-icons/md"
-import { DataFrame } from "danfojs"
 
 import { useData, useWindowSize } from "hooks"
 import { Accordion, DebouncedInput, FilterTable } from "components/ui"
@@ -23,7 +22,7 @@ const DataTable = () => {
 
     const windowSize = useWindowSize();
     const isMobile = windowSize.width && windowSize.width < 850;
-    const { setDataframe, setIsLoading, dataAsJSON : data } = useData();
+    const { setDataAsJSON, setIsLoading, dataAsJSON : data } = useData();
 
     const [filterAccordionIsOpen, setFilterAccordionIsOpen] = useState(false);
     const [sortAccordionIsOpen, setIsSortAccordionIsOpen] = useState(false);
@@ -65,7 +64,11 @@ const DataTable = () => {
                 <label >
                     <input
                         value={value}
-                        onChange={e => setValue(e.target.value)}
+                        onChange={e => {
+                            const {value} = e.target;
+                            const valueAsNumber = Number(value);
+                            setValue(isNaN(valueAsNumber) ? value : valueAsNumber)
+                        }}
                         onBlur={onBlur}
                         title="Wert bearbeiten"
                         tabIndex={0}
@@ -130,9 +133,9 @@ const DataTable = () => {
                     }
                     return row
                 })
-                const newDf = new DataFrame(newData);
+                
                 setIsLoading(true);
-                setDataframe(newDf);
+                setDataAsJSON(newData);
             },
         },
         debugTable: false,
