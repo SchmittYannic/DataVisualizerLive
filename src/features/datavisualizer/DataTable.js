@@ -57,7 +57,8 @@ const DataTable = () => {
             };
 
             useEffect(() => {
-                setValue(initialValue);
+                const isNullOrUndefined = initialValue === null || initialValue === undefined;
+                setValue(isNullOrUndefined ? "" : initialValue);
             }, [initialValue]);
 
             return (
