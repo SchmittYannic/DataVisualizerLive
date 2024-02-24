@@ -99,42 +99,42 @@ export const DataProvider = ({children}) => {
         const columnNames = Object.keys(dataAsJSON[0]);
 
         // Function to count unique values, their data types, and the count of occurrences of each data type for each key
-        function countUniqueValuesAndTypes(objects) {
+        const countUniqueValuesAndTypes = (arrayOfObjects) => {
             const uniqueValuesInfo = {};
             
             // Iterate over each object
-            objects.forEach(obj => {
-            // Iterate over each key in the object
-            Object.keys(obj).forEach(key => {
-                // If the key doesn't exist in the uniqueValuesInfo object, initialize it
-                if (!uniqueValuesInfo[key]) {
-                    uniqueValuesInfo[key] = {
-                        uniqueValues: new Set(),
-                        typeCounts: {}
-                    };
-                }
-                
-                // Add the value of the key to the set to count unique values
-                uniqueValuesInfo[key].uniqueValues.add(obj[key]);
-                
-                const dataType = typeof obj[key];
-                // If field is not empty
-                if(!(dataType === "object" && obj[key] === null)) {
-                    // Count occurrences of each data type
-                    if (!uniqueValuesInfo[key].typeCounts[dataType]) {
-                        uniqueValuesInfo[key].typeCounts[dataType] = 1;
-                    } else {
-                        uniqueValuesInfo[key].typeCounts[dataType]++;
+            arrayOfObjects.forEach(obj => {
+                // Iterate over each key in the object
+                Object.keys(obj).forEach(key => {
+                    // If the key doesn't exist in the uniqueValuesInfo object, initialize it
+                    if (!uniqueValuesInfo[key]) {
+                        uniqueValuesInfo[key] = {
+                            uniqueValues: new Set(),
+                            typeCounts: {}
+                        };
                     }
-                } else {
-                    // else field is empty
-                    if (!uniqueValuesInfo[key].typeCounts["emptyField"]) {
-                        uniqueValuesInfo[key].typeCounts["emptyField"] = 1;
+                    
+                    // Add the value of the key to the set to count unique values
+                    uniqueValuesInfo[key].uniqueValues.add(obj[key]);
+                    
+                    const dataType = typeof obj[key];
+                    // If field is not empty
+                    if(!(dataType === "object" && obj[key] === null)) {
+                        // Count occurrences of each data type
+                        if (!uniqueValuesInfo[key].typeCounts[dataType]) {
+                            uniqueValuesInfo[key].typeCounts[dataType] = 1;
+                        } else {
+                            uniqueValuesInfo[key].typeCounts[dataType]++;
+                        }
                     } else {
-                        uniqueValuesInfo[key].typeCounts["emptyField"]++;
+                        // else field is empty
+                        if (!uniqueValuesInfo[key].typeCounts["emptyField"]) {
+                            uniqueValuesInfo[key].typeCounts["emptyField"] = 1;
+                        } else {
+                            uniqueValuesInfo[key].typeCounts["emptyField"]++;
+                        }
                     }
-                }
-            });
+                });
             });
             
             // Convert sets to array of unique values and object to array of type counts
