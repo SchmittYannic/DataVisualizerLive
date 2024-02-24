@@ -1,6 +1,7 @@
 .video-section {
     margin: 0 auto;
     max-width: var(--max-content-width);
+    min-height: unset;
 }
 
 .video-section-mobile {

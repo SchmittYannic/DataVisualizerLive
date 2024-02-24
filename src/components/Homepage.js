@@ -5,12 +5,21 @@ import Lottie from "lottie-react";
 
 import { chartLottie, lightningLottie, settingLottie } from "assets";
 import HeroChartAnimation from "components/HeroChartAnimation";
+import ClipLoader from "components/ui/ClipLoader"
 import useWindowSize from "hooks/useWindowSize";
 import "./Homepage.css";
 
 const VideoSection = lazy(() => import("components/VideoSection" /* webpackChunkName: "VideoSection" */));
 const VideoSectionMobile = lazy(() => import("components/VideoSectionMobile" /* webpackChunkName: "VideoSectionMobile" */));
 const BottomSection = lazy(() => import("components/BottomSection" /* webpackChunkName: "BottomSection" */));
+
+const Fallback = () => (
+    <div className="homepage-section-fallback">
+        <div className="cliploader-centered">
+            <ClipLoader loading={true} color="rgb(209,213,219)" size={50} />
+        </div>
+    </div>
+)
 
 const Homepage = () => {
 
@@ -119,7 +128,7 @@ const Homepage = () => {
                 windowSize.width > 1140 ? (
                     <section className="video-section" ref={videoSectionRef}>
                         {isVideoSectionInView && (
-                            <Suspense>
+                            <Suspense fallback={<Fallback />}>
                                 <VideoSection />
                             </Suspense>
                         )}
@@ -127,7 +136,7 @@ const Homepage = () => {
                 ) : (
                     <section className="video-section-mobile" ref={videoSectionRef}>
                         {isVideoSectionInView && (
-                            <Suspense>
+                            <Suspense fallback={<Fallback />}>
                                 <VideoSectionMobile />
                             </Suspense>
                         )}
@@ -137,7 +146,7 @@ const Homepage = () => {
 
             <section className="bottom-section" ref={bottomSectionRef}>
                 {isBottomSectionInView && (
-                    <Suspense>
+                    <Suspense fallback={<Fallback />}>
                         <BottomSection />
                     </Suspense>
                 )}
