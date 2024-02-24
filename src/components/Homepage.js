@@ -8,9 +8,9 @@ import HeroChartAnimation from "components/HeroChartAnimation";
 import useWindowSize from "hooks/useWindowSize";
 import "./Homepage.css";
 
-const LazyVideoSection = lazy(() => import("components/VideoSection"));
-const LazyVideoSectionMobile = lazy(() => import("components/VideoSectionMobile"));
-const LazyBottomSection = lazy(() => import("components/BottomSection"));
+const VideoSection = lazy(() => import("components/VideoSection" /* webpackChunkName: "VideoSection" */));
+const VideoSectionMobile = lazy(() => import("components/VideoSectionMobile" /* webpackChunkName: "VideoSectionMobile" */));
+const BottomSection = lazy(() => import("components/BottomSection" /* webpackChunkName: "BottomSection" */));
 
 const Homepage = () => {
 
@@ -120,7 +120,7 @@ const Homepage = () => {
                     <section className="video-section" ref={videoSectionRef}>
                         {isVideoSectionInView && (
                             <Suspense>
-                                <LazyVideoSection />
+                                <VideoSection />
                             </Suspense>
                         )}
                     </section>
@@ -128,7 +128,7 @@ const Homepage = () => {
                     <section className="video-section-mobile" ref={videoSectionRef}>
                         {isVideoSectionInView && (
                             <Suspense>
-                                <LazyVideoSectionMobile />
+                                <VideoSectionMobile />
                             </Suspense>
                         )}
                     </section>
@@ -138,7 +138,7 @@ const Homepage = () => {
             <section className="bottom-section" ref={bottomSectionRef}>
                 {isBottomSectionInView && (
                     <Suspense>
-                        <LazyBottomSection />
+                        <BottomSection />
                     </Suspense>
                 )}
             </section>
