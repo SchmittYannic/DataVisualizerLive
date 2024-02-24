@@ -6,8 +6,6 @@ const initContextState = {
     setFileIsUploaded: () => {},
     demodata: "",
     setDemodata: () => {},
-    dataframe: null,
-    setDataframe: () => {},
     dataAsJSON: [],
     setDataAsJSON: () => {},
     dataAsJSONLength: 0,
@@ -41,7 +39,6 @@ export const DataContext = createContext(initContextState);
 export const DataProvider = ({children}) => {
     const [fileIsUploaded, setFileIsUploaded] = useState(false);
     const [demodata, setDemodata] = useState("");
-    const [dataframe, setDataframe] = useState(null);
     const [dataAsJSON, setDataAsJSON] = useState([]);
     const [dataAsJSONLength, setDataAsJSONLength] = useState(0);
 
@@ -67,42 +64,124 @@ export const DataProvider = ({children}) => {
     useEffect(() => {
         setIsLoading(true);
 
-        import("context/functions").then(module => {
-            module.fetchTestData(demodata, setDataframe);
-        })
+        const fetchTestData = async (datasetName, callback) => {
+            if (datasetName === "useAutoData") {
+                try {
+                    const response = await fetch(`${process.env.PUBLIC_URL}/data/AutoData.json`);
+                    const AutoData = await response.json();
+                    callback(AutoData);
+                } catch (err) {
+                    console.log("Error occured loading AutoData");
+                }
+            } else if (datasetName === "useWetterData") {     
+                try {
+                    const response = await fetch(`${process.env.PUBLIC_URL}/data/WetterData.json`);
+                    const WetterData = await response.json();
+                    callback(WetterData);
+                } catch (err) {
+                    console.log("Error occured loading AutoData");
+                }        
+            }
+        }
+
+        fetchTestData(demodata, setDataAsJSON)
     }, [demodata]);
 
     useEffect(() => {
-        if (!dataframe) {
+        if (dataAsJSON.length === 0) {
             setFileIsUploaded(false);
             setIsLoading(false);
             return
         }
-        
+
         setFileIsUploaded(true);
 
-        import("context/functions").then(module => {
-            module.dataFrameToJSON(dataframe, setDataAsJSON);
-        })
+        const columnNames = Object.keys(dataAsJSON[0]);
 
-        const columnNames = dataframe.columns;
-        const uniqueColumns = dataframe.nUnique(0).$dataIncolumnFormat;
-        const dtypes = dataframe.dtypes;
+        // Function to count unique values, their data types, and the count of occurrences of each data type for each key
+        function countUniqueValuesAndTypes(objects) {
+            const uniqueValuesInfo = {};
+            
+            // Iterate over each object
+            objects.forEach(obj => {
+            // Iterate over each key in the object
+            Object.keys(obj).forEach(key => {
+                // If the key doesn't exist in the uniqueValuesInfo object, initialize it
+                if (!uniqueValuesInfo[key]) {
+                    uniqueValuesInfo[key] = {
+                        uniqueValues: new Set(),
+                        typeCounts: {}
+                    };
+                }
+                
+                // Add the value of the key to the set to count unique values
+                uniqueValuesInfo[key].uniqueValues.add(obj[key]);
+                
+                const dataType = typeof obj[key];
+                // If field is not empty
+                if(!(dataType === "object" && obj[key] === null)) {
+                    // Count occurrences of each data type
+                    if (!uniqueValuesInfo[key].typeCounts[dataType]) {
+                        uniqueValuesInfo[key].typeCounts[dataType] = 1;
+                    } else {
+                        uniqueValuesInfo[key].typeCounts[dataType]++;
+                    }
+                } else {
+                    // else field is empty
+                    if (!uniqueValuesInfo[key].typeCounts["emptyField"]) {
+                        uniqueValuesInfo[key].typeCounts["emptyField"] = 1;
+                    } else {
+                        uniqueValuesInfo[key].typeCounts["emptyField"]++;
+                    }
+                }
+            });
+            });
+            
+            // Convert sets to array of unique values and object to array of type counts
+            Object.keys(uniqueValuesInfo).forEach(key => {
+                uniqueValuesInfo[key].uniqueValues = Array.from(uniqueValuesInfo[key].uniqueValues);
+                uniqueValuesInfo[key].typeCounts = Object.entries(uniqueValuesInfo[key].typeCounts)
+                    .sort((a, b) => b[1] - a[1]);
+            });
+            
+            return uniqueValuesInfo;
+        }
+
+        const uniqueValuesInfo = countUniqueValuesAndTypes(dataAsJSON);
 
         const catColumnsArray = [];
         const numColumnsArray = [];
         const dateColumnsArray = [];
 
         for (let column in columnNames) {
-            if (uniqueColumns[column] <= 10) {
+
+            const uniqueValueCount = uniqueValuesInfo[columnNames[column]].uniqueValues.length;
+
+            if (uniqueValueCount <= 10) {
                 catColumnsArray.push(columnNames[column]);
             }
-            if (dtypes[column] === "int32" || dtypes[column] === "float32") {
-                numColumnsArray.push(columnNames[column]);
+
+            const uniqueTypesCount = uniqueValuesInfo[columnNames[column]].typeCounts.length;
+
+            if (uniqueTypesCount === 1) {
+                const columnType = uniqueValuesInfo[columnNames[column]].typeCounts[0][0];
+                
+                if (columnType === "number") {
+                    numColumnsArray.push(columnNames[column]);
+                }
+
+                if (columnType === "string") {
+                    dateColumnsArray.push(columnNames[column]);
+                }
+            } else if (uniqueTypesCount === 2) {
+                const mostOccurringType = uniqueValuesInfo[columnNames[column]].typeCounts[0][0];
+                const leastOccurringType = uniqueValuesInfo[columnNames[column]].typeCounts[1][0];
+
+                if ((mostOccurringType === "emptyField" && leastOccurringType === "number") || (leastOccurringType === "emptyField" && mostOccurringType === "number")) {
+                    numColumnsArray.push(columnNames[column]);
+                }
             }
-            if (dtypes[column] === "string") {
-                dateColumnsArray.push(columnNames[column]);
-            }
+            /* Handle other cases in future */      
         }
 
         setCatColumns(catColumnsArray);
@@ -116,7 +195,7 @@ export const DataProvider = ({children}) => {
             newState.setDataframe = true;
             return newState
         });
-    }, [dataframe]);
+    }, [dataAsJSON]);
 
     useEffect(() => {
         if (!fileIsUploaded) return
@@ -201,10 +280,10 @@ export const DataProvider = ({children}) => {
             value={{
                 fileIsUploaded,
                 setFileIsUploaded,
-                setDataframe,
                 demodata,
                 setDemodata,
                 dataAsJSON,
+                setDataAsJSON,
                 dataAsJSONLength,
                 catColumns,
                 catColumnsLength,
