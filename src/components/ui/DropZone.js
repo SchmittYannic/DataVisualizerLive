@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
-import { readCSV } from "danfojs";
+import { parse as papaparse } from "papaparse";
 
 import { useData } from "../../hooks";
 import AsyncButton from "./AsyncButton";
 import "./DropZone.css";
 
 const DropZone = () => {
-    const { setDataframe, setDemodata, setIsLoading, isLoading } = useData();
+    const { setDataAsJSON, setDemodata, setIsLoading, isLoading } = useData();
     const [selectedFile, setSelectedFile] = useState(null);
     const inputRef = useRef(null);
 
@@ -56,17 +56,34 @@ const DropZone = () => {
 
         setIsLoading(true);
 
-        const df = await readCSV(selectedFile);
+        papaparse(selectedFile, {
+            worker: true,
+            header: true,
+            dynamicTyping: true,
+            complete: (results) => {               
+                if (results.data.length > 5000 || results.meta.fields > 20) {
+                    setIsLoading(false);
+                    setSelectedFile(null);
+                    alert("Datensatz zu groß! Da es sich um ein reines Frontend Projekt handelt, darf der Datensatz maximal 5.000 Zeilen und 20 Spalten enthalten. Dies soll ein Absturz des Browsers verhindern.")
+                    return
+                }
+                setDemodata("");
+                setDataAsJSON(results.data);
+            }
+        });
 
-        if (df.index.length > 5000 || df.columns.length > 20) {
-            setIsLoading(false);
-            setSelectedFile(null);
-            alert("Datensatz zu groß! Da es sich um ein reines Frontend Projekt handelt, darf der Datensatz maximal 5.000 Zeilen und 20 Spalten enthalten. Dies soll ein Absturz des Browsers verhindern.")
-            return
-        }
+        // const df = await readCSV(selectedFile);
+        // console.log(df)
+
+        // if (df.index.length > 5000 || df.columns.length > 20) {
+        //     setIsLoading(false);
+        //     setSelectedFile(null);
+        //     alert("Datensatz zu groß! Da es sich um ein reines Frontend Projekt handelt, darf der Datensatz maximal 5.000 Zeilen und 20 Spalten enthalten. Dies soll ein Absturz des Browsers verhindern.")
+        //     return
+        // }
         
-        setDemodata("");
-        setDataframe(df);
+        // setDemodata("");
+        // setDataframe(df);
     }
 
     const handleLabelKeyDown = (e) => {
