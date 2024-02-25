@@ -10,7 +10,7 @@
     padding-top: 8rem;
     text-align: center;
     font-size: 3rem;
-    line-height: 1;
+    line-height: var(--line-height-none);
     letter-spacing: -0.05em;
     border: var(--homepage-guides);
     border-top: none;
@@ -124,11 +124,11 @@
 
 .video-section-text h4 {
     letter-spacing: -0.025em;
-    line-height: 1;
+    line-height: var(--line-height-none);
     font-size: 2rem;
 }
 
 .video-section-text p {
     font-size: 1.25rem;
-    line-height: 1.625;
+    line-height: var(--line-height-relaxed);
 }

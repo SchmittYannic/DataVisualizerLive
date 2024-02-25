@@ -20,7 +20,7 @@
     font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: .875rem;
     font-weight: 600;
-    line-height: 1.25rem;
+    line-height: var(--line-height-5);
     text-align: left;
     border: none;
     scrollbar-width: thin;

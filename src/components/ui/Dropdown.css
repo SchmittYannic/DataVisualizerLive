@@ -23,7 +23,7 @@
     font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-size: .875rem;
     font-weight: 600;
-    line-height: 1.25rem;
+    line-height: var(--line-height-5);
     padding: var(--button-paddingY) calc(var(--dropdown-button-svg-right) + var(--dropdown-button-svg-width)) var(--button-paddingY) var(--button-paddingX);
     text-align: center;
     text-decoration: none #D1D5DB solid;
@@ -95,7 +95,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     font-size: 0.875rem;
-    line-height: 1.25rem;
+    line-height: var(--line-height-5);
     width: 100%;
     cursor: pointer;
     background-color: transparent;

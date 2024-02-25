@@ -47,7 +47,7 @@
     color: var(--subtext-color);
     margin-left: 5px;
     font-size: 1.25rem;
-    line-height: 1.625;
+    line-height: var(--line-height-relaxed);
 }
 
 .hero-btn {
@@ -129,13 +129,13 @@ canvas {
 
 .card-header {
     margin-top: 1rem;
-    line-height: 1;
+    line-height: var(--line-height-none);
     font-size: 2rem;
 }
 
 .card p {
     font-size: 1.25rem;
-    line-height: 1.625;
+    line-height: var(--line-height-relaxed);
 }
 
 .card p:first-of-type {
@@ -219,7 +219,7 @@ canvas {
         padding-top: 8rem;
         display: flex;
         flex-direction: column;
-        align-items: start;
+        align-items: flex-start;
     }
 
     .hero-title {

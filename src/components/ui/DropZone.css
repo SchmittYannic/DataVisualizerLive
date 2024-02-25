@@ -74,12 +74,13 @@
 .dark .dropzone-headtext {
     color: #9ca3af;
     font-size: 0.875rem;
-    line-height: 1.25rem;
+    line-height: var(--line-height-5);
 }
 
 .dropzone-subtext {
+    margin-top: 5px;
     font-size: 0.75rem; /* 12px */
-    line-height: 1rem; /* 16px */
+    line-height: var(--line-height-none);
     color: #6b7280;
 }
 
