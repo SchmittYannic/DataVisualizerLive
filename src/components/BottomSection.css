@@ -1,4 +1,6 @@
 .bottom-section {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
     margin: 0 auto;
     width: 100%;
     min-width: unset;
@@ -13,8 +15,8 @@
     display: grid;
     align-items: center;
     gap: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: var(--homepage-padding);
+    padding-right: var(--homepage-padding);
 }
 
 .bottom-section-text {
@@ -23,9 +25,8 @@
 }
 
 .bottom-section-text .headtext {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
-    font-weight: 700;
+    font-size: var(--font-size-5xl);
+    line-height: var(--line-height-none);
     letter-spacing: -0.05em;
 }
 
@@ -35,85 +36,39 @@
     margin-top: 1rem;
     max-width: 700px;
     color: #6b7280;
-    line-height: 1.625;
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-xl);
 }
 
 .bottom-section-link {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     gap: .5rem;
-}
-
-@media (min-width: 400px) {
-    .bottom-section-link {
-        flex-direction: row;
-        justify-content: center;
-    }
-}
-
-@media (min-width: 640px) { 
-    .bottom-section {
-        padding-top: var(--homepage-padding);
-        padding-bottom: var(--homepage-padding);
-    }
-
-    .bottom-section-text .headtext {
-        font-size: 2.25rem;
-        line-height: 2.5rem;
-    }
-}
-
-@media (min-width: 768px) {
-    .bottom-section {
-        padding-top: 6rem;
-        padding-bottom: 6rem;
-    }
-
-    .bottom-section-content {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-    }
-
-    .bottom-section-text .headtext {
-        font-size: 3rem;
-        line-height: 1;
-    } 
-
-    .bottom-section-text .subtext {
-        font-size: 1.25rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .bottom-section {
-        padding-top: 8rem;
-        padding-bottom: 8rem;
-    }
-
-    .bottom-section-text .subtext {
-        font-size: 1.25rem;
-    }
-}
-
-@media (min-width: 1280px) {
-    .bottom-section-text .subtext {
-        font-size: 1.25rem;
-    }
-
-    .bottom-section .bottom-section-content {
-        padding-left: var(--homepage-padding);
-        padding-right: var(--homepage-padding);
-    }
 }
 
 @media only screen and (max-width: 1140px) {
     .bottom-section {
-        border: none;
+        padding-top: 6rem;
+        padding-bottom: 6rem;
         display: flex;
         flex-direction: column;
         align-items: center;
+        border: none;
     }
 
+    .bottom-section .bottom-section-content {
+        max-width: var(--container-max-width-tablet);
+        padding: 0;
+    }
+
+    .bottom-section-text .headtext {
+        font-size: var(--font-size-4xl);
+        line-height: var(--line-height-10);
+    }
+}
+
+@media only screen and (max-width: 680px) {
     .bottom-section .bottom-section-content {
         max-width: var(--container-max-width-mobile);
     }
