@@ -108,6 +108,14 @@
 
 @media only screen and (max-width: 680px) {
     .video-section-mobile h2 {
-        max-width: var(--container-max-width-tablet);
+        max-width: var(--container-max-width-mobile);
+    }
+
+    .video-section-mobile .tabs { 
+        max-width: var(--container-max-width-mobile);
+    }
+
+    .video-section-mobile .video-section-content {
+        max-width: var(--container-max-width-mobile);
     }
 }

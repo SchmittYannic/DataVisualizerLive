@@ -228,7 +228,7 @@ canvas {
     }
 
     .hero-subtitle {
-        max-width: 344.2px;
+        max-width: var(--container-max-width-mobile);
     }
 
     .card-section {
@@ -238,6 +238,6 @@ canvas {
     }
 
     .card {
-        max-width: 344.2px;
+        max-width: var(--container-max-width-mobile);
     }
 }
