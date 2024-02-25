@@ -6,7 +6,7 @@
 }
 
 .video-section-mobile h2 {
-    max-width: var(--container-max-width-mobile);
+    max-width: var(--container-max-width-tablet);
     text-align: center;
     margin-bottom: 2rem;
     font-size: 2.25rem;
@@ -16,7 +16,7 @@
 
 .video-section-mobile .tabs { 
     width: 100%;
-    max-width: var(--container-max-width-mobile);
+    max-width: var(--container-max-width-tablet);
     display: flex;
     justify-content: space-between;
     background-color: var(--background-color);
@@ -78,7 +78,7 @@
 }
 
 .video-section-mobile .video-section-content {
-    max-width: var(--container-max-width-mobile);
+    max-width: var(--container-max-width-tablet);
 }
 
 .video-section-text,
@@ -104,4 +104,10 @@
 .video-section-text p {
     font-size: 1.25rem;
     line-height: 1.625;
+}
+
+@media only screen and (max-width: 680px) {
+    .video-section-mobile h2 {
+        max-width: var(--container-max-width-tablet);
+    }
 }

@@ -97,7 +97,7 @@
 }
 
 .video-section-mobile .video-section-content {
-    max-width: var(--container-max-width-mobile);
+    max-width: var(--container-max-width-tablet);
 }
 
 .video-section-text,
