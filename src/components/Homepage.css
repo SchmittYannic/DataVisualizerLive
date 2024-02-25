@@ -208,15 +208,18 @@ canvas {
 @media only screen and (max-width: 680px) {
 
     .canvas-container {
-        height: 130px;
+        height: 215px;
+        clip-path: polygon(0 0, 100% 0%, 100% 60%, 0% 100%);
     }
 
     .hero-content {
+        max-width: var(--container-max-width-mobile);
         position: relative;
-        padding-top: 2em;
+        padding: 0;
+        padding-top: 8rem;
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: start;
     }
 
     .hero-title {
