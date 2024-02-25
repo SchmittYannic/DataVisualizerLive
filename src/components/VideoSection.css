@@ -9,7 +9,7 @@
     padding: var(--homepage-padding) 0rem;
     padding-top: 8rem;
     text-align: center;
-    font-size: 3rem;
+    font-size: var(--font-size-5xl);
     line-height: var(--line-height-none);
     letter-spacing: -0.05em;
     border: var(--homepage-guides);
@@ -29,7 +29,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.25rem;
+    font-size: var(--font-size-xl);
     color: var(--subtext-color);
     background-color: transparent;
     border-radius: calc(0.5rem - 2px);
@@ -125,10 +125,10 @@
 .video-section-text h4 {
     letter-spacing: -0.025em;
     line-height: var(--line-height-none);
-    font-size: 2rem;
+    font-size: var(--font-size-3xl);
 }
 
 .video-section-text p {
-    font-size: 1.25rem;
+    font-size: var(--font-size-5xl);
     line-height: var(--line-height-relaxed);
 }

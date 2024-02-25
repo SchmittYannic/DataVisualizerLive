@@ -63,7 +63,7 @@
     box-sizing: border-box;
     color: #111827;
     font-family: "Inter var",ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-size: .875rem;
+    font-size: var(--font-size-sm);
     font-weight: 600;
     line-height: var(--line-height-5);
     padding: var(--button-paddingY) var(--button-paddingX);
@@ -173,7 +173,7 @@ td input:focus {
 }
 
 .table {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     width: 100%;
     display: grid;
     grid-template-columns: repeat(var(--columnCount), 1fr);

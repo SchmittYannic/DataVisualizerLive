@@ -28,7 +28,7 @@
     color: #1f1f1f;
     mix-blend-mode: color-burn;
     line-height: 1.1;
-    font-size: 4.5rem;
+    font-size: var(--font-size-7xl);
     font-weight: 700;
     margin: 0;
 }
@@ -46,7 +46,7 @@
     grid-column-end: 6;
     color: var(--subtext-color);
     margin-left: 5px;
-    font-size: 1.25rem;
+    font-size: var(--font-size-xl);
     line-height: var(--line-height-relaxed);
 }
 
@@ -130,11 +130,11 @@ canvas {
 .card-header {
     margin-top: 1rem;
     line-height: var(--line-height-none);
-    font-size: 2rem;
+    font-size: var(--font-size-3xl);
 }
 
 .card p {
-    font-size: 1.25rem;
+    font-size: var(--font-size-xl);
     line-height: var(--line-height-relaxed);
 }
 
@@ -173,7 +173,7 @@ canvas {
     }
 
     .hero-title {
-        font-size: 4.5rem;
+        font-size: var(--font-size-7xl);
     }
 
     .hero-title[data-overlay] {
@@ -223,7 +223,7 @@ canvas {
     }
 
     .hero-title {
-        font-size: 3.2rem;
+        font-size: var(--font-size-5xl);
     }
 
     .hero-title[data-overlay] {

@@ -64,7 +64,7 @@
 }
 
 .step-count {
-    font-size: 28px;
+    font-size: var(--font-size-2xl);
     color: var(--action-color);
 }
 
@@ -78,7 +78,7 @@
 .checkmark {
     margin-left: 4px;
     margin-bottom: 3px;
-    font-size: 28px;
+    font-size: var(--font-size-2xl);
     font-weight: 600;
     color: var(--action-color);
     -ms-transform: scaleX(-1) rotate(-46deg); /* IE 9 */
@@ -124,7 +124,7 @@
     }
 
     .step-count {
-        font-size: 20px;
+        font-size: var(--font-size-xl);
     }
 
     .steps-label-container {
@@ -134,6 +134,6 @@
 
     .link,
     .disabled-link {
-        font-size: 14px;
+        font-size: var(--font-size-sm);
     }
 }
