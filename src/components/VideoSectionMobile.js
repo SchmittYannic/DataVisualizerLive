@@ -5,7 +5,8 @@ import {
     isection_upload_480x920,
     isection_data_480x920,
     isection_vis_480x920,
-} from "assets"
+} from "assets";
+import "components/VideoSectionMobile.css";
 
 const VideoSectionMobile = () => {
 
