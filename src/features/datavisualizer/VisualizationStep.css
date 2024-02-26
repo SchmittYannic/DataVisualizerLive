@@ -405,7 +405,7 @@ input[type=range]::-moz-range-thumb {
 @media screen and ( max-height: 758px ) {
     .expandable-side-menu {
         top: var(--header-height-mobile);
-        bottom: var(--navigation-wrapper-height-mobile);
+        height: 100%;
         transform: translate(calc(-100% + 8px),0);
     }
     
