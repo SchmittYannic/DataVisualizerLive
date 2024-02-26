@@ -6,6 +6,7 @@ const useIsOverflow = (ref, vertical=true, callback) => {
 
     useLayoutEffect(() => {
         const { current } = ref;
+        if (!current) return
 
         const trigger = () => {
             const hasOverflow = vertical ? current.scrollHeight > current.clientHeight : current.scrollWidth > current.clientWidth;
