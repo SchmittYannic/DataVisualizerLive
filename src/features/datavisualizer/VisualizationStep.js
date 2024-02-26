@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useLayoutEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -11,21 +11,18 @@ import Linechart from "features/charts/linechart/Linechart";
 import Areachart from "features/charts/areachart/Areachart";
 import ChartSettingsDesktop from "features/chartsettings/ChartSettingsDesktop";
 import ChartSettingsMobile from "features/chartsettings/ChartSettingsMobile";
-import { useData, useWindowSize, useIsOverflow } from "hooks";
+import { useData, useWindowSize, useToggleHorizontalScrollbar } from "hooks";
 import { saveSvg } from "features/charts/saveSvg";
 import { renderChart } from "features/charts/renderChart";
 import { InfoBox } from "components/ui";
-import toggleHorizontalScrollbar from "utils/toggleHorizontalScrollbar";
 import "./VisualizationStep.css";
 
 
 const VisualizationStep = () => {
     const { dataAsJSON, catColumns, fileIsUploaded } = useData();
     const windowSize = useWindowSize();
+    useToggleHorizontalScrollbar();
     const isMobile = windowSize.width && windowSize.width < 850;
-
-    const rootRef = useRef(document.getElementById("root"));
-    const isOverflow = useIsOverflow(rootRef, false);
 
     const desktopChartSettingsPosition = useRef(null);
 
@@ -162,10 +159,6 @@ const VisualizationStep = () => {
             renderChart(settingsRef, dataAsJSON);
         }
     }, [catColumns, dataAsJSON]);
-
-    useLayoutEffect(() => {
-        toggleHorizontalScrollbar(isOverflow);
-    }, [isOverflow]);
 
     useEffect(() => {
         const body = document.body;
