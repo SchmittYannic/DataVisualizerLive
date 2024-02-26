@@ -236,7 +236,10 @@ input[type=range]::-moz-range-thumb {
 
 .main-visualization .expandable-side-menu {
     width: max(250px, 50vw);
-    max-height: min(calc(var(--desktop-chart-settings-height) * 1px), 100vh);
+    max-height: min(
+        calc(var(--desktop-chart-settings-height) * 1px),
+        calc(100vh - var(--header-height-mobile) - var(--navigation-wrapper-height-mobile))
+    );
     background-color: var(--background-color);
     border-bottom-right-radius: var(--border-radius);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -255,7 +258,10 @@ input[type=range]::-moz-range-thumb {
 }
 
 .main-visualization .expandable-side-menu-content {
-    max-height: min(calc(var(--desktop-chart-settings-height) * 1px), calc(100vh - var(--header-height-mobile) - var(--navigation-wrapper-height-mobile)));
+    max-height: min(
+        calc(var(--desktop-chart-settings-height) * 1px),
+        calc(100vh - var(--header-height-mobile) - var(--navigation-wrapper-height-mobile))
+    );
 }
 
 .main-visualization .expandable-side-menu.expanded .expandable-side-menu-content {
