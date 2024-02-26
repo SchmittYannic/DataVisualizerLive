@@ -61,8 +61,10 @@ const ChartSettingsMobile = ({ settingsRef, setSelectedChart, setDimensions }) =
                         activeTab={activeTab}
                         setActiveTab={setActiveTab}
                     />
-                    
                 </div>
+
+                {/* added to make sure scrollbar wont go all the way down */}
+                <div className="expandable-side-menu-bottom-pad" />
             </div>
         )
     } else {

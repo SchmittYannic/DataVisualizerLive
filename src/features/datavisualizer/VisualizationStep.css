@@ -238,10 +238,9 @@ input[type=range]::-moz-range-thumb {
     width: max(250px, 50vw);
     max-height: min(
         calc(var(--desktop-chart-settings-height) * 1px),
-        calc(100vh - var(--header-height-mobile) - var(--navigation-wrapper-height-mobile))
+        calc(100vh - var(--header-height-mobile) - var(--navigation-wrapper-height-mobile) - var(--expandable-side-menu-bottom-pad-height))
     );
     background-color: var(--background-color);
-    border-bottom-right-radius: var(--border-radius);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -260,7 +259,7 @@ input[type=range]::-moz-range-thumb {
 .main-visualization .expandable-side-menu-content {
     max-height: min(
         calc(var(--desktop-chart-settings-height) * 1px),
-        calc(100vh - var(--header-height-mobile) - var(--navigation-wrapper-height-mobile))
+        calc(100vh - var(--header-height-mobile) - var(--navigation-wrapper-height-mobile) - var(--expandable-side-menu-bottom-pad-height))
     );
 }
 
@@ -401,6 +400,15 @@ input[type=range]::-moz-range-thumb {
     width: 25px;
     height: 25px;
     margin: 0 auto;
+}
+
+.main-visualization .expandable-side-menu-bottom-pad {
+    position: absolute;
+    bottom: calc(0px - var(--expandable-side-menu-bottom-pad-height));
+    width: 100%;
+    height: var(--expandable-side-menu-bottom-pad-height);
+    background-color: var(--background-color);
+    border-bottom-right-radius: var(--border-radius);
 }
 
 @media screen and ( max-height: 758px ) {

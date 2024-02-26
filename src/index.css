@@ -57,6 +57,7 @@
     --desktop-chart-settings-height: 760;
     --desktop-chart-settings-width: 400;
     --homepage-section-fallback-min-height: 300px;
+    --expandable-side-menu-bottom-pad-height: 10px;
 }
 
 *, 
