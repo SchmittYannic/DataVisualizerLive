@@ -411,6 +411,7 @@ input[type=range]::-moz-range-thumb {
     border-bottom-right-radius: var(--border-radius);
 }
 
+/* --desktop-chart-settings-height + --expandable-side-menu-bottom-pad-height */
 @media screen and ( max-height: 770px ) {
     .expandable-side-menu {
         top: var(--header-height-mobile);
