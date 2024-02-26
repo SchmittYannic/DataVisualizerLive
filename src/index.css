@@ -9,7 +9,7 @@
     --active-color: rgb(160, 160, 160);
     --background-color: #fff;
     --red: rgb(234, 55, 55);
-    --border-radius: .5em;
+    --border-radius: .5rem;
     --homepage-guides: 1px dashed var(--border-color);
 
     --line-height-none: 1;
