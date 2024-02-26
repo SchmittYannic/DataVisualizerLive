@@ -410,3 +410,9 @@ input[type=range]::-moz-range-thumb {
         transform: translate(0,0);
     }
 }
+
+@media only screen and (max-width: 500px) {
+    .main-visualization {
+        margin: calc(var(--header-height-mobile) + var(--element-gap) * 2) auto calc(var(--navigation-wrapper-height-mobile) + var(--element-gap) * 2) auto;
+    }
+}
