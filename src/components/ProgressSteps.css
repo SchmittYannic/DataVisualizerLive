@@ -127,6 +127,10 @@
         font-size: var(--font-size-xl);
     }
 
+    .checkmark {
+        font-size: var(--font-size-xl);
+    }
+
     .steps-label-container {
         top: 55px;
         left: 50%;
