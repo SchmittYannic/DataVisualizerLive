@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useDragControls, motion } from "framer-motion";
 import { RiDragMove2Fill } from "react-icons/ri";
+import FocusTrap from "focus-trap-react";
 
 import ChartSettings from "features/chartsettings/ChartSettings";
 import BackButton from "features/chartsettings/BackButton";
@@ -70,6 +71,7 @@ const ChartSettingsDesktop = ({ settingsCurrentPosition, settingsRef, setSelecte
 
     if (dataAsJSONLength > 0) {
         return (
+            <FocusTrap>
             <motion.div
                 className="chart-settings"
                 ref={draggableRef}
@@ -133,6 +135,7 @@ const ChartSettingsDesktop = ({ settingsCurrentPosition, settingsRef, setSelecte
                     />
                 </div>
             </motion.div>
+            </FocusTrap>
         )
     } else {
         return <></>
