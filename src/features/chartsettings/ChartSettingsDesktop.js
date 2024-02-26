@@ -72,69 +72,69 @@ const ChartSettingsDesktop = ({ settingsCurrentPosition, settingsRef, setSelecte
     if (dataAsJSONLength > 0) {
         return (
             <FocusTrap>
-            <motion.div
-                className="chart-settings"
-                ref={draggableRef}
-                drag
-                dragControls={controls}
-                dragListener={false}
-                dragConstraints={{
-                    top: 0,
-                    left: 0,
-                    bottom: maxHeight - settingsHeight,
-                    right: maxWidth - settingsWidth,
-                }}
-                dragElastic={0}
-                initial={{ 
-                    opacity: 1,
-                    x: initialXPosition,
-                    y: initialYPosition,
-                }}
-                exit={{ 
-                    opacity: 0, 
-                    x: body.scrollWidth/2 - settingsWidth/2,
-                    y: body.scrollHeight - settingsHeight,
-                }}
-                transition={{ duration: 1}}
-            >
-                <div className="draggable-wrapper">
-                    <div 
-                        className="draggable" 
-                        onPointerDown={startDrag}>
-                        {activeTab === navigationTabName ? (
-                            <div className="draggable-icon">
-                                <RiDragMove2Fill
-                                    role="graphics-symbol"
-                                    aria-label="Drag des Menüs möglich"
-                                />
-                            </div>
-                        ): (
-                            <div className="draggable-back-btn">
-                                <BackButton onClick={() => setActiveTab(navigationTabName)} />
-                            </div>
-                        )}
-                        
-                        {activeTab}
-                    </div>
+                <motion.div
+                    className="chart-settings"
+                    ref={draggableRef}
+                    drag
+                    dragControls={controls}
+                    dragListener={false}
+                    dragConstraints={{
+                        top: 0,
+                        left: 0,
+                        bottom: maxHeight - settingsHeight,
+                        right: maxWidth - settingsWidth,
+                    }}
+                    dragElastic={0}
+                    initial={{ 
+                        opacity: 1,
+                        x: initialXPosition,
+                        y: initialYPosition,
+                    }}
+                    exit={{ 
+                        opacity: 0, 
+                        x: body.scrollWidth/2 - settingsWidth/2,
+                        y: body.scrollHeight - settingsHeight,
+                    }}
+                    transition={{ duration: 1}}
+                >
+                    <div className="draggable-wrapper">
+                        <div 
+                            className="draggable" 
+                            onPointerDown={startDrag}>
+                            {activeTab === navigationTabName ? (
+                                <div className="draggable-icon">
+                                    <RiDragMove2Fill
+                                        role="graphics-symbol"
+                                        aria-label="Drag des Menüs möglich"
+                                    />
+                                </div>
+                            ): (
+                                <div className="draggable-back-btn">
+                                    <BackButton onClick={() => setActiveTab(navigationTabName)} />
+                                </div>
+                            )}
+                            
+                            {activeTab}
+                        </div>
 
-                    <button 
-                        className="draggable-close"
-                        type="button"
-                        title="Diagrammkonfiguration schließen"
-                        onClick={handleDragableClose}
-                    />
-                </div>
-                
-                <div className="draggable-menu-content">
-                    <ChartSettings 
-                        settingsRef={settingsRef}
-                        setSelectedChart={setSelectedChart}
-                        setDimensions={setDimensions}
-                        activeTab={activeTab}
-                        setActiveTab={setActiveTab}
-                    />
-                </div>
-            </motion.div>
+                        <button 
+                            className="draggable-close"
+                            type="button"
+                            title="Diagrammkonfiguration schließen"
+                            onClick={handleDragableClose}
+                        />
+                    </div>
+                    
+                    <div className="draggable-menu-content">
+                        <ChartSettings 
+                            settingsRef={settingsRef}
+                            setSelectedChart={setSelectedChart}
+                            setDimensions={setDimensions}
+                            activeTab={activeTab}
+                            setActiveTab={setActiveTab}
+                        />
+                    </div>
+                </motion.div>
             </FocusTrap>
         )
     } else {
