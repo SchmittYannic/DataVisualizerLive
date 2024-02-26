@@ -222,6 +222,7 @@ input[type=number] {
 
 .btn:focus {
     background-color: var(--focus-color);
+    outline: 2px solid var(--action-color);
 }
 
 .btn:active {
@@ -244,10 +245,6 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.btn:focus {
-    outline: 2px solid var(--action-color);
-}
-
 .btn:focus-visible {
     box-shadow: none;
 }
@@ -259,6 +256,11 @@ input[type=number] {
 
 .next-btn:not(.disabled-btn):hover {
     background-color: var(--action-color-dark);
+}
+
+.next-btn:not(.disabled-btn):focus {
+    background-color: var(--action-color-dark);
+    outline: 2px solid var(--action-color);
 }
 
 .btn.disabled-btn {
