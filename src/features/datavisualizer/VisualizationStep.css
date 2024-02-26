@@ -286,13 +286,13 @@ input[type=range]::-moz-range-thumb {
 
 .main-visualization .inverted-corner {
     position: absolute;
-    width: .5em;
+    width: var(--border-radius);
     height: 1em;
     top: 50px;
-    right: -.5em;
-    box-shadow: 0 -.5em 0 0 var(--background-color);
+    right: calc(0px - var(--border-radius));
+    box-shadow: 0 calc(0px - var(--border-radius)) 0 0 var(--background-color);
     background-color: transparent;
-    border-top-left-radius: .5em;
+    border-top-left-radius: var(--border-radius);
 }
 
 .main-visualization .expandable-side-menu-trigger {
