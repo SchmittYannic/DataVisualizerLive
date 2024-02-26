@@ -5,6 +5,7 @@ import useWindowSize from "./useWindowSize";
 import useScrollPosition from "./useScrollPosition";
 import useScrollTracker from "./useScrollTracker";
 import useIsOverflow from "./useIsOverflow";
+import useToggleHorizontalScrollbar from "./useToggleHorizontalScrollbar";
 
 export {
     useData,
@@ -14,4 +15,5 @@ export {
     useScrollPosition,
     useScrollTracker,
     useIsOverflow,
+    useToggleHorizontalScrollbar,
 }
