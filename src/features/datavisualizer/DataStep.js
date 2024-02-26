@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { InfoBox, AsyncLink } from "components/ui";
 import { useData, useIsOverflow } from "hooks";
 import DataTable from "features/datavisualizer/DataTable";
+import toggleHorizontalScrollbar from "utils/toggleHorizontalScrollbar";
 
 const DataStep = () => {
     const { dataAsJSONLength, fileIsUploaded, isLoading } = useData();
@@ -12,11 +13,7 @@ const DataStep = () => {
     const isOverflow = useIsOverflow(rootRef, false);
 
     useLayoutEffect(() => {
-        if (!isOverflow) {
-            document.documentElement.style.setProperty("--horizontal-scrollbar-height", 0);
-        } else {
-            document.documentElement.style.setProperty("--horizontal-scrollbar-height", "16px");
-        }
+        toggleHorizontalScrollbar(isOverflow);
     }, [isOverflow])
 
     if (fileIsUploaded) {

@@ -15,6 +15,7 @@ import { useData, useWindowSize, useIsOverflow } from "hooks";
 import { saveSvg } from "features/charts/saveSvg";
 import { renderChart } from "features/charts/renderChart";
 import { InfoBox } from "components/ui";
+import toggleHorizontalScrollbar from "utils/toggleHorizontalScrollbar";
 import "./VisualizationStep.css";
 
 
@@ -163,11 +164,7 @@ const VisualizationStep = () => {
     }, [catColumns, dataAsJSON]);
 
     useLayoutEffect(() => {
-        if (!isOverflow) {
-            document.documentElement.style.setProperty("--horizontal-scrollbar-height", 0);
-        } else {
-            document.documentElement.style.setProperty("--horizontal-scrollbar-height", "16px");
-        }
+        toggleHorizontalScrollbar(isOverflow);
     }, [isOverflow]);
 
     useEffect(() => {
