@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+
+import useWindowSize from "hooks/useWindowSize";
 import VideoProgress from "components/VideoProgress";
 import {
     isection_upload_480x920,
@@ -10,8 +12,14 @@ import "components/VideoSectionMobile.css";
 
 const VideoSectionMobile = () => {
 
+    const windowSize = useWindowSize();
     const [activeTab, setActiveTab] = useState("upload");
     const timeout = useRef(null);
+
+    const isMobile = windowSize.width <= 680;
+
+    const activeTabWidth = isMobile ? 215 : 350;
+    const inactiveTabWidth = 50;
 
     const isUploadActive = activeTab === "upload";
     const isDataActive = activeTab === "data";
@@ -43,7 +51,7 @@ const VideoSectionMobile = () => {
                     onClick={() => setActiveTab("upload")}
                     title={`${isUploadActive ? "" : "auf Upload Registerkarte umschalten"}`}
                     animate={{ 
-                        width: isUploadActive ? 350 : 50,
+                        width: isUploadActive ? activeTabWidth : inactiveTabWidth,
                     }}
                     transition={{
                         ease: "easeInOut",
@@ -68,7 +76,7 @@ const VideoSectionMobile = () => {
                     onClick={() => setActiveTab("data")}
                     title={`${isDataActive ? "" : "auf Datenansicht Registerkarte umschalten"}`}
                     animate={{ 
-                        width: isDataActive ? 350 : 50,
+                        width: isDataActive ? activeTabWidth : inactiveTabWidth,
                     }}
                     transition={{
                         ease: "easeInOut",
@@ -93,7 +101,7 @@ const VideoSectionMobile = () => {
                     onClick={() => setActiveTab("visualisierung")}
                     title={`${isVisualisierungActive ? "" : "auf Visualisierung Registerkarte umschalten"}`}
                     animate={{ 
-                        width: isVisualisierungActive ? 350 : 50,
+                        width: isVisualisierungActive ? activeTabWidth : inactiveTabWidth,
                     }}
                     transition={{
                         ease: "easeInOut",
