@@ -160,13 +160,16 @@ canvas {
 @media only screen and (max-width: 1140px) {
     
     .canvas-container {
-        height: 200px;
+        height: 250px;
+        clip-path: polygon(0 0, 100% 0%, 100% 50%, 0% 100%);
     }
 
     .hero-content {
         min-height: unset;
         position: relative;
-        padding-top: 4em;
+        padding: 0;
+        padding-top: 8rem;
+        padding-bottom: 4rem;
         display: flex;
         flex-direction: column;
         align-items: center;
