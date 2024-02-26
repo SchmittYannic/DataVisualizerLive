@@ -95,13 +95,13 @@
     overflow: hidden;
 }
 
-.video-section-text h4 {
+.video-section-mobile .video-section-text h4 {
     letter-spacing: -0.025em;
     line-height: var(--line-height-none);
     font-size: var(--font-size-3xl);
 }
 
-.video-section-text p {
+.video-section-mobile .video-section-text p {
     font-size: var(--font-size-xl);
     line-height: var(--line-height-relaxed);
 }
