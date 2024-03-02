@@ -7,6 +7,7 @@ import {
     vsection_vis_1024x768,
 } from "assets";
 import VideoProgress from "components/VideoProgress";
+import useIsDocumentHidden from "hooks/useIsDocumentHidden";
 import "./VideoSection.css";
 
 const VideoSection = () => {
@@ -17,6 +18,7 @@ const VideoSection = () => {
     });
     const videoRef = useRef(null);
     const [activeTab, setActiveTab] = useState("upload");
+    const isDocumentHidden = useIsDocumentHidden();
 
     const videoWidth = 1024;
     const videoHeight = 768;
@@ -29,6 +31,12 @@ const VideoSection = () => {
         if (!isVideoInView) return
         videoRef.current.play();
     }, [activeTab, isVideoInView]);
+
+    useEffect(() => {
+        if (!videoRef.current) return
+        if (isDocumentHidden) videoRef.current.pause();
+        if (!isDocumentHidden) videoRef.current.play();
+    }, [isDocumentHidden])
 
     return (      
         <>
