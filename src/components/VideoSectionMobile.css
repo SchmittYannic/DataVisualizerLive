@@ -56,7 +56,7 @@
     background-color: var(--hover-color);
 }
 
-.tab.active .progressbar {
+.video-section-mobile .tab.active .progressbar {
     z-index: 2;
     position: absolute;
     top: 0;
@@ -67,7 +67,7 @@
     background: linear-gradient(90deg,oklch(63.32% .24 31.68 /.2) 0%,oklch(69.02% .277 332.77 /.2) 50%,oklch(53.18% .28 296.97 /.2) 100%)
 }
 
-.progressbar-done {
+.video-section-mobile .progressbar-done {
     position: absolute;
     right: 0;
     z-index: 3;
@@ -81,8 +81,8 @@
     max-width: var(--container-max-width-tablet);
 }
 
-.video-section-text,
-.video-section-video-wrapper {
+.video-section-mobile .video-section-text,
+.video-section-mobile .video-section-video-wrapper {
     padding: 2rem 0;
     display: flex;
     flex-direction: column;
@@ -93,6 +93,10 @@
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     overflow: hidden;
+}
+
+.video-section-mobile .image-section-image-wrapper > * {
+    display: block;
 }
 
 .video-section-mobile .video-section-text h4 {
