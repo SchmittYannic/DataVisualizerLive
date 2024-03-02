@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import useWindowSize from "hooks/useWindowSize";
-import VideoProgress from "components/VideoProgress";
+import TimeProgress from "components/TimeProgress";
 import {
     isection_upload_480x920,
     isection_data_480x920,
@@ -70,8 +70,8 @@ const VideoSectionMobile = () => {
                         <>
                             <span className="font-bold">Upload</span>
 
-                            <VideoProgress
-                                fixDuration={progressDuration}
+                            <TimeProgress
+                                duration={progressDuration}
                                 vertical={false}
                             />
                         </>
@@ -95,8 +95,8 @@ const VideoSectionMobile = () => {
                         <>
                             <span className="font-bold">Datenansicht</span>
 
-                            <VideoProgress
-                                fixDuration={progressDuration}
+                            <TimeProgress
+                                duration={progressDuration}
                                 vertical={false}
                             />
                         </>
@@ -120,8 +120,8 @@ const VideoSectionMobile = () => {
                         <>
                             <span className="font-bold">Visualisierung</span>
 
-                            <VideoProgress
-                                fixDuration={progressDuration}
+                            <TimeProgress
+                                duration={progressDuration}
                                 vertical={false}
                             />
                         </>
