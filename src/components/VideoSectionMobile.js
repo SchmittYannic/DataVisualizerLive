@@ -30,6 +30,8 @@ const VideoSectionMobile = () => {
 
     const progressDuration = 40;
 
+    const imgHeight = isMobile ? 936 : 920;
+
     const uploadImg = isMobile ? isection_upload_344x936 : isection_upload_480x920;
     const dataImg = isMobile ? isection_data_344x936 : isection_data_480x920;
     const visImg = isMobile ? isection_vis_344x936 : isection_vis_480x920;
@@ -176,7 +178,11 @@ const VideoSectionMobile = () => {
                             </p>
                         </div>
                         <div className="image-section-image-wrapper">
-                            <img src={visImg} alt="Ansicht des Schritts: Visualisierung" />
+                            <img
+                                style={{ height: `${imgHeight}px`}}
+                                src={visImg} 
+                                alt="Ansicht des Schritts: Visualisierung" 
+                            />
                         </div>
                     </>
                 )}
