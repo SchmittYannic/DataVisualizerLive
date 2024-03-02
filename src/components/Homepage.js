@@ -5,30 +5,17 @@ import Lottie from "lottie-react";
 
 import { chartLottie, lightningLottie, settingLottie } from "assets";
 import HeroChartAnimation from "components/HeroChartAnimation";
-import ClipLoader from "components/ui/ClipLoader"
+import BottomSection from "components/BottomSection";
+import { VideoSectionSkeleton, VideoSectionMobileSkeleton } from "components/skeleton/";
 import useWindowSize from "hooks/useWindowSize";
-import "./Homepage.css";
+import "components/Homepage.css";
 
 const VideoSection = lazy(() => import("components/VideoSection" /* webpackChunkName: "VideoSection" */));
 const VideoSectionMobile = lazy(() => import("components/VideoSectionMobile" /* webpackChunkName: "VideoSectionMobile" */));
-const BottomSection = lazy(() => import("components/BottomSection" /* webpackChunkName: "BottomSection" */));
-
-const Fallback = () => (
-    <div className="homepage-section-fallback">
-        <div className="cliploader-centered">
-            <ClipLoader loading={true} color="rgb(209,213,219)" size={50} />
-        </div>
-    </div>
-)
 
 const Homepage = () => {
 
     const { ref: videoSectionRef, inView: isVideoSectionInView } = useInView({
-        triggerOnce: true,
-        fallbackInView: true,
-    });
-
-    const { ref: bottomSectionRef, inView: isBottomSectionInView } = useInView({
         triggerOnce: true,
         fallbackInView: true,
     });
@@ -128,7 +115,7 @@ const Homepage = () => {
                 windowSize.width > 1140 ? (
                     <section className="video-section" ref={videoSectionRef}>
                         {isVideoSectionInView && (
-                            <Suspense fallback={<Fallback />}>
+                            <Suspense fallback={<VideoSectionSkeleton />}>
                                 <VideoSection />
                             </Suspense>
                         )}
@@ -136,7 +123,7 @@ const Homepage = () => {
                 ) : (
                     <section className="video-section-mobile" ref={videoSectionRef}>
                         {isVideoSectionInView && (
-                            <Suspense fallback={<Fallback />}>
+                            <Suspense fallback={<VideoSectionMobileSkeleton />}>
                                 <VideoSectionMobile />
                             </Suspense>
                         )}
@@ -144,12 +131,8 @@ const Homepage = () => {
                 )
             }
 
-            <section className="bottom-section" ref={bottomSectionRef}>
-                {isBottomSectionInView && (
-                    <Suspense fallback={<Fallback />}>
-                        <BottomSection />
-                    </Suspense>
-                )}
+            <section className="bottom-section">
+                <BottomSection />
             </section>
         </main>
     )
