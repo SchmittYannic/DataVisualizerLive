@@ -7,7 +7,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "d3": "^5.16.0",
-    "focus-trap-react": "^10.2.3",
     "framer-motion": "^10.12.18",
     "lottie-react": "^2.4.0",
     "papaparse": "^5.4.1",
