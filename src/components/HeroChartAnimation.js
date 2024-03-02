@@ -37,15 +37,7 @@ const HeroChartAnimation = () => {
                         key={item}
                         layout                     
                     >
-                        <motion.img
-                            initial={{ backgroundColor: "hsl(200, 20%, 70%)" }}
-                            animate={{ backgroundColor: "hsl(200, 20%, 95%)" }}
-                            transition={{ 
-                                ease: "linear",
-                                repeat: Infinity,
-                                repeatType: "reverse",
-                                duration: 1,
-                            }}
+                        <img
                             src={images[item - 1]}
                             alt={`Beispiel Diagramm ${item}`}
                         />
