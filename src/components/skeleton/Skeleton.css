@@ -1,7 +1,5 @@
+img,
 .skeleton {
-    border-radius: 2px;
-    display: inline-block;
-    line-height: 100%;
     width: 100%;
     background-color: #fff;
     background: linear-gradient(
@@ -12,6 +10,12 @@
     );
     background-size: 1000px 1000px;
     animation: placeholderShimmer 1.5s linear infinite forwards;
+}
+
+.skeleton {
+    border-radius: 2px;
+    display: inline-block;
+    line-height: 100%;
 }
 
 .skeleton.circle {
