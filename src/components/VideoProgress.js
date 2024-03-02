@@ -1,15 +1,16 @@
-import { motion } from "framer-motion";
+import { useAnimate } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const VideoProgress = ({ videoRef, fixDuration=null, vertical=true }) => {
+import useIsDocumentHidden from "hooks/useIsDocumentHidden";
 
+const VideoProgress = ({ videoRef, vertical=true }) => {
+
+    const [scope, animate] = useAnimate();
+    const isDocumentHidden = useIsDocumentHidden();
     const [duration, setDuration] = useState(0);
-
-    const initial = vertical ? { height: "100%" } : { width: "100%" };
-    const animate = vertical ? { height: "0%" } : { width: "0%" };
+    const [animation, setAnimation] = useState(undefined);
 
     useEffect(() => {
-        if (fixDuration) return
         if (!videoRef.current) return
 
         const video = videoRef.current;
@@ -26,25 +27,42 @@ const VideoProgress = ({ videoRef, fixDuration=null, vertical=true }) => {
         videoLoading.then(() => {
             setDuration(video.duration);
         });
-    }, [videoRef, fixDuration]);
+    }, [videoRef]);
+
+    useEffect(() => {
+        if (!scope.current) return
+
+        const keyframes = vertical ? { height: ["100%", "0%"] } : { width: ["100%", "0%"] };
+
+        const animation = animate(
+            scope.current,
+            keyframes,
+            { duration: duration, ease: "linear" }
+        );
+
+        setAnimation(animation);
+    }, [duration, animate, scope, vertical]);
+
+    useEffect(() => {
+        if (!animation) return
+        if (!isDocumentHidden) {
+            animation.play();
+        } else {
+            animation.pause();
+        }
+    }, [isDocumentHidden, animation]);
 
     return (
         <>
-            {(duration > 0 || fixDuration) && (
+            {(duration > 0) && (
                 <div 
                     className="progressbar"
                 >    
-                    <motion.div
+                    <div
+                        ref={scope}
                         className="progressbar-done"
-                        initial={initial}
-                        animate={animate}
-                        transition={{ 
-                            duration: !fixDuration ? duration : fixDuration, 
-                            ease: "linear"
-                        }}
-                        layout
                     >
-                    </motion.div>
+                    </div>
                 </div>
             )}
         </>
