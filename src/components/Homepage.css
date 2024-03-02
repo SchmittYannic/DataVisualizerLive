@@ -142,20 +142,6 @@ canvas {
     margin-top: 1rem;
 }
 
-.video-section,
-.bottom-section {
-    margin: 0 auto;
-    min-height: var(--homepage-section-fallback-min-height);
-    max-width: var(--max-content-width); 
-    border: var(--homepage-guides);
-    border-top: none;
-}
-
-.homepage-section-fallback {
-    position: relative;
-    height: var(--homepage-section-fallback-min-height);
-    width: 100%; 
-}
 
 @media only screen and (max-width: 1140px) {
     
