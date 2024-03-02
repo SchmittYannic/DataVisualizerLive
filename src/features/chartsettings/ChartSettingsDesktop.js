@@ -12,6 +12,7 @@ const ChartSettingsDesktop = ({ settingsCurrentPosition, settingsRef, setSelecte
     const { dataAsJSONLength } = useData();
     const controls = useDragControls();
     const draggableRef = useRef(null);
+    const draggableIconRef = useRef(null);
 
     const [activeTab, setActiveTab] = useState(navigationTabName);
 
@@ -69,6 +70,10 @@ const ChartSettingsDesktop = ({ settingsCurrentPosition, settingsRef, setSelecte
         return () => window.removeEventListener("resize", forceSettingsClose)
     }, [setIsOpen]);
 
+    useEffect(() => {
+        if (draggableIconRef.current) draggableIconRef.current.focus();
+    }, []);
+
     if (dataAsJSONLength > 0) {
         return (
             <motion.div
@@ -101,7 +106,11 @@ const ChartSettingsDesktop = ({ settingsCurrentPosition, settingsRef, setSelecte
                         className="draggable" 
                         onPointerDown={startDrag}>
                         {activeTab === navigationTabName ? (
-                            <div className="draggable-icon">
+                            <div
+                                ref={draggableIconRef}
+                                className="draggable-icon"
+                                tabIndex={0}
+                            >
                                 <RiDragMove2Fill
                                     role="graphics-symbol"
                                     aria-label="Drag des Menüs möglich"
