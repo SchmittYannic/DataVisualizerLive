@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 
 import {
     vsection_upload_1024x768,
@@ -10,8 +11,11 @@ import "./VideoSection.css";
 
 const VideoSection = () => {
 
+    const { ref: videoWrapperRef, inView: isVideoInView } = useInView({
+        triggerOnce: true,
+        fallbackInView: true,
+    });
     const videoRef = useRef(null);
-
     const [activeTab, setActiveTab] = useState("upload");
 
     const videoWidth = 1024;
@@ -22,8 +26,9 @@ const VideoSection = () => {
 
     useEffect(() => {
         if (!videoRef.current) return
+        if (!isVideoInView) return
         videoRef.current.play();
-    }, [activeTab]);
+    }, [activeTab, isVideoInView]);
 
     return (      
         <>
@@ -85,7 +90,7 @@ const VideoSection = () => {
                                 Der erste Schritt besteht aus dem Hochladen eines Datensatzes. DataVisualizer unterstützt das Dateiformat: <span className="font-bold">csv</span>.<br/>Das Tool lässt sich auch ohne eigenen Datensatz testen. Hierfür werden Ihnen von uns zwei Datensätze zur Verfügung gestellt.
                             </p>
                         </div>
-                        <div className="video-section-video-wrapper">
+                        <div className="video-section-video-wrapper" ref={videoWrapperRef}>      
                             <video
                                 id="uploadvideo"
                                 ref={videoRef}
@@ -94,7 +99,8 @@ const VideoSection = () => {
                                 muted="muted"
                                 onEnded={() => setActiveTab("data")}
                             >
-                                <source src={uploadwebm} type="video/webm" />
+                                {isVideoInView && <source src={uploadwebm} type="video/webm" />}
+                                
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -111,8 +117,8 @@ const VideoSection = () => {
                                 Sortier- und Filterfunktionalität ermöglichen eine vereinfachte Navigation ihres Datensatzes. Zudem können hier einzelne Dateneinträge ein letztes Mal vor der Diagrammerstellung angepasst werden.
                             </p>
                         </div>
-                        <div className="video-section-video-wrapper">
-                            <video 
+                        <div className="video-section-video-wrapper" ref={videoWrapperRef}>      
+                            <video
                                 id="datavideo"
                                 ref={videoRef}
                                 width={videoWidth}
@@ -120,7 +126,8 @@ const VideoSection = () => {
                                 muted="muted"
                                 onEnded={() => setActiveTab("visualisierung")}
                             >
-                                <source src={datawebm} type="video/webm" />
+                                {isVideoInView && <source src={datawebm} type="video/webm" />}
+                                
                                 Your browser does not support the video tag.
                             </video>
                         </div>
@@ -140,8 +147,8 @@ const VideoSection = () => {
                                 Alternativ kann das Diagramm zusammen mit einem Script in die Zwischenablage kopiert werden. Dies ermöglicht ein einfaches Einfügen des Diagramms in ihre Webseite. Das beigefügte Script erhält die Interaktivität des Diagramms.
                             </p>
                         </div>
-                        <div className="video-section-video-wrapper">
-                            <video 
+                        <div className="video-section-video-wrapper" ref={videoWrapperRef}>      
+                            <video
                                 id="visvideo"
                                 ref={videoRef}
                                 width={videoWidth}
@@ -149,7 +156,8 @@ const VideoSection = () => {
                                 muted="muted"
                                 onEnded={() => setActiveTab("upload")}
                             >
-                                <source src={viswebm} type="video/webm" />
+                                {isVideoInView && <source src={viswebm} type="video/webm" />}
+                                
                                 Your browser does not support the video tag.
                             </video>
                         </div>
