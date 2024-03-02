@@ -13,6 +13,9 @@ import vsection_vis_1024x768 from "./vsection_vis_1024x768.webm";
 import isection_upload_480x920 from "./isection_upload_480x920.png";
 import isection_data_480x920 from "./isection_data_480x920.png";
 import isection_vis_480x920 from "./isection_vis_480x920.png";
+import isection_upload_344x936 from "./isection_upload_344x936.png";
+import isection_data_344x936 from "./isection_data_344x936.png";
+import isection_vis_344x936 from "./isection_vis_344x936.png";
 
 export {
     info,
@@ -30,4 +33,7 @@ export {
     isection_upload_480x920,
     isection_data_480x920,
     isection_vis_480x920,
+    isection_upload_344x936,
+    isection_data_344x936,
+    isection_vis_344x936,
 }

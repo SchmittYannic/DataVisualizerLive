@@ -7,6 +7,9 @@ import {
     isection_upload_480x920,
     isection_data_480x920,
     isection_vis_480x920,
+    isection_upload_344x936,
+    isection_data_344x936,
+    isection_vis_344x936,
 } from "assets";
 import "components/VideoSectionMobile.css";
 
@@ -26,6 +29,10 @@ const VideoSectionMobile = () => {
     const isVisualisierungActive = activeTab === "visualisierung";
 
     const progressDuration = 40;
+
+    const uploadImg = isMobile ? isection_upload_344x936 : isection_upload_480x920;
+    const dataImg = isMobile ? isection_data_344x936 : isection_data_480x920;
+    const visImg = isMobile ? isection_vis_344x936 : isection_vis_480x920;
 
     useEffect(() => {
         if (timeout.current) clearTimeout(timeout.current);
@@ -134,7 +141,7 @@ const VideoSectionMobile = () => {
                             </p>
                         </div>
                         <div className="image-section-image-wrapper">
-                            <img src={isection_upload_480x920} alt="Ansicht des Schritts: Upload" />
+                            <img src={uploadImg} alt="Ansicht des Schritts: Upload" />
                         </div>
                     </>
                 )}
@@ -150,7 +157,7 @@ const VideoSectionMobile = () => {
                             </p>
                         </div>
                         <div className="image-section-image-wrapper">
-                            <img src={isection_data_480x920} alt="Ansicht des Schritts: Datenansicht" />
+                            <img src={dataImg} alt="Ansicht des Schritts: Datenansicht" />
                         </div>
                     </>
                 )}
@@ -169,7 +176,7 @@ const VideoSectionMobile = () => {
                             </p>
                         </div>
                         <div className="image-section-image-wrapper">
-                            <img src={isection_vis_480x920} alt="Ansicht des Schritts: Visualisierung" />
+                            <img src={visImg} alt="Ansicht des Schritts: Visualisierung" />
                         </div>
                     </>
                 )}
