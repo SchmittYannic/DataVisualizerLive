@@ -12,6 +12,7 @@ import AsyncButton from "./AsyncButton";
 import AsyncLink from "./AsyncLink";
 import ClipLoader from "./ClipLoader";
 import SpeechBubble from "./SpeechBubble";
+import ErrorFallback from "./ErrorFallback";
 
 export {
     DropZone,
@@ -28,4 +29,5 @@ export {
     AsyncLink,
     ClipLoader,
     SpeechBubble,
+    ErrorFallback,
 }
