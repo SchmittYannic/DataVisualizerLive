@@ -83,9 +83,7 @@ export const renderChart = (settingsRef, dataAsJSON) => {
 
     function renderLinechart() {
         const SortedData = sortByKey(dataAsJSON, xColumn);
-        const pathdata = d3.nest()
-            .key(function(d) { return d})  
-            .entries(SortedData);
+        const pathdata = d3.group(SortedData, (d) => d);
 
         function sortByKey(array, key) {
             const arrayCopy = JSON.parse(JSON.stringify(array));
@@ -112,9 +110,7 @@ export const renderChart = (settingsRef, dataAsJSON) => {
 
     function renderAreachart() {
         const SortedData = sortByKey(dataAsJSON, xColumn);
-        const pathdata = d3.nest()
-            .key(function(d) { return d})  
-            .entries(SortedData);
+        const pathdata = d3.group(SortedData, (d) => d);
 
         function sortByKey(array, key) {
             const arrayCopy = JSON.parse(JSON.stringify(array));
@@ -140,8 +136,10 @@ export const renderChart = (settingsRef, dataAsJSON) => {
     }
 
     function calcAbs() {
-        const abs = d3.nest().key(d => d[xColumn]).rollup(d => d.length).entries(dataAsJSON);
-        return abs.sort( (a, b) => b.value - a.value );
+        const abs = d3.rollup(dataAsJSON, (d) => d.length, (d) => d[xColumn]);
+        console.log(Array.from(abs))
+        //return abs.sortKeys( (a, b) => d3.descending(b.value, a.value) );
+        return abs
     }
 
     function calcBoxplotStats() {
@@ -178,9 +176,9 @@ export const renderChart = (settingsRef, dataAsJSON) => {
         let stats;
 
         if (zGrouping !== placeholderString){
-            stats = d3.nest().key(d => d[zGrouping]).rollup(calcStats).entries(dataAsJSON);
+            stats = d3.rollup(dataAsJSON, calcStats, (d) => d[zGrouping]);
         } else {
-            stats = d3.nest().key(d => d).rollup(calcStats).entries(dataAsJSON);
+            stats = d3.rollup(dataAsJSON, calcStats, (d) => d);
         }
 
         return stats;
