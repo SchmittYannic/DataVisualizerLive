@@ -6,6 +6,8 @@ import Lottie from "lottie-react";
 import { chartLottie, lightningLottie, settingLottie } from "assets";
 import HeroChartAnimation from "components/HeroChartAnimation";
 import BottomSection from "components/BottomSection";
+import ErrorBoundary from "components/ErrorBoundary";
+import ErrorFallback from "components/ui/ErrorFallback";
 import { VideoSectionSkeleton, VideoSectionMobileSkeleton } from "components/skeleton/";
 import useWindowSize from "hooks/useWindowSize";
 import "components/Homepage.css";
@@ -115,17 +117,21 @@ const Homepage = () => {
                 windowSize.width > 1140 ? (
                     <section className="video-section" ref={videoSectionRef}>
                         {isVideoSectionInView && (
-                            <Suspense fallback={<VideoSectionSkeleton />}>
-                                <VideoSection />
-                            </Suspense>
+                            <ErrorBoundary fallback={<ErrorFallback />}>
+                                <Suspense fallback={<VideoSectionSkeleton />}>
+                                    <VideoSection />
+                                </Suspense>
+                            </ErrorBoundary>
                         )}
                     </section>
                 ) : (
                     <section className="video-section-mobile" ref={videoSectionRef}>
                         {isVideoSectionInView && (
-                            <Suspense fallback={<VideoSectionMobileSkeleton />}>
-                                <VideoSectionMobile />
-                            </Suspense>
+                            <ErrorBoundary fallback={<ErrorFallback />}>
+                                <Suspense fallback={<VideoSectionMobileSkeleton />}>
+                                    <VideoSectionMobile />
+                                </Suspense>
+                            </ErrorBoundary>
                         )}
                     </section>
                 )
