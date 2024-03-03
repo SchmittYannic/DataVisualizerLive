@@ -110,7 +110,7 @@ export const histogram = (selection, props) => {
         .range([0, innerWidth])
         .nice();
 
-    let histogram = d3.histogram()
+    let histogram = d3.bin()
         .value(xValue)
         .domain(xScale.domain())
         .thresholds(xScale.ticks(binNumber));
