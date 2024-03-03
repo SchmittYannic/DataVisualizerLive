@@ -136,7 +136,7 @@ const VideoSectionMobile = () => {
                     <>
                         <div className="video-section-text">
                             <p>
-                                Der erste Schritt besteht aus dem Hochladen eines Datensatzes. DataVisualizer unterstützt das Dateiformat: <span className="font-bold">csv</span>.
+                                Der erste Schritt besteht aus dem Hochladen eines Datensatzes. DataVisualizer unterstützt das Dateiformat: <span className="font-bold">csv</span>. Bitte achten Sie darauf, dass Dezimalzahlen in Ihrer Datei durch einen Punkt (.) getrennt werden.
                             </p>
                             <p>
                                 Das Tool lässt sich auch ohne eigenen Datensatz testen. Hierfür werden Ihnen von uns zwei Datensätze zur Verfügung gestellt.
