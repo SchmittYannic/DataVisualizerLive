@@ -137,9 +137,8 @@ export const renderChart = (settingsRef, dataAsJSON) => {
 
     function calcAbs() {
         const abs = d3.rollup(dataAsJSON, (d) => d.length, (d) => d[xColumn]);
-        console.log(Array.from(abs))
-        //return abs.sortKeys( (a, b) => d3.descending(b.value, a.value) );
-        return abs
+        const absArray = Array.from(abs, ([key, value]) => ({ key, value })).sort((a, b) => d3.ascending(b.value, a.value));
+        return absArray
     }
 
     function calcBoxplotStats() {

@@ -278,7 +278,7 @@ export const barchart = (selection, props) => {
         .on('mouseover', mouseover)
         .on('mousemove', mousemove)
         .on('mouseout', mouseout)
-        .on('mouseenter', function(actual, i){
+        .on('mouseenter', function(event, actual){
     		//Alle Rechtecke werden durchsichtig
   			d3.selectAll('.bar')
     			.attr('opacity', 0.7);
@@ -318,7 +318,7 @@ export const barchart = (selection, props) => {
                     if (divergence > 0) text += '+';
                     text += `${divergence}`;
 
-                    return idx !== i ? text : '';
+                    return idx !== data.indexOf(actual) ? text : '';
                 });
   	    })
         .on('mouseleave', function () {
