@@ -274,6 +274,20 @@ input[type=number] {
     cursor: not-allowed;
 }
 
+.error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-text {
+    padding: 0 1rem;
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-relaxed);
+    background-color: var(--border-color);
+    border-radius: 25px;
+    text-align: center;
+}
 
 
 @media only screen and (max-width: 500px) {

@@ -128,3 +128,9 @@
     font-size: var(--font-size-xl);
     line-height: var(--line-height-relaxed);
 }
+
+.video-section .error-container {
+    padding: var(--homepage-padding);
+    border: var(--homepage-guides);
+    border-top: none;
+} 

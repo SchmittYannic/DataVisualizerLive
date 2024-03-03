@@ -110,6 +110,10 @@
     line-height: var(--line-height-relaxed);
 }
 
+.video-section-mobile .error-container{
+    max-width: var(--container-max-width-tablet);
+}
+
 @media only screen and (max-width: 680px) {
     .video-section-mobile h2 {
         max-width: var(--container-max-width-mobile);
@@ -120,6 +124,10 @@
     }
 
     .video-section-mobile .video-section-content {
+        max-width: var(--container-max-width-mobile);
+    }
+
+    .video-section-mobile .error-container{
         max-width: var(--container-max-width-mobile);
     }
 }
