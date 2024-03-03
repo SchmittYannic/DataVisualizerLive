@@ -5,7 +5,7 @@
     const svg = document.getElementById("scatterplotSVG");
     const axislabels = svg.querySelectorAll(".axis-label");
     const circles = svg.querySelectorAll(".circleScatterplot");
-    const zGrouping = svg.querySelectorAll(".legendScatterPlot__label")[0].textContent;
+    const zGrouping = svg.querySelectorAll(".legendScatterPlot__label")[0]?.textContent;
 
     const tooltipFontFamily = tooltip.getAttribute("data-font-family");
     const tooltipFontSize = tooltip.getAttribute("data-font-size");
