@@ -177,9 +177,9 @@ export const renderChart = (settingsRef, dataAsJSON) => {
         if (zGrouping !== placeholderString){
             stats = d3.rollup(dataAsJSON, calcStats, (d) => d[zGrouping]);
         } else {
-            stats = d3.rollup(dataAsJSON, calcStats, (d) => d);
+            stats = d3.rollup(dataAsJSON, calcStats, (d) => xColumn);
         }
 
-        return stats;
+        return Array.from(stats, ([key, value]) => ({ key, value }));
     }
 };
