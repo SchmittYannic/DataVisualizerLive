@@ -84,7 +84,7 @@ export const DataProvider = ({children}) => {
             }
         }
 
-        fetchTestData(demodata, setDataAsJSON)
+        fetchTestData(demodata, setDataAsJSON);
     }, [demodata]);
 
     useEffect(() => {
@@ -231,10 +231,20 @@ export const DataProvider = ({children}) => {
     If an entry cant be parsed into a Date the column is removed from dateOptions */
     useEffect(() => {
         if (!fileIsUploaded) return
-        if (dateColumns.length === 0) return
+        if (dateColumns.length === 0) {
+            setOperations((prevState) => {
+                const newState = {...prevState};
+                newState.setDateOptions = true;
+                return newState
+            });
+
+            return
+        }
 
         const data = JSON.parse(JSON.stringify(dataAsJSON));
         const dateOptions = JSON.parse(JSON.stringify(dateColumns));
+        // const data = dataAsJSON.map(a => {return {...a}});
+        // const dateOptions = dateColumns.map(a => {return {...a}});
 
         data.forEach(d => {
             let isDate = true;
