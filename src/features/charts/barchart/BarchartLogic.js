@@ -98,13 +98,13 @@ export const barchart = (selection, props) => {
     function mouseover(){
         tooltip.style('visibility', 'visible');
     }
-    function mousemove(){
+    function mousemove(event){
         let d = d3.select(this).data()[0]
         tooltip
         .html(xaxisText + ': ' + d.key + '</br></br>' 
                 + yaxisText + ': ' + d.value)
-        .style('left', (d3.event.pageX) + 'px')
-        .style('top', (d3.event.pageY) + 'px');
+        .style('left', (event.pageX) + 'px')
+        .style('top', (event.pageY) + 'px');
     }
     function mouseout(){
         tooltip.style('visibility', 'hidden');

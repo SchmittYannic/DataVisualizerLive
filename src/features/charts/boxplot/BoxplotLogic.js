@@ -109,7 +109,7 @@ export const boxplot = (selection, props) => {
         d3.selectAll('.lowOutlier').attr('opacity', '0.7');
         d3.select(this).attr('opacity', '1');
     }
-    function mousemoveIqr(){
+    function mousemoveIqr(event){
         let d = d3.select(this).data()[0];
         tooltip
             .html('Maximum: ' + Math.round((d.value.max + Number.EPSILON) * 100) / 100 + '</br>' +
@@ -119,8 +119,8 @@ export const boxplot = (selection, props) => {
                 'Minimum: ' + Math.round((d.value.min + Number.EPSILON) * 100) / 100 + '</br>' +
                 'Schiefe: ' + Math.round((d.value.skewness + Number.EPSILON) * 100) / 100 + '</br>' +
                 'Wölbung: ' + Math.round((d.value.kurtosis + Number.EPSILON) * 100) / 100)
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) + 'px');
+            .style('left', (event.pageX) + 'px')
+            .style('top', (event.pageY) + 'px');
     }
     function mouseout(){
         tooltip.style('visibility', 'hidden');
@@ -129,13 +129,13 @@ export const boxplot = (selection, props) => {
         d3.selectAll('.lowOutlier').attr('opacity', '1');
     }
 
-    function mousemoveCircle(){
+    function mousemoveCircle(event){
         let d = yScale.invert(d3.select(this).attr('cy'));
         
         tooltip
             .html('Ausreißer: ' + Math.round((d + Number.EPSILON) * 100) / 100)
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) + 'px');
+            .style('left', (event.pageX) + 'px')
+            .style('top', (event.pageY) + 'px');
     }
 
   

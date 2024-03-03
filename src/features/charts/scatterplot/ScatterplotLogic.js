@@ -109,19 +109,19 @@ export const scatterplot = (selection, props) => {
     function mouseover(){
         tooltip.style('visibility', 'visible');
     }
-    function mousemove(){
+    function mousemove(event){
         let d = d3.select(this).data()[0]
     
         if (zGrouping === placeholderString) {
             tooltip
                 .html(yaxisText + ': ' + d[yColumn] + '</br></br>' + xaxisText + ': ' + d[xColumn])
-                .style('left', (d3.event.pageX) + 'px')
-                .style('top', (d3.event.pageY) + 'px');
+                .style('left', (event.pageX) + 'px')
+                .style('top', (event.pageY) + 'px');
         } else {
             tooltip
                 .html(yaxisText + ': ' + d[yColumn] + '</br></br>' + xaxisText + ': ' + d[xColumn] + '</br></br>' + zGrouping + ': ' + d[zGrouping])
-                .style('left', (d3.event.pageX) + 'px')
-                .style('top', (d3.event.pageY) + 'px');
+                .style('left', (event.pageX) + 'px')
+                .style('top', (event.pageY) + 'px');
         }
     }
     function mouseout(){

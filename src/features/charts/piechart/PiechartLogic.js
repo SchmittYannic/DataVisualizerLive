@@ -100,14 +100,14 @@ export const piechart = (selection, props) => {
         d3.selectAll('.slice').attr('opacity', '0.7');
         d3.select(this).attr('opacity', '1');
     }
-    function mousemove(){
+    function mousemove(event){
         let d = d3.select(this).data()[0]
         let valuePercent = d.value / sum * 100;
         tooltip
             .html(xaxisText + ': ' + d.data.key + '</br></br>'
                 + yaxisText + ': ' + Math.round((valuePercent + Number.EPSILON) * 100) / 100 + '%')
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) + 'px');
+            .style('left', (event.pageX) + 'px')
+            .style('top', (event.pageY) + 'px');
     }
     function mouseout(){
         tooltip.style('visibility', 'hidden');

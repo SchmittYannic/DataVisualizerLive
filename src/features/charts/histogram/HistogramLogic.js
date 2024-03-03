@@ -88,14 +88,14 @@ export const histogram = (selection, props) => {
         d3.selectAll('.histBar').attr('opacity', '0.7');
         d3.select(this).attr('opacity', '1');
     };
-    function mousemove(){
+    function mousemove(event){
         var d = d3.select(this).data()[0];
 
         tooltip
             .html(xaxisText + ': ' + d.x0 + ' - ' + d.x1 + '</br></br>'
                     +	yaxisText + ': ' + d.length)
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) + 'px');
+            .style('left', (event.pageX) + 'px')
+            .style('top', (event.pageY) + 'px');
     };
     function mouseout(){
         tooltip.style('visibility', 'hidden');

@@ -94,28 +94,28 @@ export const areachart = (selection, props) => {
     function mouseover(){
         tooltip.style('visibility', 'visible');
     }
-    function mousemove(){
-        var x0 = xScale.invert(d3.mouse(this)[0]);
+    function mousemove(event){
+        var x0 = xScale.invert(d3.pointer(event)[0]);
         var formatTime = d3.timeFormat("%H:%M %A %d.%m.%Y");
         var x0formated = formatTime(x0);
         
-        var y0 = yScale.invert(d3.mouse(this)[1]);
+        var y0 = yScale.invert(d3.pointer(event)[1]);
         var y0rounded = Math.round((y0 + Number.EPSILON) * 100) / 100;
         
         tooltip
             .html(yaxisText + ': ' + y0rounded + '</br></br>' + xaxisText + ': ' + x0formated)
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) + 'px');
+            .style('left', (event.pageX) + 'px')
+            .style('top', (event.pageY) + 'px');
     }
-    function mousemoveDatapoint(){
+    function mousemoveDatapoint(event){
         var d = d3.select(this).data()[0];
         var formatTime = d3.timeFormat("%H:%M %A %d.%m.%Y");
         var formated = formatTime(d[xColumn]);
         
         tooltip
             .html('<b><u>Datenpunkt</u></b> </br>' + yaxisText + ': ' + d[yColumn] + '</br></br>' + xaxisText + ': ' + formated)
-            .style('left', (d3.event.pageX) + 'px')
-            .style('top', (d3.event.pageY) + 'px');
+            .style('left', (event.pageX) + 'px')
+            .style('top', (event.pageY) + 'px');
     }
     function mouseout(){
         tooltip.style('visibility', 'hidden');
