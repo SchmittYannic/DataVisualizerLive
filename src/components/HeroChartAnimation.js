@@ -38,6 +38,7 @@ const HeroChartAnimation = () => {
                         layout                     
                     >
                         <img
+                            className="lazyimg"
                             src={images[item - 1]}
                             alt={`Beispiel Diagramm ${item}`}
                         />

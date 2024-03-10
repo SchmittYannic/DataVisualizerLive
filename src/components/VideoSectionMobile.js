@@ -143,7 +143,7 @@ const VideoSectionMobile = () => {
                             </p>
                         </div>
                         <div className="image-section-image-wrapper">
-                            <img src={uploadImg} alt="Ansicht des Schritts: Upload" />
+                            <img className="lazyimg" src={uploadImg} alt="Ansicht des Schritts: Upload" />
                         </div>
                     </>
                 )}
@@ -159,7 +159,7 @@ const VideoSectionMobile = () => {
                             </p>
                         </div>
                         <div className="image-section-image-wrapper">
-                            <img src={dataImg} alt="Ansicht des Schritts: Datenansicht" />
+                            <img className="lazyimg" src={dataImg} alt="Ansicht des Schritts: Datenansicht" />
                         </div>
                     </>
                 )}
@@ -179,6 +179,7 @@ const VideoSectionMobile = () => {
                         </div>
                         <div className="image-section-image-wrapper">
                             <img
+                                className="lazyimg"
                                 style={{ height: `${imgHeight}px`}}
                                 src={visImg} 
                                 alt="Ansicht des Schritts: Visualisierung" 
