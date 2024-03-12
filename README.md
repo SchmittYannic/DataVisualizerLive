@@ -72,7 +72,7 @@ Open Project in an Editor like Visual Studio Code.
 $ npm install
 ```
 
-Installs all npm packages 
+Installs all required npm packages 
 
 
 ```bash
