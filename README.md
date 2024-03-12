@@ -1,6 +1,6 @@
 # DataVisualizerLive
 
-A Visualization Creation Tool for interactive diagrams using D3 library.
+A Visualization Creation Tool for interactive diagrams using [D3](https://d3js.org/) library.
 Upload dataset in form of a csv file and create different charts to represent the underlying data.
 
 This is the javascript version of the project. The typescript version is saved in this repository [here](https://github.com/SchmittYannic/DataVisualizer). Only the typescript version will receive updates in the future.
@@ -20,14 +20,14 @@ This project allows a user to upload a dataset in csv format and generate variou
 
 The chart creation process can be divided into 3 Steps.
  - In the upload step a csv file is uploaded to the site. Alternativly a user can choose to test the tool with one of the two provided demo datasets. It is adviced to do basic data cleaning operations on a dataset before uploading it to DataVisualizer to ensure the created visualization work as intended. It is essential to use a dot (.) as the decimal seperator of numerical data, otherwise the numerical data will be parsed as a string.
- - The data step shows the uploaded data inside a table. This allows a user to check, if his dataset was successfully uploaded and parsed. The table is build using tanstack table because it provides an easy way to include pagination, sorting, filtering and editing functionality to the table.
- - In the final visualization step a diagram is created using D3. Through the diagram configuration menu a user can change the chart type, text content (titel, axis label) and characteristics of the elements inside the chart (color, size). DataVisualizer supports the following chart types: barchart, piechart, boxplot, linechart, areachart, histogram, scatterplot. However there are prerequisites for the dataset to be able to use certain chart types (more details [here](#chart-requirements)). In the end the diagram can be download as an svg, which has the downside of it losing its interactivity. Alternativly both the svg and a script tag can be copied to the clipboard. Pasting them together into a html file will ensures the diagrams interactivity remains preserved.
+ - The data step shows the uploaded data inside a table. This allows a user to check, if his dataset was successfully uploaded and parsed. The table is implemented using [tanstack table](https://tanstack.com/table/latest) because it provides an easy way to include pagination, sorting, filtering and editing functionality to the table.
+ - In the final visualization step a diagram is created using D3. Through the diagram configuration menu a user can change the chart type, text content (titel, axis label) and characteristics of the elements inside the chart (color, size). DataVisualizer supports the following chart types: barchart, piechart, boxplot, linechart, areachart, histogram, scatterplot. However there are prerequisites for the dataset to be able to use certain chart types (more details [here](#chart-requirements)). In the end the diagram can be download as an svg, which has the downside of it losing its interactivity. Alternativly both the svg and a script tag can be copied to the clipboard. Pasting them together into a html file will ensure the diagrams interactivity remains preserved.
  
  
  ## Implementation Details
 
  ### Upload, Parsing and State Management
- The uploaded dataset in the upload step is being parsed using papaparse and then saved in the state of the application. No state management library was used in this project. Instead the data state is being managed inside a react context.
+ The uploaded dataset in the upload step is being parsed using [papaparse](https://www.papaparse.com/) and then saved in the state of the application. No state management library was used in this project. Instead the data state is being managed inside a react context. Since this project is frontend only, the uploaded dataset is not allowed to have more than 5 thousand rows or 20 columns to prevent the browser from freezing/crashing.
 
  ### Classification of Data
  After a new dataset is uploaded the application investigates the characteristics of the underlying data. 
