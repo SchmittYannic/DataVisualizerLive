@@ -27,7 +27,7 @@ export const steps = [
         component: VisualizationStep,
         path: "/DataVisualizer/VisualizationStep",
     },
-]
+];
 
 const App = () => {
     return (
